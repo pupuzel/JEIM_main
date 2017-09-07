@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 네비게이션 부분 레이아웃 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF0000">
+        <TextView
+            android:id="@+id/jooungo_homeback"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:drawableStart="@drawable/ic_arrow_back_white"
+            android:drawableLeft="@drawable/ic_arrow_back_white"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="[커뮤니티] - 중고나라"
+            android:textColor="#ffffff"
+            android:textSize="25dp"/>
+    </RelativeLayout>
+
+
+    <!-- 버튼 부분 레이이아웃 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <Button
+            android:background="#EAEAEA"
+
+            android:layout_marginLeft="6dp"
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="삽니다"
+            />
+
+
+        <Button
+            android:background="#24FCFF"
+            android:id="@+id/btn_sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/btn_buy"
+            android:layout_toRightOf="@id/btn_buy"
+            android:text="팝니다"
+            />
+
+
+        <TextView
+            android:drawableRight="@drawable/ic_create_black_24dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/btn_jooungo_newboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+
+    <!-- 검색 부분 레이아웃 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:background="@drawable/background_img_add"
+            android:id="@+id/Jooungo_spiner_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_weight="5"
+            android:id="@+id/edit_jooungo_search"
+            android:background="@drawable/layout_border"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:hint="검색할 내용을 입력하세요"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/btn_jooungo_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/layout_border"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawableStart="@drawable/ic_search_black_24dp" />
+
+    </LinearLayout>
+
+    <!-- 게시판 리스트뷰 -->
+    <ListView
+        android:id="@+id/jooungo_listview_sell"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="10dp"
+        android:divider="#ffffff">
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/jooungo_listview_buy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="10dp"
+        android:divider="#ffffff"
+        android:visibility="gone">
+
+    </ListView>
+
+
+    <!-- 바텀 부분 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <include
+        layout="@layout/bottombar"
+        />
+
+    </LinearLayout>
+
+</LinearLayout>

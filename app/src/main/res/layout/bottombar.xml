@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:padding="5dp"
+         android:id="@+id/bottomebar_layout">
+
+
+        <Button
+            android:onClick="Bottom"
+            android:id="@+id/bottom_home"
+            android:drawableTop="@drawable/ic_footer_home"
+            android:background="#ffffff"
+            android:text="홈"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:onClick="Bottom"
+            android:id="@+id/bottom_food"
+            android:drawableTop="@drawable/ic_footer_food"
+            android:background="#ffffff"
+            android:text="학식식단"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="0dp"/>
+
+        <Button
+            android:onClick="Bottom"
+            android:drawableTop="@drawable/ic_footer_gongji"
+            android:id="@+id/bottom_gongji"
+            android:background="#ffffff"
+            android:text="공지사항"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="0dp"
+            />
+
+        <Button
+            android:onClick="Bottom"
+            android:id="@+id/bottom_schedule"
+            android:drawableTop="@drawable/ic_footer_schedule"
+            android:background="#ffffff"
+            android:text="시간표"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <Button
+            android:onClick="Bottom"
+            android:id="@+id/bottom_total"
+            android:drawableTop="@drawable/ic_footer_totalservice"
+            android:background="#ffffff"
+            android:text="전체서비스"
+            android:textSize="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>

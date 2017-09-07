@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 기본적으로 전체 레이아웃을 DrawerLayout으로 설정-->
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/includetoolbar"
+            layout="@layout/toolbar"
+            />
+
+    <!-- 실제 메인화면 구성 레이아웃-->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/includetoolbar">
+
+
+
+            <!--메인 레이아웃 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:background="@drawable/jeiumain4">
+                <!--빈 레이아웃-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5">
+
+                    <TextView
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="150dp"
+                        android:textColor="#8c191919"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="미래로 \n    향하는\n        재능인"
+                        android:textSize="30dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+
+
+                <!-- 상단 메인메뉴 레이아웃 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+
+                    android:orientation="horizontal"
+                    >
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:text="학사\n메뉴"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:layout_height="match_parent"
+                        android:id="@+id/collegebtn"
+                        android:background="#BFA6A6A6"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/communibtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#99353535"
+                        android:text="커뮤\n니티"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:text="캠퍼스"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:background="#BF8c8c8c"
+                        android:layout_height="match_parent"
+                        android:id="@+id/campusbtn"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                        <!-- 학사메뉴 레이아웃 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/collegemenu"
+                            android:visibility="gone"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#BFA6A6A6"
+                                android:text="학교소개" />
+
+                            <Button
+                                android:background="#BFA6A6A6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="일정"/>
+                            <Button
+                                android:background="#BFA6A6A6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="행사"/>
+                            <Button
+                                android:background="#BFA6A6A6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="행정"/>
+
+                        </LinearLayout>
+
+                         <!-- 커뮤니티 레이아웃 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/communitymenu"
+                            android:visibility="gone"
+                            android:orientation="horizontal">
+                            <Button
+                                android:background="#99353535"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="과팅"/>
+                            <Button
+                                android:background="#99353535"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/btn_community_jooungo"
+                                android:text="중고장터"/>
+                            <Button
+                                android:background="#99353535"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:id="@+id/btn_community_restrant"
+                                android:text="맛집"/>
+                                </LinearLayout>
+                        <!-- 캠퍼스 레이아웃 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/campusmanu"
+                            android:visibility="gone"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/btn_campus_bus"
+                                android:background="#BF8c8c8c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="통학버스"/>
+                            <Button
+                                android:background="#BF8c8c8c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="학식식단"/>
+                            <Button
+                                android:background="#BF8c8c8c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="도서관"/>
+                            <Button
+                                android:background="#BF8c8c8c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="지도"/>
+
+                        </LinearLayout>
+
+                <!--하단 메인메뉴 레이아웃-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    >
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:text="학과\n메뉴"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:background="#7f5d5d5d"
+                        android:layout_height="match_parent"
+                        android:id="@+id/subjectbtn"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/QandAbtn"
+                        android:background="#b2BDBDBD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Q\u0026A"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/snsbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#a5353535"
+                        android:text="SNS"
+                        android:textColor="#99ffffff"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <!-- 푸터메뉴 레이아웃 -->
+           <include
+               layout="@layout/bottombar"
+               />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_View"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:menu="@menu/drawer"
+        app:headerLayout="@layout/drawer_header"
+        android:fitsSystemWindows="true"
+        />
+
+
+    </android.support.v4.widget.DrawerLayout>

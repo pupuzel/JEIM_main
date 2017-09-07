@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_intro"
+            android:icon="@drawable/ic_intro_black"
+            android:title="개발자소개" />
+        <item
+            android:id="@+id/drawer_gongji"
+            android:icon="@drawable/ic_gongi_black"
+            android:title="공지사항" />
+        <item
+            android:id="@+id/drawer_faq"
+            android:icon="@drawable/ic_faq_black"
+            android:title="FAQ" />
+        <item
+            android:id="@+id/drawer_tool"
+            android:icon="@drawable/ic_tool_black"
+            android:title="설정" />
+        <item
+            android:id="@+id/drawer_mycontent"
+            android:icon="@drawable/ic_mycontent_black"
+            android:visible="false"
+            android:title="내가 쓴글 확인" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

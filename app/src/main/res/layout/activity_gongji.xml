@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 네비게이션 부분 레이아웃 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF0000">
+        <TextView
+            android:id="@+id/gongji_homeback"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:drawableStart="@drawable/ic_arrow_back_white"
+            android:drawableLeft="@drawable/ic_arrow_back_white"/>
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="공지사항"
+            android:textColor="#ffffff"
+            android:textSize="25dp"/>
+    </RelativeLayout>
+
+
+
+
+    <!-- 게시판 리스트뷰 -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="10dp"
+        android:divider="#ffffff">
+
+    </ListView>
+
+
+    <!-- 바텀 부분 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            layout="@layout/bottombar"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

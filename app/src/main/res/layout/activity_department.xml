@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text=" 호텔관광,통상 물류 서비스 분야"
+                android:textColor="@color/navy"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      호텔관광과 호텔리조트전공"/>
+
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      호텔관광과 관광크루즈전공"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      유통물류과"
+                android:textSize="15dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      회계경영과 경영관리전공"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      항공운항서비스과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      회계경영과 회계관리전공"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      호텔외식조리과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      한식명품조리과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="◇ 첨단융합산업분야"
+                android:textColor="@color/navy"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      전자과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      정보통신과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      컴퓨터정보과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      화장품과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="◇ 문화·예술분야"
+                android:textColor="@color/navy"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      실내건축과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      뷰티케어과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      레저스포츠과"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      실용음악과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      사진영상미디어과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="◇ 교육,보건·복지분야"
+                android:textColor="@color/navy"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      유아보육과(3년제)"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      아동보육과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      사회복지과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      사회복지과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      환경보건과"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/button23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/menu"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/next"
+                android:paddingRight="10dp"
+                android:text="      간호과(4년제)"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+                 <include layout="@layout/bottombar"/>
+
+    </LinearLayout>
+    <!-- 푸터메뉴 레이아웃 -->
+
+
+</LinearLayout>

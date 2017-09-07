@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF4848</color>
+    <color name="colorPrimaryDark">#FF4848</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="actionbar">#f15f5f</color>
+    <color name="jeiuback">#FF4848</color>
+    <color name="btncliked">#24FCFF</color>
+    <color name="btnclike">#EAEAEA</color>
+    <color name="menu">#ffffff</color>
+    <color name="navy">#333393</color>
+    <color name="white">#ffffff</color>
+    <color name="navy_2">#445599</color>
+    <color name="black">#000000</color>
+    <color name="gray">#4000</color>
+    <color name="grayAlpha">#ffeeeeee</color>
+    <color name="whitegray">#aaeeeeee</color>
+    <color name="whiteblue">#80F5FF</color>
+</resources>
