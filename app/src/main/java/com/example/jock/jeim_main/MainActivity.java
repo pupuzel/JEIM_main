@@ -3,6 +3,7 @@ package com.example.jock.jeim_main;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.renderscript.Byte2;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -21,8 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.FAQ.FAQActivity;
+import com.example.jock.jeim_main.Food.FoodActivity;
 import com.example.jock.jeim_main.Jooungo.JooungoActivity;
 import com.example.jock.jeim_main.Major.DepartmentActivity;
+
+import java.nio.BufferUnderflowException;
 
 public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button bottom_gongji;
     Button college,community,campus;
     Button btn_campus_bus;
-    Button btn_community_jooungo;
+    Button btn_community_jooungo,btn_community_food;
     Button btn_subject;
     LinearLayout collegemenu,communimenu,campusmenu, bottombar_layout;
     int collegecheak,communicheak,campuscheak;
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_campus_bus = (Button)findViewById(R.id.btn_campus_bus);
         btn_community_jooungo = (Button)findViewById(R.id.btn_community_jooungo);
+        btn_community_food = (Button) findViewById(R.id.btn_community_restrant);
         /* XML 툴바 ID 컨트롤 */
         toolbar = (Toolbar) findViewById(R.id.includetoolbar);
         btnlist = (TextView) toolbar.findViewById(R.id.btnlist);
@@ -80,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("재능대학교");
         setSupportActionBar(toolbar);
 
-        Toast.makeText(getApplicationContext(),"즐",Toast.LENGTH_SHORT).show();
         /* 드로우  클릭 이벤트*/
         btnlist.setOnClickListener(new OnClickListener() {
             @Override
@@ -172,7 +176,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(joounintent);
             }
         });
-
+        btn_community_food.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext() , FoodActivity.class));
+            }
+        });
         /* 학과메뉴 버튼 클릭 컨트롤*/
         btn_subject.setOnClickListener(new OnClickListener() {
             @Override

@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <meta-data android:name="com.kakao.sdk.AppKey" android:value="14d59cb85de9198d898d45667ea768d5"/>
     <uses-feature android:name="android.hardware.camera" />
 
 
@@ -32,6 +34,7 @@
         <activity android:name=".Jooungo.JooungoUpdate"/>
         <activity android:name=".Major.DepartmentActivity"/>
         <activity android:name=".Food.FoodActivity"/>
+        <activity android:name=".Food.FoodMap"/>
 
 
     </application>
