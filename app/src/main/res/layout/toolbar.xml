@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="인천재능대학교"
+            android:text="재능마당"
             android:textSize="25dp"
             android:textStyle="bold"
             android:textColor="#ffffff"

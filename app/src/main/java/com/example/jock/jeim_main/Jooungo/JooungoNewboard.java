@@ -2,11 +2,11 @@ package com.example.jock.jeim_main.Jooungo;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Upload.JooungoTask;
+import com.example.jock.jeim_main.Task.JooungoTask;
 
 import java.io.ByteArrayOutputStream;
 
@@ -108,7 +108,13 @@ public class JooungoNewboard extends AppCompatActivity implements View.OnClickLi
                         //이미지 데이터를 비트맵으로 받아온다.
                         Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                         ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
+                        if(image_bitmap.getWidth() > 1600 || image_bitmap.getHeight() > 1024){
+                            image_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
+                        }else if(image_bitmap.getWidth() > 1024 || image_bitmap.getHeight() > 700){
+                            image_bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
+                        }else{
+                            image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
+                        }
 
                         switch(addimgIDVALUE){
                             case R.id.btn_text_jooungo_addimg1:

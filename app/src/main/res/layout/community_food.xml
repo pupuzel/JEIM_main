@@ -97,13 +97,28 @@ xmlns:tools="http://schemas.android.com/tools"
 
     </LinearLayout>
 
-    <!--하단-->
-
+    <!-- 텍스트 뷰 -->
     <ListView
+        android:id="@+id/community_food_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="100"
-        android:background="#ffffff"></ListView>
+        android:background="#ffffff" />
+
+    <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="신장 개업!"
+                android:textSize="15dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:background="#EAEAEA"/>
+
+        </LinearLayout>
 
 
 </LinearLayout>

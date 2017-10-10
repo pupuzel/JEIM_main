@@ -16,4 +16,12 @@
     <color name="grayAlpha">#ffeeeeee</color>
     <color name="whitegray">#aaeeeeee</color>
     <color name="whiteblue">#80F5FF</color>
+    <drawable name="main_list_item_select">#ffffff</drawable>
+    <drawable name="main_list_item">#000000</drawable>
+    <drawable name="abc_select">#1DDB16</drawable>
+    <drawable name="abc">#ABF200</drawable>
+    <color name="login_bar">#EAEAEA</color>
+    <color name="whitealpha">#99ffffff</color>
+    <color name="actiontopbar">#14149a</color>
+    <color name="red">#ff0000</color>
 </resources>

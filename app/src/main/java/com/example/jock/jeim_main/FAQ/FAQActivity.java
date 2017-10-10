@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.jock.jeim_main.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Url;
@@ -87,6 +88,29 @@ public class FAQActivity extends AppCompatActivity {
         });
     } // finish onCreate
 
+    /* 바텀바 컨트롤 메소드 */
+    public void Bottom(View v){
+        switch (v.getId()){
+            case R.id.bottom_gongji :
+                Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.bottom_home :
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent2);
+                finish();
+                break;
+            case R.id.bottom_food :
+
+                break;
+            case R.id.bottom_schedule :
+
+                break;
+            case R.id.bottom_total :
+
+                break;
+        }
+    }
 
 
     // 게시판 이용을 위한 AsyncTask 쓰레드 클래스 사용

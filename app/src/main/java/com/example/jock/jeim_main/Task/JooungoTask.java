@@ -1,4 +1,4 @@
-package com.example.jock.jeim_main.Upload;
+package com.example.jock.jeim_main.Task;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,7 +15,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 
-public class JooungoUpdateTask extends AsyncTask<Jooungoboardinfo,Void,String> {
+public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
     private Jooungoboardinfo info = new Jooungoboardinfo();
     private String lineEnd = "\r\n";
     private String twoHyphens = "--";
@@ -26,18 +26,18 @@ public class JooungoUpdateTask extends AsyncTask<Jooungoboardinfo,Void,String> {
 
         StringBuilder html = new StringBuilder();
         String mResult,result = null;
-        String price,title,content,group,boardcode;
+        String userid,price,title,content,group;
 
         Jooungoboardinfo info = parmas[0];
+        userid = info.getUserid();
         price = info.getPrice();
         title = info.getTitle();
         content = info.getContent();
         group = info.getGroup();
-        boardcode = info.getBoardcode();
 
         try {
 
-            URL url = new URL(Url.Main+Url.JooungoUpdate);
+            URL url = new URL(Url.Main+Url.JooungoBoard);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             if (conn != null) {
                 conn.setUseCaches(false);
@@ -87,9 +87,9 @@ public class JooungoUpdateTask extends AsyncTask<Jooungoboardinfo,Void,String> {
 
             // text 추가
             outParam.writeBytes(twoHyphens + boundary + lineEnd);
-            outParam.writeBytes("Content-Disposition: form-data; name=\"boardcode\""+ lineEnd);
+            outParam.writeBytes("Content-Disposition: form-data; name=\"userid\""+ lineEnd);
             outParam.writeBytes(lineEnd);
-            outParam.writeBytes(URLEncoder.encode(boardcode, "UTF-8"));
+            outParam.writeBytes(URLEncoder.encode(userid, "UTF-8"));
             outParam.writeBytes(lineEnd);
             outParam.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 

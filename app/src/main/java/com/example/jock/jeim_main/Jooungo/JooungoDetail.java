@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Upload.ImgTask;
+import com.example.jock.jeim_main.Task.ImgTask;
 import com.example.jock.jeim_main.Url;
 
 import org.json.JSONArray;

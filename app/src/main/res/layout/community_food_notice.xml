@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D5D5D5">
+
+
+    <!--  커스컴 레이아웃 -->
+    <LinearLayout
+        android:background="#ffffff"
+        android:padding="5dp"
+        android:layout_weight="5"
+        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <!--  제목,주소,분류 레이아웃 -->
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/community_food_listview_txt_title"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="17dp"/>
+            <TextView
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:id="@+id/community_food_listview_txt_adress"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15dp"/>
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/community_food_listview_txt_group"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="10dp"/>
+
+        </LinearLayout>
+
+        <!-- 메인 이미지  -->
+        <ImageView
+            android:id="@+id/community_food_listview_imgview"
+            android:layout_margin="3dp"
+            android:scaleType="fitXY"
+            android:layout_weight="2"
+            android:layout_width="400dp"
+            android:layout_height="80dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

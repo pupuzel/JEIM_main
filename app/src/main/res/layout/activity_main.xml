@@ -59,44 +59,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
                     <Button
                         android:layout_width="wrap_content"
-                        android:text="학사\n메뉴"
+                        android:text="학과\n메뉴"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"
                         android:layout_height="match_parent"
-                        android:id="@+id/collegebtn"
+                        android:id="@+id/main_btn_depart"
                         android:background="#BFA6A6A6"
                         android:layout_weight="1"/>
 
                     <Button
-                        android:id="@+id/communibtn"
+                        android:id="@+id/main_btn_jooungo"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#99353535"
-                        android:text="커뮤\n니티"
+                        android:text="중고\n장터"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <Button
                         android:layout_width="wrap_content"
-                        android:text="캠퍼스"
+                        android:text="오늘 뭐 \n먹지?"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"
                         android:background="#BF8c8c8c"
                         android:layout_height="match_parent"
-                        android:id="@+id/campusbtn"
+                        android:id="@+id/main_btn_food"
                         android:layout_weight="1"/>
                 </LinearLayout>
 
-                        <!-- 학사메뉴 레이아웃 -->
+<!--                        &lt;!&ndash; 학사메뉴 레이아웃 &ndash;&gt;
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -133,7 +131,7 @@
 
                         </LinearLayout>
 
-                         <!-- 커뮤니티 레이아웃 -->
+                         &lt;!&ndash; 커뮤니티 레이아웃 &ndash;&gt;
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -158,10 +156,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:id="@+id/btn_community_restrant"
+                                    android:id="@+id/btn_community_restrant"
                                 android:text="맛집"/>
                                 </LinearLayout>
-                        <!-- 캠퍼스 레이아웃 -->
+                        &lt;!&ndash; 캠퍼스 레이아웃 &ndash;&gt;
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -194,48 +192,47 @@
                                 android:layout_weight="1"
                                 android:text="지도"/>
 
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                 <!--하단 메인메뉴 레이아웃-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    >
+                    android:orientation="horizontal"
+                    android:layout_weight="2">
                     <Button
                         android:layout_width="wrap_content"
-                        android:text="학과\n메뉴"
+                        android:text="도서관"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"
                         android:background="#7f5d5d5d"
                         android:layout_height="match_parent"
-                        android:id="@+id/subjectbtn"
+                        android:id="@+id/main_btn_library"
                         android:layout_weight="1"/>
 
                     <Button
-                        android:id="@+id/QandAbtn"
+                        android:id="@+id/main_btn_map"
                         android:background="#b2BDBDBD"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Q\u0026A"
+                        android:text="버스"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/snsbtn"
+                        android:id="@+id/main_btn_game"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#a5353535"
-                        android:text="SNS"
+                        android:text="소설\n릴레이"
                         android:textColor="#99ffffff"
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
 
 
             </LinearLayout>

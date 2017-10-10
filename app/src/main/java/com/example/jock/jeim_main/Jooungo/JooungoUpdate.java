@@ -13,20 +13,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Upload.JooungoTask;
-import com.example.jock.jeim_main.Upload.JooungoUpdateTask;
+import com.example.jock.jeim_main.Task.JooungoUpdateTask;
 import com.example.jock.jeim_main.Url;
 
 import java.io.ByteArrayOutputStream;
@@ -46,7 +45,7 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
 
     private Button calcle,check;
     private EditText price,title,contents;
-    private TextView updateimg1,updateimg2,updateimg3;
+    private ImageView updateimg1,updateimg2,updateimg3;
     private Drawable drawable;
     private Spinner spinner;
 
@@ -67,9 +66,9 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
         title = (EditText)findViewById(R.id.edit_jooungo_updateboard_title);
         contents = (EditText)findViewById(R.id.edit_jooungo_updateboard_contents);
 
-        updateimg1 = (TextView) findViewById(R.id.btn_text_jooungo_updateimg1);
-        updateimg2 = (TextView) findViewById(R.id.btn_text_jooungo_updateimg2);
-        updateimg3 = (TextView) findViewById(R.id.btn_text_jooungo_updateimg3);
+        updateimg1 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg1);
+        updateimg2 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg2);
+        updateimg3 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg3);
 
         updateimg1.setOnClickListener(this);
         updateimg2.setOnClickListener(this);
@@ -116,13 +115,14 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
         String getimg1 = intent.getStringExtra("이미지1");
         String getimg2 = intent.getStringExtra("이미지2");
         String getimg3 = intent.getStringExtra("이미지3");
+
         title.setText(gettitle);
         contents.setText(getcontent);
         price.setText(String.valueOf(getprice));
         spinner.setSelection(getgroup);
         adapter.notifyDataSetChanged();
-        new LodingIMG().execute(getimg1,getimg2,getimg3);
-        //Toast.makeText(getApplicationContext(),getimg2,Toast.LENGTH_SHORT).show();
+
+        new Uitask(getimg1,getimg2,getimg3).start();
     }
     //사진을 가져오는 메소드
     @Override
@@ -142,18 +142,17 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
                     switch(addimgIDVALUE){
                         case R.id.btn_text_jooungo_updateimg1:
                             info.setImg1(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
-                            updateimg1.setBackgroundDrawable(drawable);
+                            updateimg1.setImageBitmap(image_bitmap);
+                            updateimg2.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_updateimg2:
                             info.setImg2(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
-                            updateimg2.setBackgroundDrawable(drawable);
+                            updateimg2.setImageBitmap(image_bitmap);
+                            updateimg3.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_updateimg3:
                             info.setImg3(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
-                            updateimg3.setBackgroundDrawable(drawable);
+                            updateimg3.setImageBitmap(image_bitmap);
                             break;
                     }
                     Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
@@ -241,7 +240,7 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 finish();
 
-            }else if(result.equals("fail")){
+            }else{
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -254,64 +253,13 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
     }
 
     //기존 게시판 이미지 뿌려주기 클래스
-    public class LodingIMG extends AsyncTask<String,Integer,Bitmap> {
-
-        ProgressDialog mProgress;
-        Bitmap bitimg;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgress = new ProgressDialog(JooungoUpdate.this);
-            mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
-            mProgress.show();
-
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            int count = 0;
-
-            if(params[0] != null) {
-                count = 1;
-            }if(params[1] != null){
-                count = 2;
-            }if(params[2] != null){
-                count = 3;
-            }
-
-            try {
-                for(int i = 0; i<count ; i++) {
-                    URL url = new URL(Url.realimg + params[i]);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
-
-                    InputStream is = conn.getInputStream();
-                    bitimg = BitmapFactory.decodeStream(is);
-                    new Uitask(bitimg,i).start();
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            mProgress.dismiss();
-        }
-    }
-
     private class Uitask extends Thread{
-        int count;
-        Bitmap bitmap;
-        Drawable drawable;
-        public Uitask(Bitmap bitmap,int a) {
-            this.bitmap = bitmap;
-            count = a;
+        String img1,img2,img3;
+
+        public Uitask(String img1,String img2,String img3) {
+            this.img1 = img1;
+            this.img2 = img2;
+            this.img3 = img3;
         }
 
         @Override
@@ -319,16 +267,56 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(count == 0){
-                        drawable = new BitmapDrawable(bitmap);
-                        updateimg1.setBackgroundDrawable(drawable);
-                    }else if(count == 1){
-                        drawable = new BitmapDrawable(bitmap);
-                        updateimg2.setBackgroundDrawable(drawable);
-                    }else if(count == 2){
-                        drawable = new BitmapDrawable(bitmap);
-                        updateimg3.setBackgroundDrawable(drawable);
+
+                    mProgress = new ProgressDialog(JooungoUpdate.this);
+                    mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
+                    mProgress.show();
+
+                    if(img1 != null){
+
+                        Glide.with(getApplicationContext())
+                                .load(Url.Main + Url.ImgTake +img1)
+                                .asBitmap()
+                                .placeholder(R.drawable.ic_wait)
+                                .error(R.drawable.ic_clear_black_24dp)
+                                .thumbnail(0.1f)
+                                .into(updateimg1);
+                        updateimg2.setVisibility(View.VISIBLE);
+
                     }
+                    if(img2 != null){
+
+                        Glide.with(getApplicationContext())
+                                .load(Url.Main + Url.ImgTake +img2)
+                                .asBitmap()
+                                .placeholder(R.drawable.ic_wait)
+                                .error(R.drawable.ic_clear_black_24dp)
+                                .thumbnail(0.1f)
+                                .into(updateimg2);
+                        updateimg2.setVisibility(View.VISIBLE);
+                        updateimg3.setVisibility(View.VISIBLE);
+
+                    }
+                    if(img3 != null){
+
+                        Glide.with(getApplicationContext())
+                                .load(Url.Main + Url.ImgTake +img3)
+                                .asBitmap()
+                                .placeholder(R.drawable.ic_wait)
+                                .error(R.drawable.ic_clear_black_24dp)
+                                .thumbnail(0.1f)
+                                .into(updateimg3);
+
+                    }
+                }
+
+            });
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mProgress.dismiss();
                 }
             });
         }

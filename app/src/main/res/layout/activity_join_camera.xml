@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CamaraActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.journeyapps.barcodescanner.CompoundBarcodeView
+            android:id="@+id/Camara_barcode_scanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </com.journeyapps.barcodescanner.CompoundBarcodeView>
+        <TextView
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학생증 바코드를 스캔해주세요"
+            android:textColor="#ffffff"
+            android:background="#40ffffff"
+            android:textSize="20dp"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>

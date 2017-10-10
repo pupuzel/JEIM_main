@@ -27,24 +27,23 @@ import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnjoin,btnlogin;
-    TextView loginhome;
+    Button btnlogin;
+    TextView loginhome,btnjoin;
     EditText idtext,pwtext;
     private AlertDialog.Builder dialog;
-    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnjoin = (Button)findViewById(R.id.btnjoin);   //회원가입 액티비티로 이동하는 버튼
+        btnjoin = (TextView)findViewById(R.id.btnjoin);   //회원가입 액티비티로 이동하는 버튼
         btnlogin = (Button)findViewById(R.id.btnlogin);  // 로그인 버튼
-        loginhome = (TextView)findViewById(R.id.loginhome); // 뒤로가기 버튼
-        idtext = (EditText)findViewById(R.id.idtext);    // 아이디 입력 텍스트창
-        pwtext = (EditText)findViewById(R.id.passwdtext);  // 암호 입력 텍스트창
+        loginhome = (TextView)findViewById(R.id.loginhome); // 뒤로가기 버튼// 암호 입력 텍스트창
 
         // 각각 버튼에 대해 클릭이벤트가 발생하면 OnClick() 메소드가 실행이 되게 리스너 연결
+        idtext = (EditText)findViewById(R.id.idtext);    // 아이디 입력 텍스트창
+        pwtext = (EditText)findViewById(R.id.passwdtext);
         btnjoin.setOnClickListener(this);
         loginhome.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
@@ -82,8 +81,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String jusername = json.getString("회원이름"); // 제이손 값을 파싱하여 스트링 배열에 저장
 
             //정보를 프리퍼런스에 저장하기  (자바에 Session 변수와 비슷한 기능을 가진 클래스)
-            pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);  // Login 이라는 프리퍼런스를 MODE_PRIVATE형식으로 쓰겠다 선언
-            SharedPreferences.Editor editor = pref.edit();   // pref 프리퍼런스를 수정하겠다라고 선언
+            Pref.Login = getSharedPreferences("Login", Activity.MODE_PRIVATE);  // Login 이라는 프리퍼런스를 MODE_PRIVATE형식으로 쓰겠다 선언
+            SharedPreferences.Editor editor = Pref.Login.edit();   // pref 프리퍼런스를 수정하겠다라고 선언
             editor.putString("회원이름",jusername);   // put(키,값) 형식으로 데이터를 저장
             editor.putString("회원아이디",juserid);  // put(키,값) 형식으로 데이터를 저장
             editor.commit();  // 수정 완료

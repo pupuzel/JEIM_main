@@ -56,13 +56,14 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.community_jooungo);
 
+        // 검색 분류 부분 스피너 가져오기
         spinner = (Spinner)findViewById(R.id.Jooungo_spiner_list);
         Spinneradapter = ArrayAdapter.createFromResource(this, R.array.Jooungo,android.R.layout.simple_spinner_item);
         Spinneradapter.setDropDownViewResource(R.layout.customer_spinner);
         spinner.setAdapter(Spinneradapter);
 
 
-        // 각각 위젯들 네비게이션
+        // 각각 위젯들 find 연결시켜주기
         btn_jooungo_newboard = (TextView)findViewById(R.id.btn_jooungo_newboard);
         jooungo_backhome = (TextView) findViewById(R.id.jooungo_homeback);
         btn_jooungo_search = (TextView) findViewById(R.id.btn_jooungo_search);
@@ -78,8 +79,9 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
         //처음 실행시 팝니다가 먼저 보여지게 실행
         task = new selectlist();
-        task.execute("1",null,null);
+        task.execute("1",null,null); // 팝니다 = 1 삽니다 = 2 매개값으로 던져주기
 
+        // 각각 온클릭 이벤트 리스너 연결시켜주기
         btn_jooungo_newboard.setOnClickListener(this);
         btnsell.setOnClickListener(this);
         btnbuy.setOnClickListener(this);
@@ -101,23 +103,22 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 // Position 은 클릭한 Row의 position 을 반환해 준다.
                //Toast.makeText(getApplicationContext(), "" + position, Toast.LENGTH_SHORT).show();
 
-                JooungoNotice item = (JooungoNotice) parent.getItemAtPosition(position);
-                String str = item.getBoardcode();
-
-                Intent popup = new Intent(getApplicationContext(), JooungoDetail.class);
-                popup.putExtra("게시판코드",str);
-                startActivity(popup);
+                JooungoNotice item = (JooungoNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
+                String str = item.getBoardcode();  // 클릭한 해당 아이템 게시판코드값 가져오기
+                Intent popup = new Intent(getApplicationContext(), JooungoDetail.class);  // 게시판 자세히 보기 액티비티로 이동
+                popup.putExtra("게시판코드",str); //게시판코드를 가지고 자세히 보기 액티비티로 이동
+                startActivity(popup);  // 이동
             }
         });
 
 
     } // onCreate finish
 
-    public void search() {
-        String searchValue = edit_jooungo_search.getText().toString();
-        String itemgroup = spinner.getSelectedItem().toString();
-        String groupValue = String.valueOf(btnCheckValue);
-        switch (itemgroup.toString()){
+    public void search() {   // 검색 메소드
+        String searchValue = edit_jooungo_search.getText().toString();  // 검색 내용을 String 변수에 저장
+        String itemgroup = spinner.getSelectedItem().toString();   // 검색 분류(작성자,제목 등등...) 내용을 String 변수에 저장
+        String groupValue = String.valueOf(btnCheckValue);        //팝니다 인지 삽니다 인지 구분하여 String 변수에 저장
+        switch (itemgroup.toString()){   // 검색 분류에 따른 swich 구문 실행
             case "제목":
                 task = new selectlist();
                 task.execute(groupValue,searchValue,itemgroup);
@@ -140,11 +141,11 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
          switch (v.getId()){
             case R.id.btn_jooungo_newboard:  //글 작성 버튼 클릭시
-                pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);
-                String prefUsername = pref.getString("회원이름",null);
-                if((prefUsername == null) == true){
+                pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);  //회원 세션값 가져오기
+                String prefUsername = pref.getString("회원이름",null);  // 회원 이름값 가져오기
+                if((prefUsername == null) == true){  // 로그인이 안되어있을때
                     Toast.makeText(getApplicationContext(),"로그인을 해야만 게시글을 작성할수 있습니다.",Toast.LENGTH_LONG).show();
-                }else{
+                }else{  //로그인이 되어있다면 글작성 액티비티로 이동
                     Intent newboard = new Intent(getApplicationContext(), JooungoNewboard.class);
                     startActivity(newboard);
                 }
@@ -152,24 +153,24 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
             case R.id.btn_sell : // 팝니다 클릭시
                 task = new selectlist();
-                task.execute("1",null,null);
-                btnbuy.setBackgroundColor(clickColor);
-                btnsell.setBackgroundColor(clickedColor);
-                btnCheckValue = 1;
+                task.execute("1",null,null);  // 팝니다 코드인 1을 매개값으로 던져줌
+                btnbuy.setBackgroundColor(clickColor);  //UI 처리
+                btnsell.setBackgroundColor(clickedColor); //UI 처리
+                btnCheckValue = 1; // 팝니다 버튼 클릭 체크값 설정
                  break;
 
             case R.id.btn_buy : // 삽니다 클릭시
                 task = new selectlist();
-                task.execute("2",null,null);
-                btnbuy.setBackgroundColor(clickedColor);
-                btnsell.setBackgroundColor(clickColor);
-                btnCheckValue = 2;
+                task.execute("2",null,null);  // 삽니다 코드인 2을 매개값으로 던져줌
+                btnbuy.setBackgroundColor(clickedColor);  //UI 처리
+                btnsell.setBackgroundColor(clickColor);  //UI 처리
+                btnCheckValue = 2; // 삽니다 버튼 클릭 체크값 설정
                 break;
 
              case R.id.btn_jooungo_search : // 검색 버튼 클릭시
-                 InputMethodManager immhide = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-                 immhide.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-                 search();
+                 InputMethodManager immhide = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);  // 키패드 입력창 설정
+                 immhide.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);  // 키패드 입력창 보여주기 or 숨겨주기
+                 search();  // 검색하기 메소드 실행
                  break;
 
              case R.id.jooungo_homeback : // 뒤로가기 버튼 클릭시
@@ -185,11 +186,11 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     /* 바텀바 컨트롤 메소드 */
     public void Bottom(View v){
         switch (v.getId()){
-            case R.id.bottom_gongji :
+            case R.id.bottom_gongji :  // 공지 액티비티로 이동
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.bottom_home :
+            case R.id.bottom_home :   // 홈 액티비티로 이동
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent2);
                 finish();
@@ -289,7 +290,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                             bd_code = json.getString("게시판코드");
                             username = json.getString("작성자");
                             title = json.getString("제목");
-                            date = json.getString("날짜");
+                            date = json.getString("날짜").substring(0,16);
                             jooungoNoticeList.add(new JooungoNotice(bd_code,username,title,date));
                         count++;
                         }

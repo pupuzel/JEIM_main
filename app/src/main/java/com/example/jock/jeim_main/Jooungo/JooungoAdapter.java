@@ -48,7 +48,7 @@ public class JooungoAdapter extends BaseAdapter {
         title.setText(noticelist.get(position).getTitle());
         name.setText(noticelist.get(position).getUsername());
         date.setText(noticelist.get(position).getDate());
-        code.setText(noticelist.get(position).getBoardcode());
+        //code.setText(noticelist.get(position).getBoardcode());
 
         v.setTag(noticelist.get(position).getTitle());
         return v;

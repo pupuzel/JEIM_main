@@ -127,7 +127,8 @@
             android:layout_marginTop="7dp"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
+                android:scaleType="fitXY"
                 android:id="@+id/btn_text_jooungo_updateimg1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -138,7 +139,9 @@
                 android:text="사진 추가"
                 android:textSize="20dp" />
 
-            <TextView
+            <ImageView
+                android:scaleType="fitXY"
+                android:visibility="invisible"
                 android:id="@+id/btn_text_jooungo_updateimg2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -149,7 +152,8 @@
                 android:text="사진 추가"
                 android:textSize="20dp" />
 
-            <TextView
+            <ImageView
+                android:scaleType="fitXY"
                 android:id="@+id/btn_text_jooungo_updateimg3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -158,7 +162,8 @@
                 android:background="@drawable/background_img_add"
                 android:gravity="center"
                 android:text="사진 추가"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

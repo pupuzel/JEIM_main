@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".JoinActivity"  android:label="JEIUM 회원가입"/>
+        <activity android:name=".JoinActivity"  android:label="JEIUM 회원가입" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".CamaraActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".BusActivity"/>
         <activity android:name=".Jooungo.JooungoActivity" android:windowSoftInputMode="adjustPan"/>
@@ -33,8 +34,10 @@
         <activity android:name=".GongjiActivity"/>
         <activity android:name=".Jooungo.JooungoUpdate"/>
         <activity android:name=".Major.DepartmentActivity"/>
+        <activity android:name=".Major.Department_detail"/>
         <activity android:name=".Food.FoodActivity"/>
         <activity android:name=".Food.FoodMap"/>
+        <activity android:name=".Fiction.FictionActivity" android:windowSoftInputMode="adjustPan"/>
 
 
     </application>

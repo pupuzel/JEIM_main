@@ -128,7 +128,6 @@
         android:dividerHeight="10dp"
         android:divider="#ffffff"
         android:visibility="gone">
-
     </ListView>
 
 

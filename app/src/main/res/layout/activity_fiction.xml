@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/fiction_edit_content"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="50"
+            android:hint="50자 이내"
+            android:textColorHint="#EAEAEA"
+            android:background="@drawable/layout_border_white"/>
+
+        <Button
+            android:id="@+id/fiction_btn_check"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="작성"/>
+
+    </LinearLayout>
+     <android.support.v4.widget.SwipeRefreshLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:id="@+id/fiction_swipe">
+            <ListView
+                android:id="@+id/fiction_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dividerHeight="0dp"
+                android:divider="#ffffff">
+            </ListView>
+     </android.support.v4.widget.SwipeRefreshLayout>
+    <!-- 바텀 부분 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include  layout="@layout/bottombar" />
+    </LinearLayout>
+
+</LinearLayout>

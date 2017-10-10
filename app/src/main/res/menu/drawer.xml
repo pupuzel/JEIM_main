@@ -7,9 +7,9 @@
             android:icon="@drawable/ic_intro_black"
             android:title="개발자소개" />
         <item
-            android:id="@+id/drawer_gongji"
+            android:id="@+id/drawer_QnA"
             android:icon="@drawable/ic_gongi_black"
-            android:title="공지사항" />
+            android:title="문의하기" />
         <item
             android:id="@+id/drawer_faq"
             android:icon="@drawable/ic_faq_black"

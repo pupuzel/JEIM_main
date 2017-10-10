@@ -1,12 +1,8 @@
-package com.example.jock.jeim_main.Upload;
+package com.example.jock.jeim_main.Task;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.jock.jeim_main.Jooungo.JooungoNewboard;
 import com.example.jock.jeim_main.Jooungo.Jooungoboardinfo;
 import com.example.jock.jeim_main.Url;
 
@@ -17,11 +13,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
+public class JooungoUpdateTask extends AsyncTask<Jooungoboardinfo,Void,String> {
     private Jooungoboardinfo info = new Jooungoboardinfo();
     private String lineEnd = "\r\n";
     private String twoHyphens = "--";
@@ -32,18 +26,18 @@ public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
 
         StringBuilder html = new StringBuilder();
         String mResult,result = null;
-        String userid,price,title,content,group;
+        String price,title,content,group,boardcode;
 
         Jooungoboardinfo info = parmas[0];
-        userid = info.getUserid();
         price = info.getPrice();
         title = info.getTitle();
         content = info.getContent();
         group = info.getGroup();
+        boardcode = info.getBoardcode();
 
         try {
 
-            URL url = new URL(Url.Main+Url.JooungoBoard);
+            URL url = new URL(Url.Main+Url.JooungoUpdate);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             if (conn != null) {
                 conn.setUseCaches(false);
@@ -61,41 +55,43 @@ public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
             // 파일올리기
             for (int i = 0; i < info.size();i++ ){
 
-                String filepath = String.valueOf(System.currentTimeMillis()) + ".jpg";
-                ByteArrayInputStream mByteInputStream = new ByteArrayInputStream(info.getimg(i));
+                if(info.getimg(i) != null) {
+                    String filepath = String.valueOf(System.currentTimeMillis()) + ".jpg";
+                    ByteArrayInputStream mByteInputStream = new ByteArrayInputStream(info.getimg(i));
 
-                int bytesAvailable = mByteInputStream.available();
-                int maxBufferSize = 1024;
-                int bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    int bytesAvailable = mByteInputStream.available();
+                    int maxBufferSize = 1024;
+                    int bufferSize = Math.min(bytesAvailable, maxBufferSize);
 
-                byte[] buffer = new byte[bufferSize];
-                int bytesRead = mByteInputStream.read(buffer, 0, bufferSize);
+                    byte[] buffer = new byte[bufferSize];
+                    int bytesRead = mByteInputStream.read(buffer, 0, bufferSize);
 
 
-                outParam.writeBytes(twoHyphens + boundary + lineEnd);
-                outParam.writeBytes("Content-Disposition: form-data; name=\"file"+i+"\";filename=\"" + filepath+"\"" + lineEnd);
-                outParam.writeBytes(lineEnd);
+                    outParam.writeBytes(twoHyphens + boundary + lineEnd);
+                    outParam.writeBytes("Content-Disposition: form-data; name=\"file" + i + "\";filename=\"" + filepath + "\"" + lineEnd);
+                    outParam.writeBytes(lineEnd);
 
-                // read image
-                while (bytesRead > 0) {
-                    outParam.write(buffer, 0, bufferSize);
-                    bytesAvailable = mByteInputStream.available();
-                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
-                    bytesRead = mByteInputStream.read(buffer, 0, bufferSize);
+                    // read image
+                    while (bytesRead > 0) {
+                        outParam.write(buffer, 0, bufferSize);
+                        bytesAvailable = mByteInputStream.available();
+                        bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                        bytesRead = mByteInputStream.read(buffer, 0, bufferSize);
+                    }
+
+                    outParam.writeBytes(lineEnd);
+                    outParam.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+                    mByteInputStream.close();
+
                 }
-
-                outParam.writeBytes(lineEnd);
-                outParam.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-                mByteInputStream.close();
-
             }
             //파일올리기 끝
 
             // text 추가
             outParam.writeBytes(twoHyphens + boundary + lineEnd);
-            outParam.writeBytes("Content-Disposition: form-data; name=\"userid\""+ lineEnd);
+            outParam.writeBytes("Content-Disposition: form-data; name=\"boardcode\""+ lineEnd);
             outParam.writeBytes(lineEnd);
-            outParam.writeBytes(URLEncoder.encode(userid, "UTF-8"));
+            outParam.writeBytes(URLEncoder.encode(boardcode, "UTF-8"));
             outParam.writeBytes(lineEnd);
             outParam.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 
@@ -140,7 +136,7 @@ public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
                     html.append(mResult);
                 }
                 result = html.toString();
-                Log.i("리턴",result);
+                Log.i("중고업데이트 리턴",result);
                 br.close();
             }
 

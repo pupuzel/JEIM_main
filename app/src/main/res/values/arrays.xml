@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string-array name="comjung">
+        <item>컴퓨터정보과</item>
+    </string-array>
     <string-array name="major">
         <item>간호학과</item>
         <item>사진영상미디어과</item>

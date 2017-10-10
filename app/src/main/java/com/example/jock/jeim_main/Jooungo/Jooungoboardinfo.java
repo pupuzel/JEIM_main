@@ -89,14 +89,14 @@ public class Jooungoboardinfo {
 
     public int size(){
         int a = 0;
-        if(img1 != null){
+        if(img1 != null) {
             a = 1;
-            if(img2 != null){
-                a = 2;
-                if (img3 != null){
-                    a = 3;
-                }
-            }
+        }
+        if(img2 != null) {
+            a = 2;
+        }
+        if (img3 != null) {
+            a = 3;
         }
         return  a;
     }

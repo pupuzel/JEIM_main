@@ -1,4 +1,4 @@
-package com.example.jock.jeim_main.Upload;
+package com.example.jock.jeim_main.Task;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -5,16 +5,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.jock.jeim_main.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 
 public class DepartmentActivity extends AppCompatActivity {
+
+    Button btn_comjung;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department);
+
+        btn_comjung = (Button) findViewById(R.id.department_btn_comjung);
+        btn_comjung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext() , Department_detail.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /* 바텀바 컨트롤 메소드 */

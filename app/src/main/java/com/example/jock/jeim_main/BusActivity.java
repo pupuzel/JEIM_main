@@ -21,6 +21,7 @@ public class BusActivity  extends AppCompatActivity {
             public void onClick(View v) {
                 Intent backintent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(backintent);
+                finish();
             }
         });
     }
