@@ -30,7 +30,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
     private SharedPreferences pref;
     private SwipeRefreshLayout swipe;
     private EditText edit_content;
-    private Button btn_check;
+    private Button btn_check,btn_cencle;
     private String prefUsername;
     private String name,content,date;
     private List<FictionNotice> fictionNoticeList  = new ArrayList<FictionNotice>();
@@ -45,8 +45,10 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
         edit_content = (EditText) findViewById(R.id.fiction_edit_content);
         swipe = (SwipeRefreshLayout) findViewById(R.id.fiction_swipe);
         btn_check = (Button) findViewById(R.id.fiction_btn_check);
+        btn_cencle = (Button) findViewById(R.id.fiction_btn_cancel);
 
         btn_check.setOnClickListener(this);
+        btn_cencle.setOnClickListener(this);
         swipe.setOnRefreshListener(this);
         onRefresh();
     }
@@ -76,6 +78,9 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplicationContext(), "로그인안됨", Toast.LENGTH_SHORT).show();
             }
             break;
+
+            case R.id.fiction_btn_cancel :
+                edit_content.setText("");
         }
     }
 

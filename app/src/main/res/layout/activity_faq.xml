@@ -9,26 +9,26 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF0000">
+        android:background="@color/navyblue">
+
         <TextView
             android:id="@+id/faq_homeback"
-            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:drawableStart="@drawable/ic_arrow_back_white"
-            android:drawableLeft="@drawable/ic_arrow_back_white"/>
-        <TextView
             android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_arrow_back_black"
+            android:drawableStart="@drawable/ic_arrow_back_black" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
             android:text="FAQ"
             android:textColor="#ffffff"
-            android:textSize="25dp"/>
+            android:textSize="25dp" />
     </RelativeLayout>
-
-
 
 
     <!-- 게시판 리스트뷰 -->

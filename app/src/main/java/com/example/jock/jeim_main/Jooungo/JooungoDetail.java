@@ -48,7 +48,7 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
      private JooungoDelete deleteTask;
      private TextView txt_title,txt_username,txt_date,txt_price,txt_content,txt_group,txt_loding;
      private ImageView imageView1,imageView2,imageView3;
-     private Button btn_delete,btn_update;
+     private Button btn_delete,btn_update,btn_backlist;
 
     private int price,groupvalue;
     private String usernum,prefUsernum;
@@ -71,7 +71,7 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
 
         btn_delete = (Button) findViewById(R.id.btn_jooungo_delete);
         btn_update = (Button) findViewById(R.id.btn_jooungo_update);
-
+        btn_backlist = (Button) findViewById(R.id.btn_jooungo_backlist);
         imageView1 = (ImageView) findViewById(R.id.txt_jooungo_detail_img1);
         imageView2 = (ImageView) findViewById(R.id.txt_jooungo_detail_img2);
         imageView3 = (ImageView) findViewById(R.id.txt_jooungo_detail_img3);
@@ -90,6 +90,7 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
 
         btn_delete.setOnClickListener(this);
         btn_update.setOnClickListener(this);
+        btn_backlist.setOnClickListener(this);
     } // onCreate finish
 
 
@@ -104,6 +105,12 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
             case R.id.btn_jooungo_update :
                 updatecheck();
                 break;
+
+            case R.id.btn_jooungo_backlist :
+                Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
         }
 
     }
@@ -213,7 +220,7 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
                 txt_title.setText(json.getString("제목"));
                 txt_content.setText(json.getString("내용"));
                 txt_username.setText(json.getString("작성자"));
-                txt_date.setText(json.getString("날짜"));
+                txt_date.setText(json.getString("날짜").substring(0,16));
                 price = Integer.parseInt(json.getString("가격"));
                 String pricefmt = nf.format(price);
                 txt_price.setText(pricefmt+"원");

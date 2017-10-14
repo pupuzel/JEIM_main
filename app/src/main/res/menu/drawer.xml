@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_intro"
-            android:icon="@drawable/ic_intro_black"
+            android:icon="@drawable/ic_drawer_intro"
             android:title="개발자소개" />
         <item
             android:id="@+id/drawer_QnA"
-            android:icon="@drawable/ic_gongi_black"
+            android:icon="@drawable/ic_drawer_gongi"
             android:title="문의하기" />
         <item
             android:id="@+id/drawer_faq"
-            android:icon="@drawable/ic_faq_black"
+            android:icon="@drawable/ic_drawer_faq"
             android:title="FAQ" />
         <item
             android:id="@+id/drawer_tool"
-            android:icon="@drawable/ic_tool_black"
+            android:icon="@drawable/ic_drawer_tool"
             android:title="설정" />
         <item
             android:id="@+id/drawer_mycontent"
-            android:icon="@drawable/ic_mycontent_black"
+            android:icon="@drawable/ic_drawer_content"
             android:visible="false"
             android:title="내가 쓴글 확인" />
     </group>

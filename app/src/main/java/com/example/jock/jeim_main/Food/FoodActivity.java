@@ -106,7 +106,9 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FoodNotice item = (FoodNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
         String str = item.getCode(); // 클릭한 해당 아이템 게시판코드값 가져오기
-        Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),FoodDetail.class);
+        intent.putExtra("코드",str);
+        startActivity(intent);
     }
 
     // 맛집 목록을 불러오는 클래스
@@ -149,6 +151,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onPostExecute(String result){
+            foodNoticeList.clear();
             try{
                 JSONArray jsonArray = new JSONArray(result);
                 JSONObject json;
@@ -166,8 +169,8 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                     count++;
                 }
                 foodAdapter = new FoodAdapter(getApplicationContext(),foodNoticeList);
-                foodAdapter.notifyDataSetChanged();
                 foodlistView.setAdapter(foodAdapter);
+                foodAdapter.notifyDataSetChanged();
                 mProgress.dismiss();
             }catch (Exception e){
                 e.printStackTrace();

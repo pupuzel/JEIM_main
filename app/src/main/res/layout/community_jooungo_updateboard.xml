@@ -2,32 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D5D5D5"
+        android:background="@color/navyblue"
         android:padding="10dp">
 
         <Button
             android:id="@+id/btn_jooungo_updateboard_calcle"
-            android:background="#ffffff"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:text="취소"/>
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/click_cencle"
+            android:text="취소" />
 
         <Button
             android:id="@+id/btn_jooungo_updateboard_check"
-            android:background="#1DDB16"
-            android:textColor="#ffffff"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="완료"/>
+            android:layout_alignParentTop="true"
+            android:background="@drawable/click_check"
+            android:text="완료"
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
 
@@ -47,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:text="가격"
-                android:textColor="#F15F5F"
+                android:text="희망 단가"
+                android:textColor="#000000"
                 android:textSize="15dp" />
 
             <EditText
@@ -57,13 +59,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
                 android:layout_weight="1"
-                android:background="@drawable/layout_border"
-                android:hint="가격 입력"
+                android:background="@drawable/bg_white_bd_black"
+                android:hint="희망 단가를 입력하여 주세요."
                 android:maxLength="8"
                 android:numeric="integer"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:textColor="#FF0000"
+                android:textColorHint="#000000"
                 android:textSize="15dp" />
 
             <Spinner
@@ -72,7 +74,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/background_img_add" />
+                android:background="@drawable/click_cencle" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,8 +93,8 @@
                 android:id="@+id/edit_jooungo_updateboard_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/layout_border"
-                android:hint="제목 입력"
+                android:background="@drawable/bg_white_bd_black"
+                android:hint="제목을 입력하여 주세요."
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textSize="13dp" />
@@ -113,57 +115,66 @@
             <EditText
                 android:id="@+id/edit_jooungo_updateboard_contents"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/layout_border"
+                android:layout_height="230dp"
+                android:background="@drawable/bg_white_bd_black"
                 android:gravity="left"
-                android:hint="게시판 내용 입력"
+                android:hint="내용을 입력하여 주세요."
                 android:padding="10dp"
                 android:textSize="13dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="사진 추가"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_marginTop="7dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/btn_text_jooungo_updateimg1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_img_add"
+                android:background="@drawable/bg_white_bd_black"
                 android:gravity="center"
-                android:text="사진 추가"
-                android:textSize="20dp" />
+                android:src="@drawable/ic_add"
+                android:textSize="15dp" />
 
             <ImageView
-                android:scaleType="fitXY"
-                android:visibility="invisible"
                 android:id="@+id/btn_text_jooungo_updateimg2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_img_add"
+                android:background="@drawable/bg_white_bd_black"
                 android:gravity="center"
-                android:text="사진 추가"
-                android:textSize="20dp" />
+                android:src="@drawable/ic_add"
+                android:textSize="15dp" />
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/btn_text_jooungo_updateimg3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_img_add"
+                android:background="@drawable/bg_white_bd_black"
                 android:gravity="center"
-                android:text="사진 추가"
-                android:textSize="20dp"
-                android:visibility="invisible" />
+                android:src="@drawable/ic_add"
+                android:textSize="15dp" />
 
         </LinearLayout>
 

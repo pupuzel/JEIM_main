@@ -6,168 +6,250 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 헤더 부분  -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4C4C4C"
+        android:background="@color/navyblue"
         android:orientation="vertical"
         android:padding="10dp">
-
+        <!-- 헤더 작성자 부분-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <TextView
-                android:singleLine="true"
-                android:id="@+id/txt_jooungo_detail_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="제목"
-                android:textSize="25dp"
-                android:textColor="#FFFFFF"/>
-
+                android:text="작성자:"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_weight="6"/>
             <TextView
                 android:singleLine="true"
-                android:gravity="center"
-                android:id="@+id/txt_jooungo_detail_group"
+                android:id="@+id/txt_jooungo_detail_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="[분류]"
-                android:textSize="20dp"
-                android:textColor="#FF0000"/>
-
+                android:text="작성자"
+                android:textSize="15dp"
+                android:textColor="#ffffff"
+                android:layout_weight="1"/>
         </LinearLayout>
-
-        <TextView
-            android:singleLine="true"
-            android:id="@+id/txt_jooungo_detail_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="작성자"
-            android:textSize="20dp"
-            android:textColor="#FFFFFF"/>
-
+        <!--헤더 날짜 부분-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:singleLine="true"
                 android:id="@+id/txt_jooungo_detail_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="등록일"
-                android:textColor="#FFFFFF"
+                android:textColor="#ffffff"
                 android:textSize="15dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
-
-            <Button
-                android:visibility="gone"
-                android:id="@+id/btn_jooungo_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="삭제"
-                android:textSize="20dp"
-                android:textColor="#000000"
-                />
-
-            <Button
-                android:visibility="gone"
-                android:text="수정"
-                android:id="@+id/btn_jooungo_update"
-                android:layout_toLeftOf="@id/btn_jooungo_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="#000000"
-
-                />
-
+                android:layout_alignParentTop="true" />
         </RelativeLayout>
     </LinearLayout>
 
+
+    <!-- 실제 내용-->
     <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:singleLine="true"
-                android:textColor="#FF0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txt_jooungo_detail_price"
-                android:text="가격"
-                android:textSize="35dp"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textColor="#000000"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/txt_jooungo_detail_content"
-                android:text="내용"
-                android:textSize="20dp"/>
-
-            <TextView
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:textColor="#4374D9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/txt_jooungo_detail_lodingtxt"
-                android:text="사진을 불러오고 있습니다 잠시만 기다려주세요"
-                android:textSize="20dp"
-                android:visibility="gone"/>
-            <ProgressBar
-                android:id="@+id/progressBar_jooungo_detail"
-                style="?android:attr/progressBarStyleLargeInverse"
+            <!-- 가격,분류-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:indeterminateTintMode="src_atop"
-                android:indeterminateTint="#B2EBF4"
-                android:visibility="gone"/>
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="희망 단가"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/txt_jooungo_detail_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/bg_white_bd_black"
+                    android:numeric="integer"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/txt_jooungo_detail_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="[분류]"
+                    android:textColor="#FF0000"
+                    android:textSize="15dp" />
+             </LinearLayout>
 
-            <ImageView
-                android:layout_gravity="center"
-                android:scaleType="centerInside"
-                android:id="@+id/txt_jooungo_detail_img1"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone"/>
+            <!-- 제목 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="제목"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/txt_jooungo_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_white_bd_black"
+                    android:hint="제목을 입력하여 주세요."
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:textSize="13dp" />
+           </LinearLayout>
 
-            <ImageView
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:id="@+id/txt_jooungo_detail_img2"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone"/>
 
-            <ImageView
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:id="@+id/txt_jooungo_detail_img3"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone"/>
-
+            <!--내용-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="게시판 내용"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_white_bd_black"
+                        android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/txt_jooungo_detail_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:padding="10dp"
+                                android:textSize="13dp" />
+                            <TextView
+                                android:id="@+id/txt_jooungo_detail_lodingtxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="사진을 불러오고 있습니다 잠시만 기다려주세요"
+                                android:textColor="#4374D9"
+                                android:textSize="20dp"
+                                android:visibility="gone" />
+                            <ProgressBar
+                                android:id="@+id/progressBar_jooungo_detail"
+                                style="?android:attr/progressBarStyleLargeInverse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:indeterminateTint="#B2EBF4"
+                                android:indeterminateTintMode="src_atop"
+                                android:visibility="gone" />
+                            <ImageView
+                                android:id="@+id/txt_jooungo_detail_img1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="30dp"
+                                android:scaleType="fitXY"
+                                android:visibility="gone" />
+                            <ImageView
+                                android:id="@+id/txt_jooungo_detail_img2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:scaleType="fitXY"
+                                android:visibility="gone" />
+                            <ImageView
+                                android:id="@+id/txt_jooungo_detail_img3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:scaleType="fitXY"
+                                android:visibility="gone" />
+                   </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
+              <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:background="#828282" />
 
 
+         <!-- 버튼 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <Button
+                    android:id="@+id/btn_jooungo_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_whitegray"
+                    android:text="삭제"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    android:visibility="gone" />
+                <Button
+                    android:id="@+id/btn_jooungo_backlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/click_cencle"
+                    android:text="목록"
+                    android:textSize="10dp" />
+                <Button
+                    android:id="@+id/btn_jooungo_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toLeftOf="@id/btn_jooungo_delete"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_whitegray"
+                    android:text="수정"
+                    android:textColor="#000000"
+                    android:textSize="10dp"
+                    android:visibility="gone" />
+            </LinearLayout>
 </LinearLayout>

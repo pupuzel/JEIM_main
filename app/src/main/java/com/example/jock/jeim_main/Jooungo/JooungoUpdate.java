@@ -237,6 +237,7 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
                     }
                 });
                 Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
 
@@ -273,38 +274,31 @@ public class JooungoUpdate extends AppCompatActivity implements View.OnClickList
                     mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
                     mProgress.show();
 
-                    if(img1 != null){
+                    if( (img1.equals("null")) == false){
 
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img1)
                                 .asBitmap()
-                                .placeholder(R.drawable.ic_wait)
-                                .error(R.drawable.ic_clear_black_24dp)
                                 .thumbnail(0.1f)
                                 .into(updateimg1);
                         updateimg2.setVisibility(View.VISIBLE);
 
                     }
-                    if(img2 != null){
+                    if((img2.equals("null")) == false){
 
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img2)
                                 .asBitmap()
-                                .placeholder(R.drawable.ic_wait)
-                                .error(R.drawable.ic_clear_black_24dp)
                                 .thumbnail(0.1f)
                                 .into(updateimg2);
-                        updateimg2.setVisibility(View.VISIBLE);
                         updateimg3.setVisibility(View.VISIBLE);
 
                     }
-                    if(img3 != null){
+                    if((img3.equals("null")) == false){
 
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img3)
                                 .asBitmap()
-                                .placeholder(R.drawable.ic_wait)
-                                .error(R.drawable.ic_clear_black_24dp)
                                 .thumbnail(0.1f)
                                 .into(updateimg3);
 

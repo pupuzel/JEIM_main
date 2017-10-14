@@ -24,6 +24,7 @@ public class GongjiActivity extends AppCompatActivity {
                 break;
             case R.id.bottom_home :
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
                 finish();
                 break;

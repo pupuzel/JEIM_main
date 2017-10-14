@@ -2,7 +2,6 @@ package com.example.jock.jeim_main;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,7 +18,6 @@ import android.widget.EditText;
 
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Task.JoinTask;
@@ -30,7 +27,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
 
     private ArrayAdapter adapter;
     private Spinner spinner;
-    private TextView Joinhome;
     private EditText editID,editpass,editpasscheck,editNAME,editPHONE,editEMAIL1,editEMAIL2;
     private EditText editYear,editMonth,editDay;
     private Button btn_student_check,btn_Join;
@@ -41,7 +37,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
-        Joinhome = (TextView)findViewById(R.id.Joinhome);
+
 
         btn_student_check = (Button) findViewById(R.id.Join_btn_student_check);
         btn_Join = (Button) findViewById(R.id.Join_btn_join);
@@ -62,7 +58,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         adapter = ArrayAdapter.createFromResource(this, R.array.comjung,android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        Joinhome.setOnClickListener(this);
         btn_student_check.setOnClickListener(this);
         btn_Join.setOnClickListener(this);
 
@@ -72,12 +67,6 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.Joinhome:   //홈 아이콘 클릭
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                break;
-
             case R.id.Join_btn_student_check : // 학생인증 버튼 클릭
                 isCheckCameraPermission();
                 break;
@@ -107,7 +96,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             editID.setClickable(false);
             editID.setFocusable(false);
             btn_student_check.setClickable(false);
-            btn_student_check.setBackgroundResource(R.drawable.layout_border_white);
+            btn_student_check.setBackgroundResource(R.drawable.bg_white_bd_gray_radius);
             int color = R.color.whitegray;
             btn_student_check.setTextColor(Color.parseColor("#D5D5D5"));
             btn_student_check.setText("인증완료");

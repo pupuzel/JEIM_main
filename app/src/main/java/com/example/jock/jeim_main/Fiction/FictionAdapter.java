@@ -2,6 +2,7 @@ package com.example.jock.jeim_main.Fiction;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -40,6 +41,7 @@ public class FictionAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.i("실행 횟수","즐");
         View v = View.inflate(context , R.layout.activity_fiction_notice ,null);
 
         TextView name = (TextView) v.findViewById(R.id.fiction_txt_name);

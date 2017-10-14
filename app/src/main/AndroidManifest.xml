@@ -36,6 +36,7 @@
         <activity android:name=".Major.DepartmentActivity"/>
         <activity android:name=".Major.Department_detail"/>
         <activity android:name=".Food.FoodActivity"/>
+        <activity android:name=".Food.FoodDetail"/>
         <activity android:name=".Food.FoodMap"/>
         <activity android:name=".Fiction.FictionActivity" android:windowSoftInputMode="adjustPan"/>
 

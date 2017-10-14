@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements
     private View headerview;
 
     private final int cnt = 1;
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long   backPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +150,29 @@ public class MainActivity extends AppCompatActivity implements
         return false;
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+
+            long tempTime = System.currentTimeMillis();
+            long intervalTime = tempTime - backPressedTime;
+            if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+            {
+                super.onBackPressed();
+                moveTaskToBack(true);
+
+            }
+            else
+            {
+                backPressedTime = tempTime;
+                Toast.makeText(getApplicationContext(), "한번더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     /* 로그인 체크 메소드 */
     public void LoginCheck(String prefValue){
 
@@ -206,8 +231,8 @@ public class MainActivity extends AppCompatActivity implements
                 Toast.makeText(getApplicationContext(),"오늘 첫 방문",Toast.LENGTH_SHORT).show();
 
             }else{
-                String msg = getResetTime(diifValue);
-                Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+                //String msg = getResetTime(diifValue);
+                //Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
             }
 
 
@@ -215,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    public String getResetTime(long cnttime){
+/*    public String getResetTime(long cnttime){
         String result;
 
         long hour = cnttime/3600;   // 남은 시간
@@ -225,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements
         result = "다음 투데이 "+String.valueOf(hour)+":"+String.valueOf(minute)+":"+String.valueOf(second)+" 남음";
 
         return result;
-    }
+    }*/
 
     /* 바텀바 컨트롤 메소드 */
     public void Bottom(View v){

@@ -4,7 +4,7 @@
     android:id="@+id/drawer_header_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/draw_header_green"
+    android:background="@drawable/bg_navy"
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -22,7 +22,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:visibility="gone"
-            android:background="@drawable/draw_user_background"
             app:srcCompat="@drawable/ic_drawer_user" />
 
         <TextView

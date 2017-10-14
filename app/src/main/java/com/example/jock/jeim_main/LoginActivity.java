@@ -28,7 +28,7 @@ import java.net.URL;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnlogin;
-    TextView loginhome,btnjoin;
+    TextView btnjoin;
     EditText idtext,pwtext;
     private AlertDialog.Builder dialog;
 
@@ -39,13 +39,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnjoin = (TextView)findViewById(R.id.btnjoin);   //회원가입 액티비티로 이동하는 버튼
         btnlogin = (Button)findViewById(R.id.btnlogin);  // 로그인 버튼
-        loginhome = (TextView)findViewById(R.id.loginhome); // 뒤로가기 버튼// 암호 입력 텍스트창
 
         // 각각 버튼에 대해 클릭이벤트가 발생하면 OnClick() 메소드가 실행이 되게 리스너 연결
         idtext = (EditText)findViewById(R.id.idtext);    // 아이디 입력 텍스트창
         pwtext = (EditText)findViewById(R.id.passwdtext);
         btnjoin.setOnClickListener(this);
-        loginhome.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
     }
 
@@ -55,11 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnjoin:  //클릭한 버튼이 회원가입 버튼이면 밑에 구문실행
                 startActivity(new Intent(getApplicationContext(), JoinActivity.class));
                 break;
-
-            case R.id.loginhome:  //클릭한 버튼이 뒤로가기 버튼이면 밑에 구문실행
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                break;
-
             case R.id.btnlogin:  // 클릭한 버튼이 로그인 버튼이면 밑에 구문을 실행
                 Logincheck();  //로그인을 하기위한 메소드 실행
                 break;

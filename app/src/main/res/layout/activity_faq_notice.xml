@@ -6,13 +6,13 @@
     android:background="#D5D5D5">
 
     <LinearLayout
-        android:background="@drawable/layout_border_black"
+        android:background="@drawable/bg_white_bd_black"
         android:layout_marginBottom="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:drawableLeft="@drawable/ic_play_arrow_black"
+            android:drawableLeft="@drawable/ic_arrow_play"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"

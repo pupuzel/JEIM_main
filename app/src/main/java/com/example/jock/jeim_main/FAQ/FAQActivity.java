@@ -58,7 +58,7 @@ public class FAQActivity extends AppCompatActivity {
                     faqOnOff = true;
                 }else{
                     contents.setVisibility(View.GONE);
-                    faq_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play_arrow_black,0,0,0);
+                    faq_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_play,0,0,0);
                     faqOnOff = false;
                 }
 

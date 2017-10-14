@@ -1,6 +1,7 @@
 package com.example.jock.jeim_main.Jooungo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -38,6 +39,8 @@ public class JooungoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+        Log.i("실행 횟수","즐");
         View v = View.inflate(context, R.layout.community_jooungo_notice , null);
 
         TextView title = (TextView) v.findViewById(R.id.boardtitle);

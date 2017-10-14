@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:drawableStart="@drawable/ic_arrow_back_white"
-            android:drawableLeft="@drawable/ic_arrow_back_white"/>
+            android:drawableStart="@drawable/ic_arrow_back_black"
+            android:drawableLeft="@drawable/ic_arrow_back_black"/>
         <TextView
             android:layout_margin="10dp"
             android:layout_width="wrap_content"

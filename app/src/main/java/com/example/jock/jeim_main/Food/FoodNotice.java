@@ -1,8 +1,8 @@
 package com.example.jock.jeim_main.Food;
 
-/**
- * Created by Jock on 2017-09-28.
- */
+import android.graphics.Bitmap;
+
+
 
 public class FoodNotice {
 
@@ -11,6 +11,7 @@ public class FoodNotice {
     private String adress;
     private String group;
     private String img;
+    private Bitmap bitmap;
 
     public FoodNotice(String code, String title, String adress, String group, String img) {
         this.code = code;
@@ -18,6 +19,14 @@ public class FoodNotice {
         this.adress = adress;
         this.group = group;
         this.img = img;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public String getCode() {
