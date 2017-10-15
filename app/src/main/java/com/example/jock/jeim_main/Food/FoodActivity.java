@@ -1,12 +1,12 @@
 package com.example.jock.jeim_main.Food;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +17,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jock.jeim_main.Jooungo.JooungoNewboard;
 import com.example.jock.jeim_main.R;
+import com.example.jock.jeim_main.Task.FoodTask;
 import com.example.jock.jeim_main.Url;
 
 import org.json.JSONArray;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
+public class FoodActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener{
 
     private TextView order,cancel,check;
     private BottomSheetBehavior bottomSheetBehavior;
@@ -45,19 +45,21 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     private List<FoodNotice> foodNoticeList = new ArrayList<FoodNotice>();
     private FoodAdapter foodAdapter;
     private ArrayAdapter spinneradapter;
+    public static Context context;
 
+    private Spinner spinner;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_food);
-
+        setContentView(R.layout.food_main);
+        context = this;
         order = (TextView) findViewById(R.id.community_food_order);
         cancel = (TextView) findViewById(R.id.community_food_order_cancel);
         check = (TextView) findViewById(R.id.community_food_order_check);
         bottom = (LinearLayout) findViewById(R.id.bottom_sheet);
         btn_foodmap = (Button) findViewById(R.id.community_btn_food_map);
         foodlistView = (ListView) findViewById(R.id.community_food_listview);
-
+        spinner = (Spinner)findViewById(R.id.spinner);
         bottomSheetBehavior = BottomSheetBehavior.from(bottom);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
@@ -66,13 +68,13 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         check.setOnClickListener(this);
         btn_foodmap.setOnClickListener(this);
         foodlistView.setOnItemClickListener(this);
+        spinner.setOnItemSelectedListener(this);
 
-        Spinner spinner=(Spinner)findViewById(R.id.spinner);
+
+
         spinneradapter = ArrayAdapter.createFromResource(this,R.array.Food,android.R.layout.simple_spinner_item);
         spinneradapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(spinneradapter);
-
-        new Foodlist().execute();
     }
 
     @Override
@@ -99,6 +101,20 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(getApplicationContext(),FoodMap.class));
                 break;
         }
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String Selectgroup = spinner.getSelectedItem().toString();
+        FoodTask foodTask = new FoodTask(context);
+        try{
+            foodTask.execute();
+        }catch (Exception e){ e.printStackTrace(); }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
