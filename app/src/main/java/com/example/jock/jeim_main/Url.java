@@ -17,6 +17,7 @@ public class Url {
     public static final String Food ="Foodlist.jsp";
     public static final String FoodInfo ="Foodinfo.jsp";
     public static final String FoodTake ="restaurantimg/";
+    public static final String Library ="Library.jsp";
     public static final String ImgTake ="img/";
     public static final String realimg ="http://pupuzel.cafe24.com/jeiu/img/";
         }

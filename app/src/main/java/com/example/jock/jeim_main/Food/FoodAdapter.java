@@ -52,7 +52,7 @@ public class FoodAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        v = View.inflate(context, R.layout.community_food_notice, null);
+        v = View.inflate(context, R.layout.food_notice, null);
 
         title = (TextView) v.findViewById(R.id.community_food_listview_txt_title);
         adress = (TextView) v.findViewById(R.id.community_food_listview_txt_adress);

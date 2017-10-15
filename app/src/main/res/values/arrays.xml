@@ -40,6 +40,12 @@
         <item>작성자</item>
     </string-array>
 
+    <string-array name="Library">
+        <item>책이름</item>
+        <item>저자</item>
+        <item>출판사</item>
+    </string-array>
+
     <string-array name="Food">
         <item>전체</item>
         <item>패스트 푸드</item>

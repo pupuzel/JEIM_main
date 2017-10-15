@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_whitealpha">
-
         <EditText
             android:id="@+id/fiction_edit_content"
             android:layout_weight="1"
@@ -31,7 +30,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/bg_whitealpha">
-
         <Button
             android:id="@+id/fiction_btn_cancel"
             android:layout_width="wrap_content"
@@ -44,7 +42,6 @@
             android:background="@drawable/click_cencle"
             android:text="취소"
             android:textSize="15dp"/>
-
         <Button
             android:id="@+id/fiction_btn_check"
             android:layout_width="wrap_content"
@@ -59,22 +56,39 @@
             android:textColor="#ffffff"
             android:textSize="15dp"
             android:textStyle="bold" />
-
     </LinearLayout>
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fiction_swipe"
-        android:background="@drawable/bg_whitealpha">
-        <ListView
-            android:id="@+id/fiction_listview"
+
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:dividerHeight="10dp"
-            android:divider="#ffffff">
-        </ListView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="wrap_content">
+
+                <android.support.v4.widget.SwipeRefreshLayout
+                android:layout_alignParentTop="true"
+                android:layout_above="@+id/fiction_progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fiction_swipe"
+                android:background="@drawable/bg_whitealpha">
+                    <ListView
+                    android:id="@+id/fiction_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="10dp"
+                    android:divider="#ffffff">
+                    </ListView>
+                </android.support.v4.widget.SwipeRefreshLayout>
+
+                <ProgressBar
+                    android:id="@+id/fiction_progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"/>
+        </RelativeLayout>
+
+
     <!-- 바텀 부분 -->
     <LinearLayout
         android:layout_width="match_parent"

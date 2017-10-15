@@ -59,7 +59,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_jooungo);
+        setContentView(R.layout.jooungo_main);
 
         // 검색 분류 부분 스피너 가져오기
         spinner = (Spinner)findViewById(R.id.Jooungo_spiner_list);

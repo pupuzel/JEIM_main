@@ -17,7 +17,7 @@ public class FoodMap extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_food_map);
+        setContentView(R.layout.food_map);
 
         MapView mapView = new MapView(this);
         mapView.setDaumMapApiKey("14d59cb85de9198d898d45667ea768d5");

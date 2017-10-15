@@ -10,21 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.jock.jeim_main.Jooungo.JooungoActivity;
-import com.example.jock.jeim_main.Jooungo.JooungoAdapter;
-import com.example.jock.jeim_main.Jooungo.JooungoNotice;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Task.FoodInfoTask;
 import com.example.jock.jeim_main.Url;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.concurrent.ExecutionException;
 
 public class FoodDetail extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,7 +36,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_food_detailboard);
+        setContentView(R.layout.food_detailboard);
         // 위젯에 대한 참조
         bt_tab1 = (Button)findViewById(R.id.community_food_detail_btn_tab1);
         bt_tab2 = (Button)findViewById(R.id.community_food_detail_btn_tab2);

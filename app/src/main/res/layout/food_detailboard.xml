@@ -45,10 +45,10 @@
                 android:id="@+id/community_food_detail_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_arrow_back_black"
+                android:drawableStart="@drawable/ic_menu"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:drawableLeft="@drawable/ic_arrow_back_black"/>
+                android:drawableLeft="@drawable/ic_menu"/>
         </RelativeLayout>
 
     </FrameLayout>

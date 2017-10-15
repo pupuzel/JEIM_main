@@ -23,6 +23,7 @@ import com.example.jock.jeim_main.FAQ.FAQActivity;
 import com.example.jock.jeim_main.Fiction.FictionActivity;
 import com.example.jock.jeim_main.Food.FoodActivity;
 import com.example.jock.jeim_main.Jooungo.JooungoActivity;
+import com.example.jock.jeim_main.Library.LibraryActivity;
 import com.example.jock.jeim_main.Major.DepartmentActivity;
 import com.example.jock.jeim_main.Task.CntTask;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements
                           NavigationView.OnNavigationItemSelectedListener{
     private Menu drawer_menu;
     private MenuItem drawer_mycontents;
-    private Button btn_depart, btn_jooungo, btn_food, btn_bus ,btn_game;
+    private Button btn_depart, btn_jooungo, btn_food, btn_bus ,btn_game ,btn_library;
     private TextView btnlist,drawer_login,drawer_join,drawer_logout,drawer_username;
     private ImageView drawericon;
     private Toolbar toolbar;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements
         btn_food = (Button) findViewById(R.id.main_btn_food);
         btn_bus = (Button) findViewById(R.id.main_btn_map);
         btn_game = (Button) findViewById(R.id.main_btn_game);
+        btn_library = (Button) findViewById(R.id.main_btn_library);
 
         /* 툴바 find */
         toolbar = (Toolbar) findViewById(R.id.includetoolbar);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements
         btn_food.setOnClickListener(this);
         btn_bus.setOnClickListener(this);
         btn_game.setOnClickListener(this);
+        btn_library.setOnClickListener(this);
         btnlist.setOnClickListener(this);
         drawer_login.setOnClickListener(this);
         drawer_logout.setOnClickListener(this);
@@ -117,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.main_btn_game :
                 startActivity(new Intent(getApplicationContext() , FictionActivity.class));
                 break;
+            case R.id.main_btn_library :
+                startActivity(new Intent(getApplicationContext() , LibraryActivity.class));
         }
 
          /* 로그인,회원가입,로그아웃 버튼 클릭 이벤트 */

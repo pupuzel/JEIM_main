@@ -41,7 +41,7 @@ public class JooungoAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Log.i("실행 횟수","즐");
-        View v = View.inflate(context, R.layout.community_jooungo_notice , null);
+        View v = View.inflate(context, R.layout.jooungo_notice, null);
 
         TextView title = (TextView) v.findViewById(R.id.boardtitle);
         TextView name = (TextView) v.findViewById(R.id.boardusername);

@@ -56,7 +56,7 @@ public class JooungoDetail extends AppCompatActivity implements View.OnClickList
 
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.community_jooungo_detailboard);
+        setContentView(R.layout.jooungo_detailboard);
 
         nf  = NumberFormat.getInstance();
         nf.setMaximumIntegerDigits(10);

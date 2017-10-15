@@ -1,7 +1,6 @@
 package com.example.jock.jeim_main.Task;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.jock.jeim_main.Url;
 
@@ -11,32 +10,30 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+public class LibraryTask extends AsyncTask<String,Void,String> {
 
-public class FictionTask extends AsyncTask<String,Void,String> {
     String sendMSG,result;
-
     @Override
     protected String doInBackground(String... params) {
 
-        String username = params[0];
-        String content = params[1];
-        String pageTotal = params[2];
+
+        String content = params[0];
+        String group = params[1];
+        String pagemin = params[2];
+        String pagemax = params[3];
+
 
 
         try {
-            URL url = new URL(Url.Main+Url.Fictionadd);
+            URL url = new URL(Url.Main+Url.Library);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setUseCaches(false);
             con.setDoOutput(true);
             con.setRequestMethod("POST");
             con.connect();
             OutputStream outputStream = con.getOutputStream();
-            if(pageTotal != null){
-                sendMSG = "username="+username+"&content="+content+"&pageTotal="+pageTotal;
-            }else {
-                sendMSG = "username="+username+"&content="+content;
-            }
 
+            sendMSG = "content="+content+"&group="+group+"&pagemin="+pagemin+"&pagemax="+pagemax;
 
             outputStream.write(sendMSG.getBytes("UTF-8"));
             outputStream.flush();
