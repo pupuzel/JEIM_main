@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +47,8 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     private JooungoAdapter adapter;   // 실제 View에 Model에 있는 데이터를 연동하기 위한 어뎁터 설정
     private List<JooungoNotice> jooungoNoticeList = new ArrayList<JooungoNotice>();  // 각 게시판을 리스트 배열에 담기 위한 변수 선언
     private ArrayAdapter Spinneradapter;
+
+    private Animation animation;
 
     // 각종 텍스트뷰 버튼 스피너 등등 필요한 위젯 선언
     private TextView btn_jooungo_newboard,jooungo_backhome,btn_jooungo_search;
@@ -107,6 +111,9 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
                 // Position 은 클릭한 Row의 position 을 반환해 준다.
                 //Toast.makeText(getApplicationContext(), "" + position, Toast.LENGTH_SHORT).show();
+                animation = new AlphaAnimation(0.5f, 1.2f);
+                animation.setDuration(2500);
+                view.startAnimation(animation);
 
                 JooungoNotice item = (JooungoNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
                 String str = item.getBoardcode();  // 클릭한 해당 아이템 게시판코드값 가져오기

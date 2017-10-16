@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.jock.jeim_main.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
@@ -13,40 +16,62 @@ import com.example.jock.jeim_main.R;
 
 public class DepartmentActivity extends AppCompatActivity {
 
-    Button btn_comjung;
+    LinearLayout search_view1,search_view2,search_view3;
+    Button btn_news,btn_community,btn_keyadmin;
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_department);
+        setContentView(R.layout.department_main);
 
-        btn_comjung = (Button) findViewById(R.id.department_btn_comjung);
-        btn_comjung.setOnClickListener(new View.OnClickListener() {
+        search_view1=(LinearLayout)findViewById(R.id.search_view1);
+        search_view2=(LinearLayout)findViewById(R.id.search_view2);
+        search_view3=(LinearLayout)findViewById(R.id.search_view3);
+        btn_news = (Button) findViewById(R.id.btn_news);
+        btn_community=(Button)findViewById(R.id.btn_community);
+        btn_keyadmin=(Button)findViewById(R.id.btn_keyadmin);
+        btn_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext() , Department_detail.class);
-                startActivity(intent);
+
+                Animation animation1 = new AlphaAnimation(0, 1);
+                animation1.setDuration(1000);
+                //레이아웃 보이기기
+                if(search_view1.getVisibility() == View.GONE) {
+                    search_view1.setVisibility(View.VISIBLE);
+                    search_view1.setAnimation(animation1);
+                }else if(search_view1.getVisibility()==View.VISIBLE){
+                    search_view1.setVisibility(View.GONE);
+                    search_view1.setAnimation(animation1);}
+
+            }
+        }); //closing the setOnClickListener method
+
+        btn_community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation2 = new AlphaAnimation(0, 1);
+                animation2.setDuration(1000);
+                //레이아웃 보이기기
+                if(search_view2.getVisibility() == View.GONE){
+                    search_view2.setVisibility(View.VISIBLE);
+                    search_view2.setAnimation(animation2);}
+                else if(search_view2.getVisibility()==View.VISIBLE) {
+                    search_view2.setVisibility(View.GONE);
+                    search_view2.setAnimation(animation2);}
             }
         });
-    }
-
-    /* 바텀바 컨트롤 메소드 */
-    public void Bottom(View v){
-        switch (v.getId()){
-            case R.id.bottom_gongji :
-                Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.bottom_home :
-                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent2);
-                break;
-            case R.id.bottom_food :
-                break;
-            case R.id.bottom_schedule :
-                break;
-            case R.id.bottom_total :
-                break;
-        }
+        btn_keyadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation animation3 = new AlphaAnimation(0, 1);
+                animation3.setDuration(1000);
+                if(search_view3.getVisibility() == View.GONE){
+                    search_view3.setVisibility(View.VISIBLE);
+                    search_view3.setAnimation(animation3); }
+                else if(search_view3.getVisibility()==View.VISIBLE){
+                    search_view3.setVisibility(View.GONE);
+                    search_view3.setAnimation(animation3);}
+            }
+        });
     }
 }

@@ -13,6 +13,6 @@ public class Department_detail extends AppCompatActivity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_department_detail);
+        setContentView(R.layout.department_main);
     }
 }

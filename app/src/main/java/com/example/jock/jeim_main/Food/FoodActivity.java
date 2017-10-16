@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -19,16 +20,11 @@ import android.widget.Toast;
 
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Task.FoodTask;
-import com.example.jock.jeim_main.Url;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +36,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout bottom;
     private Button btn_foodmap;
     private ListView foodlistView;
-    private ProgressDialog mProgress;
+    private CheckBox checkBox_delivery,checkBox_displace,checkBox_review;
 
     private List<FoodNotice> foodNoticeList = new ArrayList<FoodNotice>();
     private FoodAdapter foodAdapter;
@@ -48,17 +44,26 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     public static Context context;
 
     private Spinner spinner;
+
+    private String type,delivery,ordervalue;
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_main);
+
         context = this;
+        type = delivery = ordervalue = "All";
+
         order = (TextView) findViewById(R.id.community_food_order);
         cancel = (TextView) findViewById(R.id.community_food_order_cancel);
         check = (TextView) findViewById(R.id.community_food_order_check);
         bottom = (LinearLayout) findViewById(R.id.bottom_sheet);
         btn_foodmap = (Button) findViewById(R.id.community_btn_food_map);
         foodlistView = (ListView) findViewById(R.id.community_food_listview);
+        checkBox_delivery = (CheckBox) findViewById(R.id.community_food_order_box_delivery);
+        checkBox_displace = (CheckBox) findViewById(R.id.community_food_order_box_distance);
+        checkBox_review = (CheckBox) findViewById(R.id.community_food_order_box_review);
+
         spinner = (Spinner)findViewById(R.id.spinner);
         bottomSheetBehavior = BottomSheetBehavior.from(bottom);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -69,8 +74,6 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         btn_foodmap.setOnClickListener(this);
         foodlistView.setOnItemClickListener(this);
         spinner.setOnItemSelectedListener(this);
-
-
 
         spinneradapter = ArrayAdapter.createFromResource(this,R.array.Food,android.R.layout.simple_spinner_item);
         spinneradapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -95,76 +98,84 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.community_food_order_check:  // 바턴시트 확인버튼
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                SetCheckbox();
                 break;
 
             case R.id.community_btn_food_map :   // 지도 버튼
-                startActivity(new Intent(getApplicationContext(),FoodMap.class));
+                Intent intent = new Intent(this,FoodMap.class);
+                intent.putExtra("마커",getMapLocation());
+                startActivity(intent);
                 break;
         }
 
     }
 
+    // 스피너 아이템 선택이 되면 콜백
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String Selectgroup = spinner.getSelectedItem().toString();
-        FoodTask foodTask = new FoodTask(context);
+         type = spinner.getSelectedItem().toString();
+        if(type.equals("전체")){
+            type = "All";
+        }
         try{
-            foodTask.execute();
-        }catch (Exception e){ e.printStackTrace(); }
+            String result = new FoodTask(context).execute(type,delivery,ordervalue).get();
+                            new getList().execute(result);
+           }catch (Exception e){ e.printStackTrace(); }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
+    // 리스트뷰 아이템 클릭시
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FoodNotice item = (FoodNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
         String str = item.getCode(); // 클릭한 해당 아이템 게시판코드값 가져오기
+
         Intent intent = new Intent(getApplicationContext(),FoodDetail.class);
         intent.putExtra("코드",str);
         startActivity(intent);
     }
 
-    // 맛집 목록을 불러오는 클래스
-    class Foodlist extends AsyncTask<Void,Void,String> {
-        String result;
+    public void SetCheckbox(){
+        if(checkBox_delivery.isChecked()){   delivery = "Y";  }else{  delivery = "All";  }
+        if(checkBox_displace.isChecked()){   ordervalue = "displace";  }else{  ordervalue = "All";  }
+        try{
+            String result = new FoodTask(context).execute(type,delivery,ordervalue).get();
+            new getList().execute(result);
+        }catch (Exception e){ e.printStackTrace(); }
+    }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgress = ProgressDialog.show(FoodActivity.this, "목록을 불러오고있습니다", "잠시만 기다려 주세요.");
-            mProgress.setCancelable(false);
-        }
+    public String getMapLocation(){
 
-        @Override
-        protected String doInBackground(Void... params) {
-            try{
-                URL url = new URL(Url.Main+Url.Food);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(); //해당 url에 접속할수 있도록
-                InputStream inputStream = httpURLConnection.getInputStream();        //넘어오는 결과값들을 그대로 받아올수있도록
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));    // inputStream에 값을 읽을수 있도록
-                String Jsontext;
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((Jsontext = bufferedReader.readLine()) != null){
+        JSONObject item;
+        JSONArray items = new JSONArray();
+        try{
 
-                    stringBuilder.append(Jsontext);
-
-                }
-
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                result = stringBuilder.toString().trim();
-            }catch (Exception e){
-                e.printStackTrace();
+            for(int i = 0;i<foodNoticeList.size();i++){
+                String title = foodNoticeList.get(i).getTitle();
+                String lat = foodNoticeList.get(i).getLat();
+                String logn = foodNoticeList.get(i).getLogn();
+                item = new JSONObject();
+                item.put("이름",title);
+                item.put("위도",lat);
+                item.put("경도",logn);
+                items.put(item);
             }
 
+        }catch (Exception e) { e.printStackTrace();  }
+        return items.toString();
+    }
 
-            return result;
-        } // doInBackground finish
 
+    // 맛집 리스트 UI 처리 쓰레드
+   private class getList extends AsyncTask<String,Void,String> {
+
+        @Override
+        protected String doInBackground(String... json) {
+            return json[0];
+        }
         @Override
         public void onPostExecute(String result){
             foodNoticeList.clear();
@@ -172,7 +183,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                 JSONArray jsonArray = new JSONArray(result);
                 JSONObject json;
                 int count = 0;
-                String code,group,title,img,adress;
+                String code,group,title,img,adress,lat,logn;
                 while( count < jsonArray.length()){
 
                     json = jsonArray.getJSONObject(count);
@@ -181,17 +192,17 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                     title = json.getString("제목");
                     img = json.getString("이미지");
                     adress = json.getString("주소");
-                    foodNoticeList.add(new FoodNotice(code,title,adress,group,img));
+                    lat = json.getString("위도");
+                    logn = json.getString("경도");
+                    foodNoticeList.add(new FoodNotice(code,title,adress,group,img,lat,logn));
                     count++;
                 }
                 foodAdapter = new FoodAdapter(getApplicationContext(),foodNoticeList);
                 foodlistView.setAdapter(foodAdapter);
                 foodAdapter.notifyDataSetChanged();
-                mProgress.dismiss();
             }catch (Exception e){
                 e.printStackTrace();
             }
         }   //onPostExecute finish
-
     }   //class finish
 }

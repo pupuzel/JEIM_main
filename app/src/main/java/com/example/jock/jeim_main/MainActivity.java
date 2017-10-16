@@ -107,21 +107,27 @@ public class MainActivity extends AppCompatActivity implements
         switch (v.getId()){
             case R.id.main_btn_depart :
                 startActivity(new Intent(getApplicationContext(), DepartmentActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_jooungo :
                 startActivity(new Intent(getApplicationContext() , JooungoActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_food :
                 startActivity(new Intent(getApplicationContext() , FoodActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_map :
                 startActivity(new Intent(getApplicationContext() , BusActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_game :
                 startActivity(new Intent(getApplicationContext() , FictionActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_library :
                 startActivity(new Intent(getApplicationContext() , LibraryActivity.class));
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }
 
          /* 로그인,회원가입,로그아웃 버튼 클릭 이벤트 */
@@ -263,10 +269,12 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.bottom_gongji :
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.bottom_home :
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.bottom_food :

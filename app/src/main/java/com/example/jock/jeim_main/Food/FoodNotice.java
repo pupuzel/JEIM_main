@@ -12,13 +12,33 @@ public class FoodNotice {
     private String group;
     private String img;
     private Bitmap bitmap;
+    private String lat;
+    private String logn;
 
-    public FoodNotice(String code, String title, String adress, String group, String img) {
+    public FoodNotice(String code, String title, String adress, String group, String img, String lat, String logn) {
         this.code = code;
         this.title = title;
         this.adress = adress;
         this.group = group;
         this.img = img;
+        this.lat = lat;
+        this.logn = logn;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLogn() {
+        return logn;
+    }
+
+    public void setLogn(String logn) {
+        this.logn = logn;
     }
 
     public Bitmap getBitmap() {

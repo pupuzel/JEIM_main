@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +51,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
     private int totalpage = 0;                       // 현재 총 페이징 갯수
     private final int OFFSET = 10;                  // 한 페이지마다 로드할 데이터 갯수.
 
+    private Animation shake;
 
 
     @Override
@@ -61,9 +64,11 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
         btn_check = (Button) findViewById(R.id.fiction_btn_check);
         btn_cencle = (Button) findViewById(R.id.fiction_btn_cancel);
         progressBar = (ProgressBar) findViewById(R.id.fiction_progressbar);
+
         btn_check.setOnClickListener(this);
         btn_cencle.setOnClickListener(this);
         swipe.setOnRefreshListener(this);
+        shake = AnimationUtils.loadAnimation(this,R.anim.shake);
         onRefresh();
     }
 
@@ -78,7 +83,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
                 if(content == null || content.equals("")){   //내용이 비어있다면
 
                     Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
-
+                    edit_content.startAnimation(shake);
                 }else {  // 내용이 있다면
 
                     try {
@@ -89,7 +94,8 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
 
                 }
             } else {  //로그인이 안되어있다면
-                Toast.makeText(getApplicationContext(), "로그인안됨", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인을해주세요", Toast.LENGTH_SHORT).show();
+                btn_check.startAnimation(shake);
             }
             break;
 
