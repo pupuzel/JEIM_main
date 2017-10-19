@@ -174,7 +174,7 @@
         android:orientation="vertical"
         android:background="@drawable/bg_whitealpha">
         <include
-            layout="@layout/bottombar" />
+            layout="@layout/bottom_bar" />
 
     </LinearLayout>
 

@@ -1,23 +1,29 @@
-package com.example.jock.jeim_main.Fiction;
+package com.example.jock.jeim_main.Food;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.jock.jeim_main.Fiction.FictionNotice;
 import com.example.jock.jeim_main.R;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
+/**
+ * Created by Jock on 2017-10-19.
+ */
 
-public class FictionAdapter extends BaseAdapter {
+public class FoodTab3_Adapter extends BaseAdapter  {
 
     private Context context;
-    private List<FictionNotice> noticeList;
+    private List<FoodTab3_Notice> noticeList;
 
-    public FictionAdapter(Context context, List<FictionNotice> noticelist) {
+    public FoodTab3_Adapter(Context context, List<FoodTab3_Notice> noticelist) {
         this.context = context;
         this.noticeList = noticelist;
     }
@@ -39,21 +45,16 @@ public class FictionAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = View.inflate(context , R.layout.fiction_notice,null);
+        View v = View.inflate(context , R.layout.food_detail_tab3_notice,null);
 
-        TextView name = (TextView) v.findViewById(R.id.fiction_txt_name);
-        TextView content = (TextView) v.findViewById(R.id.fiction_txt_content);
-        TextView date = (TextView) v.findViewById(R.id.fiction_txt_date);
+        TextView name = (TextView) v.findViewById(R.id.food_review_txt_name);
+        TextView content = (TextView) v.findViewById(R.id.food_review_txt_content);
+        TextView date = (TextView) v.findViewById(R.id.food_review_txt_date);
 
         name.setText(noticeList.get(position).getUsername());
         content.setText(noticeList.get(position).getContent());
         date.setText(noticeList.get(position).getDate());
 
-        if(position%2 ==1){
-            v.setBackgroundColor(Color.rgb(246,246,246));
-        }
-
-        v.setTag(noticeList.get(position).getContent());
         return v;
     }
 }

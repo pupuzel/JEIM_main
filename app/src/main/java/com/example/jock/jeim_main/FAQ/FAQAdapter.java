@@ -1,7 +1,6 @@
 package com.example.jock.jeim_main.FAQ;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -42,7 +41,7 @@ public class FAQAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = convertView.inflate(context, R.layout.activity_faq_notice,null);
+        View v = convertView.inflate(context, R.layout.faq_notice,null);
 
         TextView faq_title = (TextView)v.findViewById(R.id.faq_title);
         TextView faq_content = (TextView)v.findViewById(R.id.faq_content);

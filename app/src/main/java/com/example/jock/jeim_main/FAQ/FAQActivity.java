@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.jock.jeim_main.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Url;
@@ -37,7 +37,7 @@ public class FAQActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faq);
+        setContentView(R.layout.faq_main);
 
         faq_backhome = (TextView)findViewById(R.id.faq_homeback);
 

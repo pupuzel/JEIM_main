@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.example.jock.jeim_main.Task.JoinTask;
 
-public class JoinActivity extends AppCompatActivity implements View.OnClickListener,
+public class    JoinActivity extends AppCompatActivity implements View.OnClickListener,
                                                                DatePickerDialog.OnDateSetListener {
 
     private ArrayAdapter adapter;
@@ -135,7 +135,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
         }else if(editDay.getText().toString().equals("") || editDay.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "일을 입력해주세요", Toast.LENGTH_SHORT).show();
         }else{
-            //Toast.makeText(getApplicationContext(), "가입완료", Toast.LENGTH_SHORT).show();
+            String state = String.valueOf(spinner.getSelectedItemPosition());
             String user_id = editID.getText().toString();
             String user_pw = editpass.getText().toString();
             String user_gender = getgender();
@@ -149,7 +149,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             String user_day = editDay.getText().toString();
             String user_birth = user_year+user_month+user_day;
           try {
-              String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth).get();
+              String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth,state).get();
 
               if(result.equals("true")){
                   Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_LONG).show();

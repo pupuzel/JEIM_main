@@ -1,6 +1,5 @@
 package com.example.jock.jeim_main.Food;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Task.FoodTask;
 
@@ -29,9 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener{
+public class FoodActivity extends AppCompatActivity implements View.OnClickListener,
+                                                               AdapterView.OnItemClickListener,
+                                                               AdapterView.OnItemSelectedListener,CompoundButton.OnCheckedChangeListener{
 
-    private TextView order,cancel,check;
+    private TextView order,cancel,check,txt_back;
     private BottomSheetBehavior bottomSheetBehavior;
     private LinearLayout bottom;
     private Button btn_foodmap;
@@ -57,6 +60,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         order = (TextView) findViewById(R.id.community_food_order);
         cancel = (TextView) findViewById(R.id.community_food_order_cancel);
         check = (TextView) findViewById(R.id.community_food_order_check);
+        txt_back = (TextView) findViewById(R.id.community_food_txt_back);
         bottom = (LinearLayout) findViewById(R.id.bottom_sheet);
         btn_foodmap = (Button) findViewById(R.id.community_btn_food_map);
         foodlistView = (ListView) findViewById(R.id.community_food_listview);
@@ -71,9 +75,16 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         order.setOnClickListener(this);
         cancel.setOnClickListener(this);
         check.setOnClickListener(this);
+        txt_back.setOnClickListener(this);
         btn_foodmap.setOnClickListener(this);
+
         foodlistView.setOnItemClickListener(this);
+
         spinner.setOnItemSelectedListener(this);
+
+        checkBox_delivery.setOnCheckedChangeListener(this);
+        checkBox_displace.setOnCheckedChangeListener(this);
+        checkBox_review.setOnCheckedChangeListener(this);
 
         spinneradapter = ArrayAdapter.createFromResource(this,R.array.Food,android.R.layout.simple_spinner_item);
         spinneradapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -98,7 +109,12 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.community_food_order_check:  // 바턴시트 확인버튼
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                SetCheckbox();
+                setData();
+                break;
+
+            case R.id.community_food_txt_back :
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
                 break;
 
             case R.id.community_btn_food_map :   // 지도 버튼
@@ -114,18 +130,13 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
          type = spinner.getSelectedItem().toString();
-        if(type.equals("전체")){
-            type = "All";
-        }
-        try{
-            String result = new FoodTask(context).execute(type,delivery,ordervalue).get();
-                            new getList().execute(result);
-           }catch (Exception e){ e.printStackTrace(); }
+        if(type.equals("전체")){  type = "All";  }
+        setData();
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
+
 
     // 리스트뷰 아이템 클릭시
     @Override
@@ -138,17 +149,32 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    public void SetCheckbox(){
-        if(checkBox_delivery.isChecked()){   delivery = "Y";  }else{  delivery = "All";  }
-        if(checkBox_displace.isChecked()){   ordervalue = "displace";  }else{  ordervalue = "All";  }
+    /* 체크 박스 버튼 리스너 */
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()){
+            case R.id.community_food_order_box_delivery :
+                if(isChecked){   delivery = "Y"; Toast.makeText(getApplicationContext(),delivery,Toast.LENGTH_SHORT).show();  }else{  delivery = "All"; }
+                break;
+            case R.id.community_food_order_box_distance :
+                if(isChecked){ ordervalue = "displace"; checkBox_review.setChecked(false);}else{  ordervalue = "All"; }
+                break;
+            case R.id.community_food_order_box_review :
+                if(isChecked){ ordervalue = "review"; checkBox_displace.setChecked(false);}else{  ordervalue = "All"; }
+                break;
+        }
+    }
+
+    /* 데이터를 가져와서 뷰에 뿌려주는 메소드*/
+    public void setData(){
         try{
             String result = new FoodTask(context).execute(type,delivery,ordervalue).get();
             new getList().execute(result);
         }catch (Exception e){ e.printStackTrace(); }
     }
 
+    /* 위치 정보를 가져오는 메소드 */
     public String getMapLocation(){
-
         JSONObject item;
         JSONArray items = new JSONArray();
         try{
@@ -163,7 +189,6 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                 item.put("경도",logn);
                 items.put(item);
             }
-
         }catch (Exception e) { e.printStackTrace();  }
         return items.toString();
     }

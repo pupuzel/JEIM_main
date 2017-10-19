@@ -9,15 +9,16 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.jock.jeim_main.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 
-public class DepartmentActivity extends AppCompatActivity {
+public class DepartmentActivity extends AppCompatActivity  implements View.OnClickListener{
 
     LinearLayout search_view1,search_view2,search_view3;
     Button btn_news,btn_community,btn_keyadmin;
+    TextView txt_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +27,12 @@ public class DepartmentActivity extends AppCompatActivity {
         search_view1=(LinearLayout)findViewById(R.id.search_view1);
         search_view2=(LinearLayout)findViewById(R.id.search_view2);
         search_view3=(LinearLayout)findViewById(R.id.search_view3);
+        txt_back = (TextView) findViewById(R.id.department_btn_back);
         btn_news = (Button) findViewById(R.id.btn_news);
         btn_community=(Button)findViewById(R.id.btn_community);
         btn_keyadmin=(Button)findViewById(R.id.btn_keyadmin);
+
+        txt_back.setOnClickListener(this);
         btn_news.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,5 +77,16 @@ public class DepartmentActivity extends AppCompatActivity {
                     search_view3.setAnimation(animation3);}
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.department_btn_back :
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
+                break;
+        }
     }
 }

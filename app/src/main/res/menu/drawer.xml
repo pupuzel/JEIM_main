@@ -6,10 +6,10 @@
             android:id="@+id/drawer_intro"
             android:icon="@drawable/ic_drawer_intro"
             android:title="개발자소개" />
-        <item
+<!--        <item
             android:id="@+id/drawer_QnA"
             android:icon="@drawable/ic_drawer_gongi"
-            android:title="문의하기" />
+            android:title="문의하기" />-->
         <item
             android:id="@+id/drawer_faq"
             android:icon="@drawable/ic_drawer_faq"
@@ -17,7 +17,7 @@
         <item
             android:id="@+id/drawer_tool"
             android:icon="@drawable/ic_drawer_tool"
-            android:title="설정" />
+            android:title="비밀번호 찾기" />
         <item
             android:id="@+id/drawer_mycontent"
             android:icon="@drawable/ic_drawer_content"

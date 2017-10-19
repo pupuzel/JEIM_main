@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
@@ -16,11 +17,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jock.jeim_main.Fiction.FictionAdapter;
-import com.example.jock.jeim_main.Fiction.FictionNotice;
-import com.example.jock.jeim_main.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Task.LibraryTask;
@@ -34,11 +34,12 @@ import java.util.List;
 
 
 public class LibraryActivity extends AppCompatActivity implements AbsListView.OnScrollListener,
-                                                                  View.OnClickListener{
+                                                                  View.OnClickListener,TextView.OnEditorActionListener{
 
     private Spinner spinner;
     private ArrayAdapter Spinneradapter;
     private EditText edit_library_search;
+    private TextView txt_back;
     private Button btn_search;
     private ListView listView;
     private ProgressBar progressBar;
@@ -66,8 +67,12 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
         edit_library_search = (EditText) findViewById(R.id.Library_search_edit);
         progressBar = (ProgressBar) findViewById(R.id.Library_progressbar);
         btn_search = (Button) findViewById(R.id.Library_search_btn);
+        txt_back = (TextView) findViewById(R.id.Library_txt_back);
 
         btn_search.setOnClickListener(this);
+        edit_library_search.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        edit_library_search.setOnEditorActionListener(this);
+        txt_back.setOnClickListener(this);
 
     }
 
@@ -77,15 +82,22 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
         switch (v.getId()){
             case R.id.Library_search_btn :  // 검색 버튼 클릭시
                     search();
-                try {
-                    result = new LibraryTask().execute(editvalue,groupvalue,String.valueOf(OFFSET),null).get();
-                    setText(result);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                break;
+            case R.id.Library_txt_back :
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
                 break;
         }
 
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if(actionId == EditorInfo.IME_ACTION_DONE || event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+            search();
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -172,6 +184,13 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
         groupvalue = spinner.getSelectedItem().toString();
         InputMethodManager immhide = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);  // 키패드 입력창 설정
         immhide.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);  // 키패드 입력창 보여주기 or 숨겨주기
+
+        try {
+            result = new LibraryTask().execute(editvalue,groupvalue,String.valueOf(OFFSET),null).get();
+            setText(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /* 바텀바 컨트롤 메소드 */

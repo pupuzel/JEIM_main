@@ -13,7 +13,7 @@ public class BusActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campus_bus);
+        setContentView(R.layout.bus_main);
 
         TextView bus_homeback = (TextView)findViewById(R.id.bus_homeback);
         bus_homeback.setOnClickListener(new View.OnClickListener() {

@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.jock.jeim_main.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Task.FictionTask;
@@ -57,7 +57,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fiction);
+        setContentView(R.layout.fiction_main);
         listView = (ListView) findViewById(R.id.fiction_listview);
         edit_content = (EditText) findViewById(R.id.fiction_edit_content);
         swipe = (SwipeRefreshLayout) findViewById(R.id.fiction_swipe);
@@ -147,7 +147,6 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
         try {
             JSONArray jsonArray = new JSONArray(json);
             JSONObject jsonObject;
-
                 while (count < jsonArray.length()) {
                     jsonObject = jsonArray.getJSONObject(count);
                     name = jsonObject.getString("회원이름");
@@ -167,7 +166,6 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
                 mLockListView = false;
             }
         },1000);
-
 
     }
 

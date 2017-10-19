@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <include
-            layout="@layout/bottombar"
+            layout="@layout/bottom_bar"
             />
 
     </LinearLayout>

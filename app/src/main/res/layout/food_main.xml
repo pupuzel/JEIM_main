@@ -15,47 +15,31 @@
         <!--상단-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:background="@color/navyblue">
 
             <TextView
-                android:id="@+id/backhome"
+                android:id="@+id/community_food_txt_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/button"
+                android:drawableLeft="@drawable/ic_arrow_back_white"
+                android:drawableStart="@drawable/ic_arrow_back_white"
+                android:layout_marginLeft="11dp"
+                android:layout_alignTop="@+id/textView9"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/button"
-                android:layout_marginLeft="10dp"
-                android:drawableLeft="@drawable/ic_arrow_back_white"
-                android:drawableStart="@drawable/ic_arrow_back_white" />
+                android:layout_marginStart="11dp" />
 
-            <Button
-                android:id="@+id/button"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:background="@color/navyblue"
-                android:text="전체보기"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text="오늘 뭐 먹지?"
                 android:textColor="#ffffff"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/backhome"
-                android:layout_toEndOf="@+id/backhome"
-                android:layout_marginStart="24dp" />
-
-            <Button
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="35dp"
-                android:layout_marginRight="35dp"
-                android:background="@color/navyblue"
-                android:text="즐겨찾기 보기"
-                android:textColor="#ffffff" />
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:id="@+id/textView9" />
         </RelativeLayout>
 
         <!--중단-->
@@ -131,6 +115,7 @@
         android:layout_height="wrap_content"
         android:background="#F6F6F6"
         android:orientation="vertical"
+        android:clickable="true"
         app:behavior_hideable="true"
         app:behavior_peekHeight="300dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
@@ -164,12 +149,6 @@
         </RelativeLayout>
 
         <!--Bottom sheet section-->
-        <!-- 구분선 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#BDBDBD"
-            android:layout_centerInParent="true"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -203,7 +182,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true" />
             </RelativeLayout>
-
+        <!-- 구분선 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BDBDBD"
+            android:layout_centerInParent="true"/>
             <RelativeLayout
                 android:layout_marginLeft="20dp"
                 android:padding="10dp"
@@ -238,14 +222,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/community_food_order_box_distance" />
             </RelativeLayout>
-
-
-        <!-- 구분선 -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#BDBDBD"
-            android:layout_centerInParent="true"/>
 
             <RelativeLayout
                 android:layout_marginLeft="20dp"

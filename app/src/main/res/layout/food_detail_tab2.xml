@@ -2,10 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:gravity="center"
+    <ListView
+        android:id="@+id/community_food_menu_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="메뉴 데이터 없음" />
+        android:divider="#00000000"
+        android:background="#ffffff" />
 
 </FrameLayout>

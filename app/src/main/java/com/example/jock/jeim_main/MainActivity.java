@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.TimetableActivity;
 import com.example.jock.jeim_main.FAQ.FAQActivity;
 import com.example.jock.jeim_main.Fiction.FictionActivity;
 import com.example.jock.jeim_main.Food.FoodActivity;
@@ -157,6 +159,10 @@ public class MainActivity extends AppCompatActivity implements
                 Intent faq = new Intent(getApplicationContext(),FAQActivity.class);
                 startActivity(faq);
                 break;
+            case R.id.drawer_tool:
+                Intent tool = new Intent(getApplicationContext(),FAQActivity.class);
+                startActivity(tool);
+                break;
         }
         return false;
     }
@@ -193,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements
             drawericon.setVisibility(View.GONE);
             drawer_username.setText("");
             drawer_logout.setVisibility(View.GONE);
-            drawer_mycontents.setVisible(false);
+            drawer_mycontents.setVisible(true);
         }else{
             drawer_login.setVisibility(View.GONE);
             drawer_join.setVisibility(View.GONE);
@@ -281,6 +287,8 @@ public class MainActivity extends AppCompatActivity implements
 
                 break;
             case R.id.bottom_schedule :
+                Intent intent3 = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(intent3);
 
                 break;
             case R.id.bottom_total :

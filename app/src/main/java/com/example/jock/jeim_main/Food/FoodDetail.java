@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.jock.jeim_main.R;
@@ -28,6 +29,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
     private final int FRAGMENT3 = 3;
 
     private Button bt_tab1, bt_tab2,bt_tab3;
+    private TextView txt_back;
     private ImageView Mainimg;
     private Intent intent;
 
@@ -41,6 +43,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
         bt_tab1 = (Button)findViewById(R.id.community_food_detail_btn_tab1);
         bt_tab2 = (Button)findViewById(R.id.community_food_detail_btn_tab2);
         bt_tab3 = (Button)findViewById(R.id.community_food_detail_btn_tab3);
+        txt_back = (TextView) findViewById(R.id.community_food_detail_txt_back);
 
         Mainimg = (ImageView) findViewById(R.id.community_food_detail_img);
 
@@ -48,6 +51,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
         bt_tab1.setOnClickListener(this);
         bt_tab2.setOnClickListener(this);
         bt_tab3.setOnClickListener(this);
+        txt_back.setOnClickListener(this);
 
         intent = getIntent();
         code = intent.getStringExtra("코드");
@@ -72,6 +76,10 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
 
             case R.id.community_food_detail_btn_tab3:
                 callFragment(FRAGMENT3);
+                break;
+            case R.id.community_food_detail_txt_back:
+                startActivity(new Intent(getApplicationContext(),FoodActivity.class));
+                finish();
                 break;
         }
     }
@@ -102,6 +110,9 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
 
             case 3:
                 FoodTab3 foodTab3 = new FoodTab3();
+                Bundle bundle3 = new Bundle();
+                bundle3.putString("code",code);
+                foodTab3.setArguments(bundle3);
                 transaction.replace(R.id.fragment_container, foodTab3);
                 transaction.commit();
                 break;

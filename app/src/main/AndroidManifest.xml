@@ -31,7 +31,7 @@
         <activity android:name=".Jooungo.JooungoNewboard"/>
         <activity android:name=".Jooungo.JooungoDetail"/>
         <activity android:name=".FAQ.FAQActivity"/>
-        <activity android:name=".GongjiActivity"/>
+        <activity android:name=".Bottom.GongjiActivity"/>
         <activity android:name=".Jooungo.JooungoUpdate"/>
         <activity android:name=".Major.DepartmentActivity"/>
         <activity android:name=".Major.Department_detail"/>
@@ -40,6 +40,7 @@
         <activity android:name=".Food.FoodMap"/>
         <activity android:name=".Fiction.FictionActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Library.LibraryActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Bottom.TimetableActivity"/>
 
 
     </application>

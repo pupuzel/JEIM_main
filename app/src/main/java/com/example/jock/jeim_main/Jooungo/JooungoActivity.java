@@ -20,7 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jock.jeim_main.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.LoginActivity;
 import com.example.jock.jeim_main.MainActivity;
 import com.example.jock.jeim_main.R;

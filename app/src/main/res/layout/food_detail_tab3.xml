@@ -1,11 +1,85 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <TextView
-        android:gravity="center"
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="리뷰 데이터 없음" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_whitealpha">
+        <EditText
+            android:id="@+id/food_review_edit_content"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:maxLength="50"
+            android:hint="50자 이내로 입력하여 주세요."
+            android:gravity="top"
+            android:background="@drawable/bg_white_bd_gray_radius"/>
+    </LinearLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_whitealpha">
+        <Button
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/food_review_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/click_cencle"
+            android:text="취소"
+            android:textSize="10dp"/>
+        <Button
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/food_review_btn_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/click_check"
+            android:text="등록"
+            android:textColor="#ffffff"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/food_review_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_review_swipe"
+            android:background="@drawable/bg_whitealpha">
+            <ListView
+                android:id="@+id/food_review_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="10dp"
+                android:divider="#ffffff">
+            </ListView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/food_review_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>
