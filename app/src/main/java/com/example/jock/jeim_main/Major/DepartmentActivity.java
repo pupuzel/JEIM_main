@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.jock.jeim_main.MainActivity;
+import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
 public class DepartmentActivity extends AppCompatActivity  implements View.OnClickListener{

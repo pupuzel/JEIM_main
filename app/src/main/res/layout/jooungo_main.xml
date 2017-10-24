@@ -16,8 +16,8 @@
             android:id="@+id/jooungo_homeback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_arrow_back_black"
-            android:drawableStart="@drawable/ic_arrow_back_black"
+            android:drawableLeft="@drawable/ic_arrow_back_white"
+            android:drawableStart="@drawable/ic_arrow_back_white"
             android:layout_marginLeft="11dp"
             android:layout_alignTop="@+id/textView9"
             android:layout_alignParentLeft="true"
@@ -46,20 +46,19 @@
     </RelativeLayout>
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
         <!-- 버튼 부분 레이이아웃 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_buy"
@@ -67,48 +66,26 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_weight="1"
                 android:background="@color/btnclike"
-                android:text="삽니다"
-                android:layout_weight="1"/>
+                android:text="삽니다" />
 
 
             <Button
                 android:id="@+id/btn_sell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/btncliked"
-                android:text="팝니다"
                 android:layout_alignBaseline="@+id/btn_buy"
                 android:layout_alignBottom="@+id/btn_buy"
-                android:layout_toRightOf="@+id/btn_buy"
                 android:layout_toEndOf="@+id/btn_buy"
-                android:layout_weight="1"/>
-
+                android:layout_toRightOf="@+id/btn_buy"
+                android:layout_weight="1"
+                android:background="@color/btncliked"
+                android:text="팝니다" />
 
 
         </LinearLayout>
 
-
-        <!-- 검색 부분 레이아웃 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginTop="3dp"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <Spinner
-                android:id="@+id/Jooungo_spiner_list"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:paddingTop="3dp"
-                android:paddingBottom="5dp"
-                android:gravity="center"
-                android:background="@drawable/bg_white_bd_black"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,29 +94,44 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1.4">
+            <!-- 검색 부분 레이아웃 -->
+
+            <Spinner
+                android:id="@+id/Jooungo_spiner_list"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_white_bd_black"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="3dp" />
 
             <EditText
                 android:id="@+id/edit_jooungo_search"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_weight="0.13"
+                android:layout_weight="0.3"
                 android:background="@drawable/bg_white_bd_black"
                 android:hint="검색할 내용을 입력하세요"
+                android:paddingLeft="3dp"
+                android:paddingTop="3dp"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:paddingTop="3dp"/>
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/btn_jooungo_search"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.87"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.6"
                 android:background="@drawable/bg_white_bd_black"
                 android:drawableLeft="@drawable/ic_search"
-                android:drawableStart="@drawable/ic_search" />
+                android:drawableStart="@drawable/ic_search"
+                android:paddingLeft="10dp" />
 
         </LinearLayout>
     </LinearLayout>

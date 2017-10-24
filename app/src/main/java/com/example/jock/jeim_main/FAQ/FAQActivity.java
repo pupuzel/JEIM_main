@@ -11,9 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
-import com.example.jock.jeim_main.MainActivity;
+import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Another.Url;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.jock.jeim_main.MainActivity;
+import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
 
@@ -13,7 +13,7 @@ public class GongjiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gongji);
+        setContentView(R.layout.bottom_gongji);
 
     }
 

@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FoodInfoTask;
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Task.FoodTab1_Task;
+import com.example.jock.jeim_main.Another.Url;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,7 +33,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
     private ImageView Mainimg;
     private Intent intent;
 
-    private FoodInfoTask task;
+    private FoodTab1_Task task;
     private ProgressDialog mProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,11 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
 
         intent = getIntent();
         code = intent.getStringExtra("코드");
-        task = new FoodInfoTask();
+        task = new FoodTab1_Task();
         try {
             result = task.execute(code).get();
             new Task().execute(result);
         } catch (Exception e) {}
-
     }
 
     @Override
@@ -162,7 +161,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
                  //.skipMemoryCache(true)
                  .thumbnail(0.1f)
                  .into(Mainimg);
-
+                  callFragment(FRAGMENT1);
             mProgress.dismiss();
         }
     }

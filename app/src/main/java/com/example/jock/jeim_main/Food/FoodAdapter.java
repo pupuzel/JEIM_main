@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Another.Url;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +66,8 @@ public class FoodAdapter extends BaseAdapter {
             Glide.with(context)
                     .load(Url.Main+Url.FoodTake+imgname)
                     .error(R.drawable.ic_clear)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
+                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                    //.skipMemoryCache(true)
                     .thumbnail(0.1f)
                     .into(img);
 

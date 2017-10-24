@@ -16,31 +16,34 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"  android:label="재능마당">
+        <activity android:name=".Main.MainActivity"  android:label="재능마당">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".JoinActivity"  android:label="JEIUM 회원가입" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".CamaraActivity"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".BusActivity"/>
+        <activity android:name=".Main.JoinActivity"  android:label="JEIUM 회원가입" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Main.CamaraActivity"/>
+        <activity android:name=".Main.LoginActivity" />
+        <activity android:name=".Bus.BusActivity"/>
         <activity android:name=".Jooungo.JooungoActivity" android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".Jooungo.JooungoNewboard"/>
-        <activity android:name=".Jooungo.JooungoDetail"/>
+        <activity android:name=".Jooungo.JooungoNewboardActivity"/>
+        <activity android:name=".Jooungo.JooungoDetailActivity"/>
         <activity android:name=".FAQ.FAQActivity"/>
         <activity android:name=".Bottom.GongjiActivity"/>
-        <activity android:name=".Jooungo.JooungoUpdate"/>
+        <activity android:name=".Jooungo.JooungoUpdateActivity"/>
         <activity android:name=".Major.DepartmentActivity"/>
-        <activity android:name=".Major.Department_detail"/>
         <activity android:name=".Food.FoodActivity"/>
         <activity android:name=".Food.FoodDetail"/>
         <activity android:name=".Food.FoodMap"/>
         <activity android:name=".Fiction.FictionActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Library.LibraryActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Bottom.TimetableActivity"/>
+        <activity android:name=".Main.PwfindActivity"/>
+        <activity android:name=".Main.PwchangeActivity"/>
+        <activity android:name=".Main.IntroActivity"/>
+        <activity android:name=".Bottom.StudentfoodActivity"/>
 
 
     </application>

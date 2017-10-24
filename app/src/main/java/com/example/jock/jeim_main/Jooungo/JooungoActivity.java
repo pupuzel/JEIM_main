@@ -21,10 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
-import com.example.jock.jeim_main.LoginActivity;
-import com.example.jock.jeim_main.MainActivity;
+import com.example.jock.jeim_main.Main.LoginActivity;
+import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Another.Url;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,7 +68,6 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         // 검색 분류 부분 스피너 가져오기
         spinner = (Spinner)findViewById(R.id.Jooungo_spiner_list);
         Spinneradapter = ArrayAdapter.createFromResource(this, R.array.Jooungo,android.R.layout.simple_spinner_item);
-        Spinneradapter.setDropDownViewResource(R.layout.customer_spinner);
         spinner.setAdapter(Spinneradapter);
 
 
@@ -117,7 +116,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
                 JooungoNotice item = (JooungoNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
                 String str = item.getBoardcode();  // 클릭한 해당 아이템 게시판코드값 가져오기
-                Intent popup = new Intent(getApplicationContext(), JooungoDetail.class);  // 게시판 자세히 보기 액티비티로 이동
+                Intent popup = new Intent(getApplicationContext(), JooungoDetailActivity.class);  // 게시판 자세히 보기 액티비티로 이동
                 popup.putExtra("게시판코드",str); //게시판코드를 가지고 자세히 보기 액티비티로 이동
                 startActivity(popup);  // 이동
             }
@@ -160,7 +159,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }else{  //로그인이 되어있다면 글작성 액티비티로 이동
-                    Intent newboard = new Intent(getApplicationContext(), JooungoNewboard.class);
+                    Intent newboard = new Intent(getApplicationContext(), JooungoNewboardActivity.class);
                     startActivity(newboard);
                 }
                 break;

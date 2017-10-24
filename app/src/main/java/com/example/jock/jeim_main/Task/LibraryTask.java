@@ -2,7 +2,7 @@ package com.example.jock.jeim_main.Task;
 
 import android.os.AsyncTask;
 
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Another.Url;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -92,6 +92,7 @@
             <EditText
                 android:id="@+id/edit_jooungo_updateboard_title"
                 android:layout_width="match_parent"
+                android:maxLength="50"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_bd_black"
                 android:hint="제목을 입력하여 주세요."
@@ -118,6 +119,7 @@
                 android:layout_height="230dp"
                 android:background="@drawable/bg_white_bd_black"
                 android:gravity="left"
+                android:maxLength="500"
                 android:hint="내용을 입력하여 주세요."
                 android:padding="10dp"
                 android:textSize="13dp" />

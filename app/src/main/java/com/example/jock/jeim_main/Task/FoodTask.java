@@ -1,13 +1,10 @@
 package com.example.jock.jeim_main.Task;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.example.jock.jeim_main.Food.FoodActivity;
-import com.example.jock.jeim_main.Url;
+import com.example.jock.jeim_main.Another.Url;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

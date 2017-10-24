@@ -6,10 +6,6 @@
             android:id="@+id/drawer_intro"
             android:icon="@drawable/ic_drawer_intro"
             android:title="개발자소개" />
-<!--        <item
-            android:id="@+id/drawer_QnA"
-            android:icon="@drawable/ic_drawer_gongi"
-            android:title="문의하기" />-->
         <item
             android:id="@+id/drawer_faq"
             android:icon="@drawable/ic_drawer_faq"
@@ -21,8 +17,8 @@
         <item
             android:id="@+id/drawer_mycontent"
             android:icon="@drawable/ic_drawer_content"
-            android:visible="false"
-            android:title="내가 쓴글 확인" />
+            android:visible="true"
+            android:title="정보 수정" />
     </group>
 
     <item android:title="Communicate">

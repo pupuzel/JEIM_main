@@ -108,15 +108,12 @@
             android:text="리뷰" />
     </LinearLayout>
     <!-- 탭호스트 실제 레이아웃 -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"/>
-    </ScrollView>
+
 
 
 </LinearLayout>

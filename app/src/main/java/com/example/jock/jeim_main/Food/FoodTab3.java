@@ -2,7 +2,6 @@ package com.example.jock.jeim_main.Food;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -18,11 +17,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.jock.jeim_main.Fiction.FictionAdapter;
-import com.example.jock.jeim_main.Fiction.FictionNotice;
-import com.example.jock.jeim_main.Pref;
+import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FictionTask;
 import com.example.jock.jeim_main.Task.FoodTab3_Task;
 
 import org.json.JSONArray;
@@ -117,7 +113,7 @@ public class FoodTab3 extends Fragment implements View.OnClickListener,
                 }
                 break;
 
-            case R.id.fiction_btn_cancel :
+            case R.id.food_review_btn_cancel :
                 edit_content.setText("");
         }
     }
