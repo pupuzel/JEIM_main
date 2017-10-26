@@ -21,7 +21,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.JoinTask;
 
 public class    JoinActivity extends AppCompatActivity implements View.OnClickListener,
                                                                DatePickerDialog.OnDateSetListener {

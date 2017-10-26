@@ -276,6 +276,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 conn.connect();  // 연결
                 OutputStream osw = conn.getOutputStream();
 
+                Log.i("로그",sendMsg);
                 osw.write(sendMsg.getBytes("UTF-8"));  // POST 방식에 문자열값을 바이트로 변환하여 보내주기
                 osw.flush();  // 초기화
                 osw.close();  // 닫기
@@ -300,7 +301,6 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
             }catch (Exception e){
                 e.printStackTrace();
             }
-
             return result;
         } // doInBackground finish
 

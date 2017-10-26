@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodTab2 extends Fragment {
+public class FoodTab2Activity extends Fragment {
 
     private Bundle bundle;
     private String foodjson;

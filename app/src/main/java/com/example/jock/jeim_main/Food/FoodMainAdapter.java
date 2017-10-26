@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodAdapter extends BaseAdapter {
+public class FoodMainAdapter extends BaseAdapter {
 
     private TextView title;
     private TextView adress;
@@ -24,11 +24,11 @@ public class FoodAdapter extends BaseAdapter {
     private ImageView img;
     private int count = 0;
     private Context context;
-    private List<FoodNotice> noticeList;
+    private List<FoodMainNotice> noticeList;
     private List<Bitmap> bitmapList = new ArrayList<Bitmap>();
     private View v = null;
 
-    public FoodAdapter(Context context, List<FoodNotice> noticeList) {
+    public FoodMainAdapter(Context context, List<FoodMainNotice> noticeList) {
         this.context = context;
         this.noticeList = noticeList;
     }

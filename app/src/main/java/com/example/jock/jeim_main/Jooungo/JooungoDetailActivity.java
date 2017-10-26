@@ -20,8 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.ImgTask;
-import com.example.jock.jeim_main.Task.JooungoDeleteTask;
 import com.example.jock.jeim_main.Another.Url;
 
 import org.json.JSONArray;
@@ -43,7 +41,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
      private Bitmap bitmapimg1,bitmapimg2,bitmapimg3;
      private Intent intent;
      private String boardCode;
-     private ImgTask imgTask;
+     private JooungoImgTask imgTask;
      private NumberFormat nf;
      private JSONObject imglistJson = new JSONObject();
      private JooungoDeleteTask deleteTask;
@@ -275,15 +273,15 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                         }
                     });
 
-                    imgTask = new ImgTask();
+                    imgTask = new JooungoImgTask();
                     bitmapimg1 = imgTask.execute(img1).get();
                     imglistJson.put("이미지1",Simg1);
                     if(Simg2 != "null"){
-                        imgTask = new ImgTask();
+                        imgTask = new JooungoImgTask();
                         bitmapimg2 = imgTask.execute(Simg2).get();
                         imglistJson.put("이미지2",Simg2);
                         if (Simg3 != "null"){
-                            imgTask = new ImgTask();
+                            imgTask = new JooungoImgTask();
                             bitmapimg3 = imgTask.execute(Simg3).get();
                             imglistJson.put("이미지3",Simg3);
                         }

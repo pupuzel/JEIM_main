@@ -19,6 +19,7 @@ public class Url {
     public static final String FoodTab3 ="FoodTab3.jsp";
     public static final String FoodInfo ="Foodinfo.jsp";
     public static final String FoodTake ="restaurantimg/";
+    public static final String StudentFood ="StudentFood.jsp";
     public static final String Library ="Library.jsp";
     public static final String Passwordfind ="StudentCheck.jsp";
     public static final String Passwordemail ="http://pupuzel.cafe24.com/sendmail";

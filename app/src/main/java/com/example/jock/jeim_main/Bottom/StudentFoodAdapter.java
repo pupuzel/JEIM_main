@@ -1,9 +1,13 @@
 package com.example.jock.jeim_main.Bottom;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.example.jock.jeim_main.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +44,17 @@ public class StudentFoodAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-    /*    View v = View.inflate(context, R.layout.studentfood_notice, null);
+        View v = View.inflate(context, R.layout.bottom_studentfood_notice, null);
 
-        TextView group = (TextView) v.findViewById(R.id.st);
-        TextView date = (TextView) v.findViewById(R.id.boardusername);
-        TextView name = (TextView) v.findViewById(R.id.boarddate);*/
-        return null;
+        TextView date = (TextView) v.findViewById(R.id.studentfood_notice_txt_date);
+        TextView gamamenu = (TextView) v.findViewById(R.id.studentfood_notice_txt_gama_menu);
+        TextView intermenu = (TextView) v.findViewById(R.id.studentfood_notice_txt_inturn_menu);
+        TextView chammenu = (TextView) v.findViewById(R.id.studentfood_notice_txt_cham_menu);
+
+        date.setText(NoticeList.get(position).getDate());
+        gamamenu.setText(NoticeList.get(position).getGama());
+        intermenu.setText(NoticeList.get(position).getInter());
+        chammenu.setText(NoticeList.get(position).getCham());
+        return v;
     }
 }

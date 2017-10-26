@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.JooungoUpdateTask;
 import com.example.jock.jeim_main.Another.Url;
 
 import java.io.ByteArrayOutputStream;
@@ -31,7 +30,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
 
     private int REQ_CODE_SELECT_IMAGE =100;
     private int addimgIDVALUE = 0;
-    private Jooungoboardinfo info;
+    private JooungoDetailNotice info;
     private SharedPreferences pref;
     private ArrayAdapter adapter;
     private ProgressDialog mProgress;
@@ -51,7 +50,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         adapter = ArrayAdapter.createFromResource(this, R.array.Jooungo_newboard,android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        info = new Jooungoboardinfo();
+        info = new JooungoDetailNotice();
         calcle = (Button)findViewById(R.id.btn_jooungo_updateboard_calcle);
         check = (Button)findViewById(R.id.btn_jooungo_updateboard_check);
 

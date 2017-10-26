@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FoodTab3_Task;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodTab3 extends Fragment implements View.OnClickListener,
+public class FoodTab3Activity extends Fragment implements View.OnClickListener,
                                                   SwipeRefreshLayout.OnRefreshListener,
                                                   AbsListView.OnScrollListener{
 

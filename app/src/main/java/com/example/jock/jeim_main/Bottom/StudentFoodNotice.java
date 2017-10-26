@@ -1,23 +1,15 @@
 package com.example.jock.jeim_main.Bottom;
 
-/**
- * Created by Jock on 2017-10-20.
- */
 
 public class StudentFoodNotice {
 
-    public StudentFoodNotice(String group, String date, String foodname) {
-        this.group = group;
+    private String date,gama,inter,cham;
+
+    public StudentFoodNotice(String date, String gama, String inter, String cham) {
         this.date = date;
-        this.foodname = foodname;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
+        this.gama = gama;
+        this.inter = inter;
+        this.cham = cham;
     }
 
     public String getDate() {
@@ -28,13 +20,28 @@ public class StudentFoodNotice {
         this.date = date;
     }
 
-    public String getFoodname() {
-        return foodname;
+    public String getGama() {
+        return gama;
     }
 
-    public void setFoodname(String foodname) {
-        this.foodname = foodname;
+    public void setGama(String gama) {
+        this.gama = gama;
     }
 
-    private String group,date,foodname;
+    public String getInter() {
+        return inter;
+    }
+
+    public void setInter(String inter) {
+        this.inter = inter;
+    }
+
+    public String getCham() {
+        return cham;
+    }
+
+    public void setCham(String cham) {
+        this.cham = cham;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.jock.jeim_main.Task;
+package com.example.jock.jeim_main.Main;
 
 import android.os.AsyncTask;
 
@@ -10,31 +10,29 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class LibraryTask extends AsyncTask<String,Void,String> {
+/**
+ * Created by Jock on 2017-10-20.
+ */
+
+public class PasswordTask extends AsyncTask<String,Void,String> {
 
     String sendMSG,result;
     @Override
     protected String doInBackground(String... params) {
 
-
-        String content = params[0];
-        String group = params[1];
-        String pagemin = params[2];
-        String pagemax = params[3];
-
-
+        String num = params[0];
+        String email = params[1];
 
         try {
-            URL url = new URL(Url.Main+Url.Library);
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            URL url = new URL(Url.Passwordemail);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setUseCaches(false);
             con.setDoOutput(true);
             con.setRequestMethod("POST");
             con.connect();
             OutputStream outputStream = con.getOutputStream();
 
-            sendMSG = "content="+content+"&group="+group+"&pagemin="+pagemin+"&pagemax="+pagemax;
-
+            sendMSG ="mail="+email+"&user_num="+num;
             outputStream.write(sendMSG.getBytes("UTF-8"));
             outputStream.flush();
             outputStream.close();
@@ -53,9 +51,11 @@ public class LibraryTask extends AsyncTask<String,Void,String> {
                 result = stringBuilder.toString();
                 reader.close();
             }
-        }catch (Exception e){
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return result;
     }
 }

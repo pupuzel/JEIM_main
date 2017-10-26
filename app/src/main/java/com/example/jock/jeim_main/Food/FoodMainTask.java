@@ -1,9 +1,8 @@
-package com.example.jock.jeim_main.Task;
+package com.example.jock.jeim_main.Food;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.jock.jeim_main.Another.Url;
 
@@ -13,16 +12,19 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 
-public class FoodTab3_Task extends AsyncTask<String,Void,String> {
+public class FoodMainTask extends AsyncTask<String,Void,String> {
     private String result,sendMSG;
     private Context context;
+    private String type,delivery,ordervalue;
     private ProgressDialog mProgress;
 
-    public FoodTab3_Task(Context context) {
+    public FoodMainTask(Context context) {
         mProgress = new ProgressDialog(context);
     }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -34,13 +36,21 @@ public class FoodTab3_Task extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
-        try{
-            String username = params[0];
-            String content = params[1];
-            String pageTotal = params[2];
-            String code = params[3];
 
-            URL url = new URL(Url.Main+Url.FoodTab3);
+        try{
+            type = URLEncoder.encode(params[0], "UTF-8");
+            delivery = URLEncoder.encode(params[1], "UTF-8");
+            ordervalue = URLEncoder.encode(params[2], "UTF-8");
+
+            if(params[0].equals("All")){
+                type = URLEncoder.encode("%25", "UTF-8");
+            }if(params[1].equals("All")){
+                delivery = URLEncoder.encode("%25", "UTF-8");
+            }if(params[2].equals("All")){
+                ordervalue = URLEncoder.encode("%25", "UTF-8");
+            }
+
+            URL url = new URL(Url.Main+Url.Food);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setUseCaches(false);
             con.setDoOutput(true);
@@ -48,7 +58,7 @@ public class FoodTab3_Task extends AsyncTask<String,Void,String> {
             con.connect();
             OutputStream outputStream = con.getOutputStream();
 
-            sendMSG = "username="+username+"&content="+content+"&pageTotal="+pageTotal+"&code="+code;
+            sendMSG = "type="+type+"&delivery="+delivery+"&ordervalue="+ordervalue;
 
             outputStream.write(sendMSG.getBytes("UTF-8"));
             outputStream.flush();
@@ -58,24 +68,20 @@ public class FoodTab3_Task extends AsyncTask<String,Void,String> {
 
                 InputStream inputStream = con.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder stringBuilder = new StringBuilder();
 
+                StringBuilder stringBuilder = new StringBuilder();
                 while ((result = bufferedReader.readLine()) != null){
                     stringBuilder.append(result);
                 }
                 result = null;
                 result = stringBuilder.toString();
                 bufferedReader.close();
-                Log.i("리졸졸",result);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
         return result;
-
-
     }
-
 
     @Override
     protected void onPostExecute(String s) {

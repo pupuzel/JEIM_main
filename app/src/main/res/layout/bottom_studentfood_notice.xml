@@ -5,34 +5,22 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="2dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:padding="5dp">
 
         <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
+            android:id="@+id/studentfood_notice_txt_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:paddingRight="10dp"
+            android:layout_centerHorizontal="true"
             android:text="년도.월.일,(요일)"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/date_next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/rightarrow"
-            android:layout_weight="2"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:paddingRight="10dp"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,10 +45,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingRight="5dp"
             android:orientation="horizontal">
 
             <TextView
-
+                android:id="@+id/studentfood_notice_txt_gama_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -71,12 +60,12 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/studentfood_notice_gama"
+                android:id="@+id/studentfood_notice_txt_gama_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="식단 쫘르륵"
+                android:text=""
                 android:textSize="15dp"/>
 
         </LinearLayout>
@@ -102,25 +91,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
 
             <TextView
+                android:id="@+id/studentfood_notice_txt_inturn_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:text="인턴"
+                android:text="인터"
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/studentfood_notice_inturn"
+                android:id="@+id/studentfood_notice_txt_inturn_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="식단 쫘르륵"
+                android:text=""
                 android:textSize="15dp"/>
 
         </LinearLayout>
@@ -145,11 +136,13 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/studentfood_notice_txt_cham_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -160,12 +153,12 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/studentfood_notice_cham"
+                android:id="@+id/studentfood_notice_txt_cham_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="식단 쫘르륵"
+                android:text=""
                 android:textSize="15dp" />
 
         </LinearLayout>

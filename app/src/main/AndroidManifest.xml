@@ -34,9 +34,9 @@
         <activity android:name=".Bottom.GongjiActivity"/>
         <activity android:name=".Jooungo.JooungoUpdateActivity"/>
         <activity android:name=".Major.DepartmentActivity"/>
-        <activity android:name=".Food.FoodActivity"/>
-        <activity android:name=".Food.FoodDetail"/>
-        <activity android:name=".Food.FoodMap"/>
+        <activity android:name=".Food.FoodMainActivity"/>
+        <activity android:name=".Food.FoodDetailActivity"/>
+        <activity android:name=".Food.FoodMapActivity"/>
         <activity android:name=".Fiction.FictionActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Library.LibraryActivity" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Bottom.TimetableActivity"/>

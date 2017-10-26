@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.jock.jeim_main.R;
 
 
-public class FoodTab1 extends Fragment{
+public class FoodTab1Activity extends Fragment{
 
     private Bundle bundle;
     private String title,group,address,phone,delivery;

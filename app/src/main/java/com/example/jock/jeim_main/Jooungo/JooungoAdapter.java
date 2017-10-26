@@ -1,6 +1,7 @@
 package com.example.jock.jeim_main.Jooungo;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public class JooungoAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.i("실행 횟수","즐");
         View v = View.inflate(context, R.layout.jooungo_notice, null);
 
         TextView title = (TextView) v.findViewById(R.id.boardtitle);
@@ -51,7 +51,10 @@ public class JooungoAdapter extends BaseAdapter {
         title.setText(noticelist.get(position).getTitle());
         name.setText(noticelist.get(position).getUsername());
         date.setText(noticelist.get(position).getDate());
-        //code.setText(noticelist.get(position).getBoardcode());
+
+        if(position%2 ==1){
+            v.setBackgroundColor(Color.rgb(246,246,246));
+        }
 
         v.setTag(noticelist.get(position).getTitle());
         return v;

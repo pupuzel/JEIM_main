@@ -27,12 +27,12 @@ import com.example.jock.jeim_main.Bottom.TimetableActivity;
 import com.example.jock.jeim_main.Bus.BusActivity;
 import com.example.jock.jeim_main.FAQ.FAQActivity;
 import com.example.jock.jeim_main.Fiction.FictionActivity;
-import com.example.jock.jeim_main.Food.FoodActivity;
+import com.example.jock.jeim_main.Food.FoodMainActivity;
 import com.example.jock.jeim_main.Jooungo.JooungoActivity;
 import com.example.jock.jeim_main.Library.LibraryActivity;
 import com.example.jock.jeim_main.Major.DepartmentActivity;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.CntTask;
+import com.example.jock.jeim_main.Another.CntTask;
 
 public class MainActivity extends AppCompatActivity implements
                           OnClickListener,
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_food :
-                startActivity(new Intent(getApplicationContext() , FoodActivity.class));
+                startActivity(new Intent(getApplicationContext() , FoodMainActivity.class));
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_map :

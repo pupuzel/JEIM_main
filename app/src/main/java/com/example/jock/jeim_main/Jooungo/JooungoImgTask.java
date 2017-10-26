@@ -1,4 +1,4 @@
-package com.example.jock.jeim_main.Task;
+package com.example.jock.jeim_main.Jooungo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class ImgTask extends AsyncTask<String,Integer,Bitmap> {
+public class JooungoImgTask extends AsyncTask<String,Integer,Bitmap> {
 
     private Bitmap bitimg;
 

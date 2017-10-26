@@ -18,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class FoodMap extends AppCompatActivity {
+public class FoodMapActivity extends AppCompatActivity {
     private MapView mapView;
 
     private Intent intent;

@@ -1,4 +1,4 @@
-package com.example.jock.jeim_main.Task;
+package com.example.jock.jeim_main.Main;
 
 import android.os.AsyncTask;
 
@@ -10,33 +10,30 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Created by Jock on 2017-10-20.
+ */
 
-public class FictionTask extends AsyncTask<String,Void,String> {
-    String sendMSG,result;
+public class PasswordChangeTask extends AsyncTask<String,Void,String> {
+    String sendMSG;
+    String result;
 
     @Override
     protected String doInBackground(String... params) {
 
-        String username = params[0];
-        String content = params[1];
-        String pageTotal = params[2];
-
+        String userid = params[0];
+        String pass = params[1];
 
         try {
-            URL url = new URL(Url.Main+Url.Fictionadd);
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            URL url = new URL(Url.Main+Url.Passwordchange);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setUseCaches(false);
             con.setDoOutput(true);
             con.setRequestMethod("POST");
             con.connect();
             OutputStream outputStream = con.getOutputStream();
-            if(pageTotal != null){
-                sendMSG = "username="+username+"&content="+content+"&pageTotal="+pageTotal;
-            }else {
-                sendMSG = "username="+username+"&content="+content;
-            }
 
-
+            sendMSG ="num="+userid+"&password="+pass;
             outputStream.write(sendMSG.getBytes("UTF-8"));
             outputStream.flush();
             outputStream.close();
@@ -55,9 +52,11 @@ public class FictionTask extends AsyncTask<String,Void,String> {
                 result = stringBuilder.toString();
                 reader.close();
             }
-        }catch (Exception e){
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return result;
     }
 }

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 
 
-public class FoodNotice {
+public class FoodMainNotice {
 
     private String code;
     private String title;
@@ -15,7 +15,7 @@ public class FoodNotice {
     private String lat;
     private String logn;
 
-    public FoodNotice(String code, String title, String adress, String group, String img, String lat, String logn) {
+    public FoodMainNotice(String code, String title, String adress, String group, String img, String lat, String logn) {
         this.code = code;
         this.title = title;
         this.adress = adress;

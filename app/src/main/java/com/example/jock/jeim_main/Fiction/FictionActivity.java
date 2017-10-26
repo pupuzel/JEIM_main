@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FictionTask;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

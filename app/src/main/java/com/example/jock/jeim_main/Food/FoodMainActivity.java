@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FoodTask;
 
 
 import org.json.JSONArray;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FoodActivity extends AppCompatActivity implements View.OnClickListener,
+public class FoodMainActivity extends AppCompatActivity implements View.OnClickListener,
                                                                AdapterView.OnItemClickListener,
                                                                AdapterView.OnItemSelectedListener,CompoundButton.OnCheckedChangeListener{
 
@@ -41,8 +40,8 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     private ListView foodlistView;
     private CheckBox checkBox_delivery,checkBox_displace,checkBox_review;
 
-    private List<FoodNotice> foodNoticeList = new ArrayList<FoodNotice>();
-    private FoodAdapter foodAdapter;
+    private List<FoodMainNotice> foodNoticeList = new ArrayList<FoodMainNotice>();
+    private FoodMainAdapter foodAdapter;
     private ArrayAdapter spinneradapter;
     public static Context context;
 
@@ -89,6 +88,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         spinneradapter = ArrayAdapter.createFromResource(this,R.array.Food,android.R.layout.simple_spinner_item);
         spinneradapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(spinneradapter);
+
     }
 
     @Override
@@ -118,7 +118,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.community_btn_food_map :   // 지도 버튼
-                Intent intent = new Intent(this,FoodMap.class);
+                Intent intent = new Intent(this,FoodMapActivity.class);
                 intent.putExtra("마커",getMapLocation());
                 startActivity(intent);
                 break;
@@ -141,10 +141,10 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     // 리스트뷰 아이템 클릭시
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        FoodNotice item = (FoodNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
+        FoodMainNotice item = (FoodMainNotice) parent.getItemAtPosition(position); //몇번째 아이템을 클릭했는지 그리고 그 아이템에 Model인 JooungoNotice에 연결
         String str = item.getCode(); // 클릭한 해당 아이템 게시판코드값 가져오기
 
-        Intent intent = new Intent(getApplicationContext(),FoodDetail.class);
+        Intent intent = new Intent(getApplicationContext(),FoodDetailActivity.class);
         intent.putExtra("코드",str);
         startActivity(intent);
     }
@@ -157,10 +157,22 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                 if(isChecked){   delivery = "Y"; Toast.makeText(getApplicationContext(),delivery,Toast.LENGTH_SHORT).show();  }else{  delivery = "All"; }
                 break;
             case R.id.community_food_order_box_distance :
-                if(isChecked){ ordervalue = "displace"; checkBox_review.setChecked(false);}else{  ordervalue = "All"; }
+                if(isChecked){ ordervalue = "displace"; checkBox_review.setChecked(false);}else{
+                    if(checkBox_review.isChecked()){
+                        ordervalue = "review";
+                    }else{
+                        ordervalue = "All";
+                    }
+                }
                 break;
             case R.id.community_food_order_box_review :
-                if(isChecked){ ordervalue = "review"; checkBox_displace.setChecked(false);}else{  ordervalue = "All"; }
+                if(isChecked){ ordervalue = "review"; checkBox_displace.setChecked(false);}else{
+                    if(checkBox_displace.isChecked()){
+                        ordervalue = "displace";
+                    }else{
+                        ordervalue = "All";
+                    }
+                }
                 break;
         }
     }
@@ -168,7 +180,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
     /* 데이터를 가져와서 뷰에 뿌려주는 메소드*/
     public void setData(){
         try{
-            String result = new FoodTask(context).execute(type,delivery,ordervalue).get();
+            String result = new FoodMainTask(context).execute(type,delivery,ordervalue).get();
             new getList().execute(result);
         }catch (Exception e){ e.printStackTrace(); }
     }
@@ -219,10 +231,10 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                     adress = json.getString("주소");
                     lat = json.getString("위도");
                     logn = json.getString("경도");
-                    foodNoticeList.add(new FoodNotice(code,title,adress,group,img,lat,logn));
+                    foodNoticeList.add(new FoodMainNotice(code,title,adress,group,img,lat,logn));
                     count++;
                 }
-                foodAdapter = new FoodAdapter(getApplicationContext(),foodNoticeList);
+                foodAdapter = new FoodMainAdapter(getApplicationContext(),foodNoticeList);
                 foodlistView.setAdapter(foodAdapter);
                 foodAdapter.notifyDataSetChanged();
             }catch (Exception e){

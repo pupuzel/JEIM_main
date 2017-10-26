@@ -1,9 +1,8 @@
-package com.example.jock.jeim_main.Task;
+package com.example.jock.jeim_main.Jooungo;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.jock.jeim_main.Jooungo.Jooungoboardinfo;
 import com.example.jock.jeim_main.Another.Url;
 
 import java.io.BufferedReader;
@@ -15,26 +14,25 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 
-public class JooungoTask extends AsyncTask<Jooungoboardinfo,Void,String> {
-    private Jooungoboardinfo info = new Jooungoboardinfo();
+public class JooungoTask extends AsyncTask<JooungoDetailNotice,Void,String> {
+    private JooungoDetailNotice info = new JooungoDetailNotice();
     private String lineEnd = "\r\n";
     private String twoHyphens = "--";
     private String boundary = "*****";
 
     @Override
-    protected String doInBackground(Jooungoboardinfo...parmas) {
+    protected String doInBackground(JooungoDetailNotice...parmas) {
 
         StringBuilder html = new StringBuilder();
         String mResult,result = null;
         String userid,price,title,content,group;
 
-        Jooungoboardinfo info = parmas[0];
+        JooungoDetailNotice info = parmas[0];
         userid = info.getUserid();
         price = info.getPrice();
         title = info.getTitle();
         content = info.getContent();
         group = info.getGroup();
-
         try {
 
             URL url = new URL(Url.Main+Url.JooungoBoard);

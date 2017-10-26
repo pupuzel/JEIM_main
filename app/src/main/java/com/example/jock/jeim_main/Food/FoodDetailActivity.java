@@ -14,13 +14,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.jock.jeim_main.R;
-import com.example.jock.jeim_main.Task.FoodTab1_Task;
 import com.example.jock.jeim_main.Another.Url;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class FoodDetail extends AppCompatActivity implements View.OnClickListener{
+public class FoodDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     private String result,code;
     private String title,group,address,phone,delivery,img;
@@ -77,7 +76,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
                 callFragment(FRAGMENT3);
                 break;
             case R.id.community_food_detail_txt_back:
-                startActivity(new Intent(getApplicationContext(),FoodActivity.class));
+                startActivity(new Intent(getApplicationContext(),FoodMainActivity.class));
                 finish();
                 break;
         }
@@ -89,7 +88,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
 
         switch (frament_no){
             case 1:
-                FoodTab1 foodTab1 = new FoodTab1();
+                FoodTab1Activity foodTab1 = new FoodTab1Activity();
                 Bundle bundle = new Bundle();
                 bundle.putString("title",title);
                 bundle.putString("group",group);
@@ -102,13 +101,13 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
                 break;
 
             case 2:
-                FoodTab2 foodTab2 = new FoodTab2();
+                FoodTab2Activity foodTab2 = new FoodTab2Activity();
                 transaction.replace(R.id.fragment_container, foodTab2);
                 transaction.commit();
                 break;
 
             case 3:
-                FoodTab3 foodTab3 = new FoodTab3();
+                FoodTab3Activity foodTab3 = new FoodTab3Activity();
                 Bundle bundle3 = new Bundle();
                 bundle3.putString("code",code);
                 foodTab3.setArguments(bundle3);
@@ -124,7 +123,7 @@ public class FoodDetail extends AppCompatActivity implements View.OnClickListene
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgress = new ProgressDialog(FoodDetail.this);
+            mProgress = new ProgressDialog(FoodDetailActivity.this);
             mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
             mProgress.setCancelable(false);
