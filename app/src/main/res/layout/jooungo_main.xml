@@ -97,8 +97,8 @@
             android:weightSum="1.4">
             <!-- 검색 부분 레이아웃 -->
 
-            <Spinner
-                android:id="@+id/Jooungo_spiner_list"
+            <Button
+                android:id="@+id/Jooungo_btn_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -106,8 +106,9 @@
                 android:layout_weight="0.5"
                 android:background="@drawable/bg_white_bd_black"
                 android:gravity="center"
+                android:text="제목"
                 android:paddingBottom="5dp"
-                android:paddingTop="3dp" />
+                android:paddingTop="3dp"/>
 
             <EditText
                 android:id="@+id/edit_jooungo_search"

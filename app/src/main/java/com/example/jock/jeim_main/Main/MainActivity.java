@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.CntDate;
+import com.example.jock.jeim_main.Another.DateDay;
 import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
@@ -107,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements
         drawer_logout.setOnClickListener(this);
         drawer_join.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
-
 
     }
 

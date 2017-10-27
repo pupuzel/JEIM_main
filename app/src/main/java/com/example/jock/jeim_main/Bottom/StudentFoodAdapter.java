@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.jock.jeim_main.Another.DateDay;
 import com.example.jock.jeim_main.R;
 
 import java.util.ArrayList;
@@ -51,7 +52,12 @@ public class StudentFoodAdapter extends BaseAdapter{
         TextView intermenu = (TextView) v.findViewById(R.id.studentfood_notice_txt_inturn_menu);
         TextView chammenu = (TextView) v.findViewById(R.id.studentfood_notice_txt_cham_menu);
 
-        date.setText(NoticeList.get(position).getDate());
+        String Dateday = "()";
+        try {
+            Dateday = DateDay.getDateDay(NoticeList.get(position).getDate(),"yyyy-MM-dd");
+        } catch (Exception e) {  e.printStackTrace();  }
+
+        date.setText(NoticeList.get(position).getDate()+"("+Dateday+")");
         gamamenu.setText(NoticeList.get(position).getGama());
         intermenu.setText(NoticeList.get(position).getInter());
         chammenu.setText(NoticeList.get(position).getCham());

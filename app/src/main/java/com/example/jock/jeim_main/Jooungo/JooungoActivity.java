@@ -1,10 +1,12 @@
 package com.example.jock.jeim_main.Jooungo;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -46,15 +48,13 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     private ListView jooungo_listview; // 게시판 정보를 리스트 형식으로 가져오는 리스트뷰 변수 선언
     private JooungoAdapter adapter;   // 실제 View에 Model에 있는 데이터를 연동하기 위한 어뎁터 설정
     private List<JooungoNotice> jooungoNoticeList = new ArrayList<JooungoNotice>();  // 각 게시판을 리스트 배열에 담기 위한 변수 선언
-    private ArrayAdapter Spinneradapter;
 
     private Animation animation;
 
     // 각종 텍스트뷰 버튼 스피너 등등 필요한 위젯 선언
     private TextView btn_jooungo_newboard,jooungo_backhome,btn_jooungo_search;
     private EditText edit_jooungo_search;
-    private Button btnsell,btnbuy;
-    private Spinner spinner;
+    private Button btnsell,btnbuy,btnspinner;
     private ProgressDialog mProgress;
 
     int clickColor,clickedColor;  // 클릭했을때 컬러변경을위해 컬러값을 받기위한 변수선언
@@ -65,17 +65,12 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jooungo_main);
 
-        // 검색 분류 부분 스피너 가져오기
-        spinner = (Spinner)findViewById(R.id.Jooungo_spiner_list);
-        Spinneradapter = ArrayAdapter.createFromResource(this, R.array.Jooungo,android.R.layout.simple_spinner_item);
-        spinner.setAdapter(Spinneradapter);
-
-
         // 각각 위젯들 find 연결시켜주기
         btn_jooungo_newboard = (TextView)findViewById(R.id.btn_jooungo_newboard);
         jooungo_backhome = (TextView) findViewById(R.id.jooungo_homeback);
         btn_jooungo_search = (TextView) findViewById(R.id.btn_jooungo_search);
         edit_jooungo_search = (EditText) findViewById(R.id.edit_jooungo_search);
+        btnspinner = (Button) findViewById(R.id.Jooungo_btn_spinner);
         btnsell = (Button) findViewById(R.id.btn_sell);
         btnbuy = (Button) findViewById(R.id.btn_buy);
 
@@ -93,6 +88,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         btn_jooungo_newboard.setOnClickListener(this);
         btnsell.setOnClickListener(this);
         btnbuy.setOnClickListener(this);
+        btnspinner.setOnClickListener(this);
         btn_jooungo_search.setOnClickListener(this);
         jooungo_backhome.setOnClickListener(this);
 
@@ -127,7 +123,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
     public void search() {   // 검색 메소드
         String searchValue = edit_jooungo_search.getText().toString();  // 검색 내용을 String 변수에 저장
-        String itemgroup = spinner.getSelectedItem().toString();   // 검색 분류(작성자,제목 등등...) 내용을 String 변수에 저장
+        String itemgroup = btnspinner.getText().toString();   // 검색 분류(작성자,제목 등등...) 내용을 String 변수에 저장
         String groupValue = String.valueOf(btnCheckValue);        //팝니다 인지 삽니다 인지 구분하여 String 변수에 저장
         switch (itemgroup.toString()){   // 검색 분류에 따른 swich 구문 실행
             case "제목":
@@ -142,9 +138,34 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 task = new selectlist();
                 task.execute(groupValue,searchValue,itemgroup);
                 break;
-
         }
+    }
 
+    public void showChoiceDialog(){
+        final String[] arraylist = getResources().getStringArray(R.array.Jooungo);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        final int[] selectedIndex = {0};
+        dialog.setTitle("검색 분류를 선택하세요")
+              .setSingleChoiceItems(arraylist, 0, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                        selectedIndex[0] = which;
+                  }
+              })
+              .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                      String selectedValue =  arraylist[selectedIndex[0]];
+                      btnspinner.setText(selectedValue);
+                  }
+              })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).create().show();
 
     }
     @Override
@@ -184,6 +205,10 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 InputMethodManager immhide = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);  // 키패드 입력창 설정
                 immhide.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);  // 키패드 입력창 보여주기 or 숨겨주기
                 search();  // 검색하기 메소드 실행
+                break;
+
+            case R.id.Jooungo_btn_spinner : // 스피너 버튼 클릭시
+                showChoiceDialog();
                 break;
 
             case R.id.jooungo_homeback : // 뒤로가기 버튼 클릭시 메인화면 이동
