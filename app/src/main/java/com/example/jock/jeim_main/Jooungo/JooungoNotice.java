@@ -9,13 +9,17 @@ public class JooungoNotice {
     String boardcode;
     String username;
     String title;
+    String cheak;
     String date;
+    String group;
 
-    public JooungoNotice(String boardcode, String username, String title, String date) {
+    public JooungoNotice(String boardcode, String username, String title, String cheak,String group, String date) {
         this.boardcode = boardcode;
         this.username = username;
         this.title = title;
+        this.cheak = cheak;
         this.date = date;
+        this.group = group;
     }
 
     public String getBoardcode() {
@@ -48,5 +52,21 @@ public class JooungoNotice {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getCheak() {
+        return cheak;
+    }
+
+    public void setCheak(String cheak) {
+        this.cheak = cheak;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

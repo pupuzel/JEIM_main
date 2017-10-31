@@ -336,7 +336,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 JSONArray jsonArray = new JSONArray(result); // 리턴값을 제이손 배열로 읽어오기
                 JSONObject json;  // 제이손 오브젝 선언
                 int count = 0;  // 반복분을 위한 인트 변수 선언
-                String bd_code,username,title,date;  // 값을 받아오기 위한 스트링 변수 선언
+                String bd_code,username,title,cheak,group,date;  // 값을 받아오기 위한 스트링 변수 선언
                 while( count < jsonArray.length()){  // 제이손배열 length 값보다 작을때까지 반복
 
                     json = jsonArray.getJSONObject(count); // 제이손배열 각각 값을 제이손 오브젝에 저장
@@ -345,10 +345,11 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                     bd_code = json.getString("게시판코드");
                     username = json.getString("작성자");
                     title = json.getString("제목");
+                    cheak = json.getString("상태");
+                    group = json.getString("그룹");
                     date = json.getString("날짜").substring(0,16);
-
                     // 각각 게시판 정보들이 담긴 Model 클래스를 리스트배열에 저장하기
-                    jooungoNoticeList.add(new JooungoNotice(bd_code,username,title,date));
+                    jooungoNoticeList.add(new JooungoNotice(bd_code,username,title,cheak,group,date));
                     count++;
                 }
 

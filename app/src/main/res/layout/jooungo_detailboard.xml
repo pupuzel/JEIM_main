@@ -7,7 +7,8 @@
     android:layout_height="match_parent">
 
     <!-- 헤더 부분  -->
-    <LinearLayout
+    <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navyblue"
@@ -15,42 +16,62 @@
         android:padding="10dp">
         <!-- 헤더 작성자 부분-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layout_Jooungo_detail1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="6"
                 android:text="작성자:"
-                android:textSize="15dp"
                 android:textColor="#ffffff"
-                android:layout_weight="6"/>
+                android:textSize="15dp" />
+
             <TextView
-                android:singleLine="true"
                 android:id="@+id/txt_jooungo_detail_username"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
                 android:text="작성자"
-                android:textSize="15dp"
                 android:textColor="#ffffff"
-                android:layout_weight="1"/>
+                android:textSize="15dp" />
         </LinearLayout>
         <!--헤더 날짜 부분-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_Jooungo_detail1">
+
             <TextView
-                android:singleLine="true"
                 android:id="@+id/txt_jooungo_detail_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:singleLine="true"
                 android:text="등록일"
                 android:textColor="#ffffff"
-                android:textSize="15dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true" />
+                android:textSize="15dp" />
         </RelativeLayout>
-    </LinearLayout>
+
+
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/btn_jooungo_detail_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_white_bd_black"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="판매완료 등록"
+            android:textColor="@color/black" />
+    </RelativeLayout>
 
 
     <!-- 실제 내용-->

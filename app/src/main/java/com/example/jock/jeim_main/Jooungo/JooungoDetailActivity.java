@@ -3,12 +3,14 @@ package com.example.jock.jeim_main.Jooungo;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -47,8 +49,8 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
      private JooungoDeleteTask deleteTask;
      private TextView txt_title,txt_username,txt_date,txt_price,txt_content,txt_group,txt_loding;
      private ImageView imageView1,imageView2,imageView3;
-     private Button btn_delete,btn_update,btn_backlist;
-
+     private Button btn_delete,btn_update,btn_backlist,btn_completed;
+     private imgThread imgThread;
     private int price,groupvalue;
     private String usernum,prefUsernum;
     private String img1,img2,img3;
@@ -71,6 +73,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         btn_delete = (Button) findViewById(R.id.btn_jooungo_delete);
         btn_update = (Button) findViewById(R.id.btn_jooungo_update);
         btn_backlist = (Button) findViewById(R.id.btn_jooungo_backlist);
+        btn_completed = (Button) findViewById(R.id.btn_jooungo_detail_completed);
         imageView1 = (ImageView) findViewById(R.id.txt_jooungo_detail_img1);
         imageView2 = (ImageView) findViewById(R.id.txt_jooungo_detail_img2);
         imageView3 = (ImageView) findViewById(R.id.txt_jooungo_detail_img3);
@@ -90,6 +93,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         btn_delete.setOnClickListener(this);
         btn_update.setOnClickListener(this);
         btn_backlist.setOnClickListener(this);
+        btn_completed.setOnClickListener(this);
     } // onCreate finish
 
 
@@ -110,8 +114,18 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.btn_jooungo_detail_completed :
+                completedCheck();
+                break;
+
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void deletecheck(){
@@ -121,17 +135,52 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 try {
+
                     imglistJson.put("게시판코드",boardCode);
                     deleteTask = new JooungoDeleteTask();
                    String result = deleteTask.execute(imglistJson).get();
                     if(result.equals("success")){
                         Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                        finish();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(),boardCode,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("취소",new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
+
+    public void completedCheck(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(groupvalue == 1){
+            builder.setTitle("판매 완료로 등록하시겠습니까?\n 다시 되돌릴수없습니다. ");
+        }else {
+            builder.setTitle("구매 완료로 등록하시겠습니까?\n 다시 되돌릴수없습니다. ");
+        }
+        builder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    String result = new JooungoCompletedTask().execute(boardCode).get();
+                    if(result.equals("success")){
+                        Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"판매 완료등록을 할수없습니다 (서버에러)",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),"판매 완료등록을 할수없습니다 (서버에러)",Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
         });
@@ -233,16 +282,40 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                     txt_group.setText("[삽니다]");
                 }
 
+                if(json.getString("상태").equals("1")){
+
+                    if(groupvalue == 1){
+                        btn_completed.setText("판매완료 등록");
+                    }else{
+                        btn_completed.setText("구매완료 등록");
+                    }
+                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.bg_white_bd_black));
+                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.black));
+                    if(prefUsernum.equals(usernum)){
+                        btn_delete.setVisibility(View.VISIBLE);
+                        btn_update.setVisibility(View.VISIBLE);
+                        btn_completed.setVisibility(View.VISIBLE);
+                    }
+
+                }else{
+                    if(groupvalue == 1){
+                        btn_completed.setText("판매완료");
+                    }else{
+                        btn_completed.setText("구매완료");
+                    }
+                    btn_completed.setVisibility(View.VISIBLE);
+                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.bg_whitegray));
+                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.white));
+                    btn_completed.setEnabled(false);
+                }
+
                 img1 = json.getString("이미지1");
                 img2= json.getString("이미지2");
                 img3 = json.getString("이미지3");
-                new imgThread(img1,img2,img3).start();    //이미지 가져오는 쓰레드는 별도의 쓰레드가 작업
 
-                if(prefUsernum.equals(usernum)){
+                imgThread = new imgThread(img1,img2,img3); //이미지 가져오는 쓰레드는 별도의 쓰레드가 작업
+                imgThread.start();
 
-                    btn_delete.setVisibility(View.VISIBLE);
-                    btn_update.setVisibility(View.VISIBLE);
-                }
 
         } catch (Exception e) {  e.printStackTrace();   }
             mProgress.dismiss();

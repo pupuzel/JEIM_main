@@ -48,11 +48,12 @@
         </LinearLayout>
 
         <TextView
+            android:layout_marginRight="5dp"
             android:padding="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오졌다리"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:id="@+id/food_review_txt_content"/>
 
     </LinearLayout>1

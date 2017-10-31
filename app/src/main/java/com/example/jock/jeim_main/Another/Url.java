@@ -12,6 +12,7 @@ public class Url {
     public static final String JooungoDetail ="jooungoboardDetail.jsp";
     public static final String JooungoDelete ="jooungoboardDelete.jsp";
     public static final String JooungoUpdate ="jooungoboardUpdate.jsp";
+    public static final String JooungoCompleted ="jooungoCompleted.jsp";
     public static final String Cnt ="Cnt.jsp";
     public static final String FAQList ="FAQboardlist.jsp";
     public static final String Food ="Foodlist.jsp";

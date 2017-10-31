@@ -6,20 +6,30 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
@@ -37,9 +47,15 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
 
     private Button calcle,check;
     private EditText price,title,contents;
-    private ImageView updateimg1,updateimg2,updateimg3;
     private Drawable drawable;
     private Spinner spinner;
+
+    private LinearLayout updateimgLayout;
+    private FrameLayout Frame1,Frame2,Frame3;
+    private ImageView updateimg1,updateimg2,updateimg3;
+    private ImageView clear1,clear2,clear3;
+
+    private Animation animation;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -58,17 +74,31 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         title = (EditText)findViewById(R.id.edit_jooungo_updateboard_title);
         contents = (EditText)findViewById(R.id.edit_jooungo_updateboard_contents);
 
+        updateimgLayout = (LinearLayout) findViewById(R.id.linear_jooungo_update_addimg);
+        Frame1 = (FrameLayout) findViewById(R.id.layout_jooungo_update_updateimg1);
+        Frame2 = (FrameLayout) findViewById(R.id.layout_jooungo_update_updateimg2);
+        Frame3 = (FrameLayout) findViewById(R.id.layout_jooungo_update_updateimg3);
         updateimg1 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg1);
         updateimg2 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg2);
         updateimg3 = (ImageView) findViewById(R.id.btn_text_jooungo_updateimg3);
+        clear1 = (ImageView) findViewById(R.id.imageview_jooungo_update_clearimg1);
+        clear2 = (ImageView) findViewById(R.id.imageview_jooungo_update_clearimg2);
+        clear3 = (ImageView) findViewById(R.id.imageview_jooungo_update_clearimg3);
+
 
         updateimg1.setOnClickListener(this);
         updateimg2.setOnClickListener(this);
         updateimg3.setOnClickListener(this);
+        clear1.setOnClickListener(this);
+        clear2.setOnClickListener(this);
+        clear3.setOnClickListener(this);
         calcle.setOnClickListener(this);
         check.setOnClickListener(this);
 
         getBoardvalue();
+
+        animation = new AlphaAnimation(0, 1);
+        animation.setDuration(1000);
 
     }
 
@@ -83,18 +113,128 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                 addboard();
                 break;
 
-            default:  //그외 사진추가 클릭
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-                intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                addimgIDVALUE= v.getId(); //선택한 위젯
-                startActivityForResult(intent, REQ_CODE_SELECT_IMAGE); // 앨범으로 이동할때 각 버튼에 대한 int값을 던져주고 사진을 선택하면 onActivityResult()콜백
+            case R.id.btn_text_jooungo_updateimg1 :  //첫번쨰 사진추가 클릭
+                startActivityForResult(getImg(v.getId()), REQ_CODE_SELECT_IMAGE); // 앨범으로 이동할때 각 버튼에 대한 int값(getId())을 던져주고 사진을 선택하면 onActivityResult()콜백
+                break;
+            case R.id.btn_text_jooungo_updateimg2 :  //두번쨰 사진추가 클릭
+                startActivityForResult(getImg(v.getId()), REQ_CODE_SELECT_IMAGE);
+                break;
+            case R.id.btn_text_jooungo_updateimg3 :  //세번쨰 사진추가 클릭
+                startActivityForResult(getImg(v.getId()), REQ_CODE_SELECT_IMAGE);
+                break;
+
+            case R.id.imageview_jooungo_update_clearimg1 :  // 첫번째 사진 삭제 버튼
+                updateimgLayout.setAnimation(animation);
+                if(info.size() == 1){
+                    Frame2.setVisibility(View.INVISIBLE);
+                    clear1.setVisibility(View.INVISIBLE);
+                    updateimg1.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                    updateimg1.setImageBitmap(null);
+                    info.setImg1(null);
+                }else if(info.size() == 2){
+                    Frame3.setVisibility(View.INVISIBLE);
+                    clear2.setVisibility(View.INVISIBLE);
+                    updateimg1.setImageBitmap(getImgbitmap(updateimg2));
+                    updateimg2.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                    updateimg2.setImageBitmap(null);
+                    info.setImg1(info.getimg(1));
+                    info.setImg2(null);
+                }else if(info.size() == 3){
+                    clear3.setVisibility(View.INVISIBLE);
+                    updateimg1.setImageBitmap(getImgbitmap(updateimg2));
+                    updateimg2.setImageBitmap(getImgbitmap(updateimg3));
+                    updateimg3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                    updateimg3.setImageBitmap(null);
+                    info.setImg1(info.getimg(1));
+                    info.setImg2(info.getimg(2));
+                    info.setImg3(null);
+                }
+                break;
+            case R.id.imageview_jooungo_update_clearimg2 :  // 두번째 사진 삭제 버튼
+                updateimgLayout.setAnimation(animation);
+                if(info.size() == 2){
+                    Frame3.setVisibility(View.INVISIBLE);
+                    clear2.setVisibility(View.INVISIBLE);
+                    updateimg2.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                    updateimg2.setImageBitmap(null);
+                    info.setImg2(null);
+                }else if(info.size() == 3){
+                    updateimg2.setImageBitmap(getImgbitmap(updateimg3));
+                    updateimg3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                    updateimg3.setImageBitmap(null);
+                    clear3.setVisibility(View.INVISIBLE);
+                    info.setImg2(info.getimg(2));
+                    info.setImg3(null);
+                }
+                break;
+            case R.id.imageview_jooungo_update_clearimg3 :  // 세번째 사진 삭제 버튼
+                updateimgLayout.setAnimation(animation);
+                clear3.setVisibility(View.INVISIBLE);
+                updateimg3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
+                updateimg3.setImageBitmap(null);
+                info.setImg3(null);
                 break;
         } // finish switch
 
     } // finish onClick()
+    //사진을 가져오는 메소드
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (requestCode == REQ_CODE_SELECT_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+                try {
+                    //Uri에서 이미지 이름을 얻어온다.
+                    String name_Str = getImageNameToUri(data.getData());
 
+                    //이미지 데이터를 비트맵으로 받아온다.
+                    Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+
+                    if(image_bitmap.getWidth() > 1600 || image_bitmap.getHeight() > 1024){
+                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
+                    }else if(image_bitmap.getWidth() > 1024 || image_bitmap.getHeight() > 700){
+                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
+                    }else{
+                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
+                    }
+
+                    switch(addimgIDVALUE){
+                        case R.id.btn_text_jooungo_updateimg1:
+                            info.setImg1(byteArray.toByteArray());
+                            updateimg1.setImageBitmap(image_bitmap);
+                            clear1.setVisibility(View.VISIBLE);
+                            Frame2.setVisibility(View.VISIBLE);
+                            break;
+                        case R.id.btn_text_jooungo_updateimg2:
+                            info.setImg2(byteArray.toByteArray());
+                            updateimg2.setImageBitmap(image_bitmap);
+                            clear2.setVisibility(View.VISIBLE);
+                            Frame3.setVisibility(View.VISIBLE);
+                            break;
+                        case R.id.btn_text_jooungo_updateimg3:
+                            info.setImg3(byteArray.toByteArray());
+                            updateimg3.setImageBitmap(image_bitmap);
+                            clear3.setVisibility(View.VISIBLE);
+                            break;
+                    }
+                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //앨범으로 이동해서 사진 가져오기
+    public Intent getImg(int getId){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        addimgIDVALUE= getId; //선택한 위젯
+
+        return  intent;
+    }
     //게시판 정보 가져오기
     private void getBoardvalue(){
 
@@ -116,44 +256,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
 
         new Uitask(getimg1,getimg2,getimg3).start();
     }
-    //사진을 가져오는 메소드
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == REQ_CODE_SELECT_IMAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-                try {
-                    //Uri에서 이미지 이름을 얻어온다.
-                    String name_Str = getImageNameToUri(data.getData());
-
-                    //이미지 데이터를 비트맵으로 받아온다.
-                    Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                    image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
-
-                    switch(addimgIDVALUE){
-                        case R.id.btn_text_jooungo_updateimg1:
-                            info.setImg1(byteArray.toByteArray());
-                            updateimg1.setImageBitmap(image_bitmap);
-                            updateimg2.setVisibility(View.VISIBLE);
-                            break;
-                        case R.id.btn_text_jooungo_updateimg2:
-                            info.setImg2(byteArray.toByteArray());
-                            updateimg2.setImageBitmap(image_bitmap);
-                            updateimg3.setVisibility(View.VISIBLE);
-                            break;
-                        case R.id.btn_text_jooungo_updateimg3:
-                            info.setImg3(byteArray.toByteArray());
-                            updateimg3.setImageBitmap(image_bitmap);
-                            break;
-                    }
-                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
     //사진 이름 가져오기
     public String getImageNameToUri(Uri data) {
 
@@ -167,7 +270,23 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         return imgName;
     }
 
+    //이미지 비트맵 가져오기
+    public Bitmap getImgbitmap(ImageView updateimg) {
+        BitmapDrawable bitmapDrawable = (BitmapDrawable)updateimg.getDrawable();
+        return bitmapDrawable.getBitmap();
+    }
+    public byte[] getBytearray(Bitmap bitmap){
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        if(bitmap.getWidth() > 1600 || bitmap.getHeight() > 1024){
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
+        }else if(bitmap.getWidth() > 1024 || bitmap.getHeight() > 700){
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
+        }else{
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
+        }
 
+        return byteArray.toByteArray();
+    }
     public void addboard() { //게시판 등록 버튼 메소드
         String group = null;
 
@@ -248,7 +367,9 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
     //기존 게시판 이미지 뿌려주기 클래스
     private class Uitask extends Thread{
         String img1,img2,img3;
-
+        int imgTotalcount = 0;
+        int imgcount = 0;
+        boolean ischeck = true;
         public Uitask(String img1,String img2,String img3) {
             this.img1 = img1;
             this.img2 = img2;
@@ -257,54 +378,94 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
 
         @Override
         public void run() {
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
                     mProgress = new ProgressDialog(JooungoUpdateActivity.this);
                     mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
+                    mProgress.setCancelable(false);
                     mProgress.show();
-
                     if( (img1.equals("null")) == false){
-
+                        imgTotalcount = 1;
+                    }if( (img2.equals("null")) == false){
+                        imgTotalcount = 2;
+                    }if( (img3.equals("null")) == false){
+                        imgTotalcount = 3;
+                    }if(imgTotalcount == 0){
+                        mProgress.dismiss();
+                    }
+                    if( (img1.equals("null")) == false){
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img1)
                                 .asBitmap()
-                                .thumbnail(0.1f)
-                                .into(updateimg1);
-                        updateimg2.setVisibility(View.VISIBLE);
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(new SimpleTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                        info.setImg1(getBytearray(resource));
+                                        updateimg1.setImageBitmap(resource);
+                                        updateimg1.setBackgroundDrawable(null);
+                                        clear1.setVisibility(View.VISIBLE);
+                                        Frame2.setVisibility(View.VISIBLE);
+                                        imgcount++;
 
+                                        if(imgTotalcount == imgcount){
+                                            mProgress.dismiss();
+                                        }
+                                    }
+                                });
                     }
                     if((img2.equals("null")) == false){
-
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img2)
                                 .asBitmap()
-                                .thumbnail(0.1f)
-                                .into(updateimg2);
-                        updateimg3.setVisibility(View.VISIBLE);
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(new SimpleTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                        info.setImg2(getBytearray(resource));
+                                        updateimg2.setImageBitmap(resource);
+                                        updateimg2.setBackgroundDrawable(null);
+                                        clear2.setVisibility(View.VISIBLE);
+                                        Frame3.setVisibility(View.VISIBLE);
+                                        imgcount++;
 
+                                        if(imgTotalcount == imgcount){
+                                            mProgress.dismiss();
+                                        }
+                                    }
+                                });
                     }
                     if((img3.equals("null")) == false){
-
                         Glide.with(getApplicationContext())
                                 .load(Url.Main + Url.ImgTake +img3)
                                 .asBitmap()
-                                .thumbnail(0.1f)
-                                .into(updateimg3);
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .skipMemoryCache(true)
+                                .into(new SimpleTarget<Bitmap>() {
+                                    @Override
+                                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                        info.setImg3(getBytearray(resource));
+                                        updateimg3.setImageBitmap(resource);
+                                        updateimg3.setBackgroundDrawable(null);
+                                        clear3.setVisibility(View.VISIBLE);
+                                        imgcount++;
+
+                                        if(imgTotalcount == imgcount){
+                                            mProgress.dismiss();
+                                        }
+                                    }
+                                });
 
                     }
-                }
 
-            });
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mProgress.dismiss();
                 }
             });
+
         }
     }
 }// finish class

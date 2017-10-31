@@ -36,7 +36,7 @@ public class FoodTab3Activity extends Fragment implements View.OnClickListener,
     private View v;
     private ListView listView;
     private List<FoodTab3_Notice> NoticeList = new ArrayList<FoodTab3_Notice>();
-    private Button btn_check,btn_cencle;
+    private Button btn_check;
     private EditText edit_content;
     private ProgressBar progressBar;
     private SwipeRefreshLayout swipe;
@@ -66,13 +66,11 @@ public class FoodTab3Activity extends Fragment implements View.OnClickListener,
         edit_content = (EditText) v.findViewById(R.id.food_review_edit_content);
         swipe = (SwipeRefreshLayout) v.findViewById(R.id.food_review_swipe);
         btn_check = (Button) v.findViewById(R.id.food_review_btn_check);
-        btn_cencle = (Button) v.findViewById(R.id.food_review_btn_cancel);
         progressBar = (ProgressBar) v.findViewById(R.id.food_review_progressbar);
         context = v.getContext();
 
         swipe.setOnRefreshListener(this);
         btn_check.setOnClickListener(this);
-        btn_cencle.setOnClickListener(this);
 
         onRefresh();
         return v;
@@ -111,9 +109,6 @@ public class FoodTab3Activity extends Fragment implements View.OnClickListener,
                     Toast.makeText(v.getContext(), "로그인을해주세요", Toast.LENGTH_SHORT).show();
                 }
                 break;
-
-            case R.id.food_review_btn_cancel :
-                edit_content.setText("");
         }
     }
 

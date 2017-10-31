@@ -125,58 +125,113 @@
                 android:textSize="13dp" />
         </LinearLayout>
 
+        <!-- 사진 추가 텍스트 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="사진 추가"
-                android:textSize="15dp" />
+                android:textSize="20dp"
+                android:textColor="#000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(최대 3장까지 추가할수 있습니다)"
+                android:textSize="15dp"
+                android:textColor="@color/gray"/>
         </LinearLayout>
 
+
+        <!-- 사진 추가 버튼 3개  레이아웃 -->
         <LinearLayout
+            android:id="@+id/linear_jooungo_update_addimg"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:orientation="horizontal">
+            <!-- 첫번쨰 사진 프레임 레이아웃-->
+            <FrameLayout
+                android:id="@+id/layout_jooungo_update_updateimg1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1">
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/btn_text_jooungo_updateimg1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_add" />
+                <ImageView
+                    android:id="@+id/imageview_jooungo_update_clearimg1"
+                    android:clickable="true"
+                    android:background="@drawable/bg_clear_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_clear"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="end"
+                    android:visibility="invisible"/>
+            </FrameLayout>
 
-            <ImageView
-                android:id="@+id/btn_text_jooungo_updateimg1"
+            <!-- 두번쨰 사진 프레임 레이아웃-->
+            <FrameLayout
+                android:id="@+id/layout_jooungo_update_updateimg2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_white_bd_black"
-                android:gravity="center"
-                android:src="@drawable/ic_add"
-                android:textSize="15dp" />
+                android:visibility="invisible">
+                <ImageView
+                    android:id="@+id/btn_text_jooungo_updateimg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_add" />
+                <ImageView
+                    android:id="@+id/imageview_jooungo_update_clearimg2"
+                    android:clickable="true"
+                    android:background="@drawable/bg_clear_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_clear"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="end"
+                    android:visibility="invisible"/>
+            </FrameLayout>
 
-            <ImageView
-                android:id="@+id/btn_text_jooungo_updateimg2"
+            <!-- 세번쨰 사진 프레임 레이아웃-->
+            <FrameLayout
+                android:visibility="invisible"
+                android:id="@+id/layout_jooungo_update_updateimg3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white_bd_black"
-                android:gravity="center"
-                android:src="@drawable/ic_add"
-                android:textSize="15dp" />
-
-            <ImageView
-                android:id="@+id/btn_text_jooungo_updateimg3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white_bd_black"
-                android:gravity="center"
-                android:src="@drawable/ic_add"
-                android:textSize="15dp" />
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/btn_text_jooungo_updateimg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_add" />
+                <ImageView
+                    android:id="@+id/imageview_jooungo_update_clearimg3"
+                    android:clickable="true"
+                    android:background="@drawable/bg_clear_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_clear"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="end"
+                    android:visibility="invisible"/>
+            </FrameLayout>
 
         </LinearLayout>
 

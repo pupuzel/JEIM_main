@@ -45,12 +45,27 @@ public class JooungoAdapter extends BaseAdapter {
 
         TextView title = (TextView) v.findViewById(R.id.boardtitle);
         TextView name = (TextView) v.findViewById(R.id.boardusername);
+        TextView cheak = (TextView) v.findViewById(R.id.jooungo_boardcheck);
         TextView date = (TextView) v.findViewById(R.id.boarddate);
         TextView code = (TextView) v.findViewById(R.id.boardcode);
 
         title.setText(noticelist.get(position).getTitle());
         name.setText(noticelist.get(position).getUsername());
         date.setText(noticelist.get(position).getDate());
+
+       if( noticelist.get(position).getCheak().equals("1") ){
+
+            cheak.setVisibility(View.INVISIBLE);
+
+        }else{
+
+            if(noticelist.get(position).getGroup().equals("1")){
+                cheak.setText("판매 완료");
+            }else {
+                cheak.setText("구매 완료");
+            }
+            cheak.setVisibility(View.VISIBLE);
+        }
 
         if(position%2 ==1){
             v.setBackgroundColor(Color.rgb(246,246,246));
