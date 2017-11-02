@@ -2,10 +2,12 @@ package com.example.jock.jeim_main.Food;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -129,6 +131,8 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
     // 스피너 아이템 선택이 되면 콜백
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ((TextView)parent.getChildAt(0)).setTextColor(Color.WHITE);
+        ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);
          type = spinner.getSelectedItem().toString();
         if(type.equals("전체")){  type = "All";  }
         setData();

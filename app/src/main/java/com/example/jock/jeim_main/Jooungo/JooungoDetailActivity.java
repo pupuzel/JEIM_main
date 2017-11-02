@@ -14,10 +14,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +40,11 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+import java.util.zip.Inflater;
+
+import static com.example.jock.jeim_main.Food.FoodMainActivity.context;
 
 public class JooungoDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private SharedPreferences pref;
@@ -54,7 +64,8 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
     private int price,groupvalue;
     private String usernum,prefUsernum;
     private String img1,img2,img3;
-
+    private ListView listView;
+    private ScrollView scrollView;
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jooungo_detailboard);
@@ -80,6 +91,23 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar_jooungo_detail);
 
+        listView = (ListView) findViewById(R.id.jooungo_detail_listview);
+        scrollView = (ScrollView) findViewById(R.id.Jooungo_detail_scroll);
+
+        final ArrayList<String> items = new ArrayList<String>() ;
+        items.add("LIST1");
+        items.add("LIST2");
+        items.add("LIST3");
+        items.add("LIST4");
+        items.add("LIST5");
+        items.add("LIST6");
+        //items.add("LIST7");
+        //items.add("LIST8");
+        //items.add("LIST9");
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, items) ;
+        listView.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(listView);
+
         try{
             pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);
             prefUsernum = pref.getString("회원아이디",null);
@@ -96,6 +124,28 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         btn_completed.setOnClickListener(this);
     } // onCreate finish
 
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight/2 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 
     @Override
     public void onClick(View v) {

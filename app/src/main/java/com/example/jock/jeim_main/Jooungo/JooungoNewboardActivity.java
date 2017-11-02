@@ -1,19 +1,18 @@
 package com.example.jock.jeim_main.Jooungo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,11 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jock.jeim_main.Another.GalleryBitmap;
 import com.example.jock.jeim_main.R;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 
 public class JooungoNewboardActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -61,6 +57,8 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jooungo_newboard);
+
+        ActivityCompat.requestPermissions(this ,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},MODE_PRIVATE);
 
         spinner = (Spinner)findViewById(R.id.Jooungo_newboard_spiner);
         adapter = ArrayAdapter.createFromResource(this, R.array.Jooungo_newboard,android.R.layout.simple_spinner_dropdown_item);
@@ -96,6 +94,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
 
        animation = new AlphaAnimation(0, 1);
        animation.setDuration(1000);
+
     }
 
     public void onClick(View v){
@@ -118,7 +117,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
                 startActivityForResult(getImg(v.getId()), REQ_CODE_SELECT_IMAGE);
                 break;
 
-            case R.id.imageview_jooungo_newboard_clearimg1 :
+            case R.id.imageview_jooungo_newboard_clearimg1 :// 첫번째 사진삭제 클릭
                 addimglayout.setAnimation(animation);
                 if(info.size() == 1){
                     Frame2.setVisibility(View.INVISIBLE);
@@ -142,7 +141,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
                     info.setImg3(null);
                 }
                 break;
-            case R.id.imageview_jooungo_newboard_clearimg2 :
+            case R.id.imageview_jooungo_newboard_clearimg2 :  // 두번째 사진삭제 클릭
                 addimglayout.setAnimation(animation);
                 if(info.size() == 2){
                     Frame3.setVisibility(View.INVISIBLE);
@@ -157,7 +156,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
                     info.setImg3(null);
                 }
                 break;
-            case R.id.imageview_jooungo_newboard_clearimg3 :
+            case R.id.imageview_jooungo_newboard_clearimg3 :  // 세번째 사진삭제 클릭
                 addimglayout.setAnimation(animation);
                 clear3.setVisibility(View.INVISIBLE);
                 addimg3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add));
@@ -176,49 +175,39 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
                 try {
                     //Uri에서 이미지 이름을 얻어온다.
                     String name_Str = getImageNameToUri(data.getData());
-                    //getimgMate(imgPath);
+                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
                     //이미지 데이터를 비트맵으로 받아온다.
                     Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-
-                    if(image_bitmap.getWidth() > 1600 || image_bitmap.getHeight() > 1024){
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
-                    }else if(image_bitmap.getWidth() > 1024 || image_bitmap.getHeight() > 700){
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
-                    }else{
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
-                    }
+                    GalleryBitmap galleryBitmap = new GalleryBitmap(image_bitmap,imgPath);
 
                     switch(addimgIDVALUE){
                         case R.id.btn_text_jooungo_addimg1:
-                            info.setImg1(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
+                            info.setImg1(galleryBitmap.getByteArray());
+                            drawable = new BitmapDrawable(galleryBitmap.getBitmap());
                             addimg1.setBackgroundDrawable(drawable);
                             clear1.setVisibility(View.VISIBLE);
                             Frame2.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_addimg2:
-                            info.setImg2(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
+                            info.setImg2(galleryBitmap.getByteArray());
+                            drawable = new BitmapDrawable(galleryBitmap.getBitmap());
                             addimg2.setBackgroundDrawable(drawable);
                             clear2.setVisibility(View.VISIBLE);
                             Frame3.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_addimg3:
-                            info.setImg3(byteArray.toByteArray());
-                            drawable = new BitmapDrawable(image_bitmap);
+                            info.setImg3(galleryBitmap.getByteArray());
+                            drawable = new BitmapDrawable(galleryBitmap.getBitmap());
                             addimg3.setBackgroundDrawable(drawable);
                             clear3.setVisibility(View.VISIBLE);
                             break;
                     }
-                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
     }
-
     //앨범으로 이동해서 사진 가져오기
     public Intent getImg(int getId){
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -231,7 +220,6 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
 
     //이미지 비트맵 가져오기
     public Bitmap getImgbitmap(TextView addimg){
-
         addimg.setDrawingCacheEnabled(true);
         addimg.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
@@ -243,7 +231,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
         return bitmap;
     }
 
-    //사진 이름 가져오기
+    //사진 경로,이름 가져오기
     public String getImageNameToUri(Uri data) {
 
         String[] proj = { MediaStore.Images.Media.DATA };
@@ -256,26 +244,9 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
         return imgName;
     }
 
-    // 사진 메타 정보 가져오기
-    public void getimgMate(String path){
-
-            ExifInterface exif = null;
-        try {
-            exif = new ExifInterface(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-                ExifInterface.ORIENTATION_UNDEFINED);
-
-        Toast.makeText(getApplicationContext(),String.valueOf(orientation),Toast.LENGTH_SHORT).show();
-    }
-
-
 
     public void addboard() { //게시판 등록 버튼 메소드
         String group = null;
-
         switch (spinner.getSelectedItem().toString()) {
             case "삽니다":
                 group = "2";
@@ -286,7 +257,6 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
             default: group = "0";
                 break;
         }
-
         if (group == "0") {
             Toast.makeText(getApplicationContext(),"분류를 선택해주세요",Toast.LENGTH_SHORT).show();
         } else if(price.getText().toString().length() == 0) {
@@ -303,11 +273,8 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
 
     } // finish addboard
 
-    public void test(){
 
-    }
-
-    class Task extends Thread{
+   private class Task extends Thread{
         String result,group;
 
         Task(String group){

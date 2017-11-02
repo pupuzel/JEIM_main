@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.jock.jeim_main.Another.GalleryBitmap;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
@@ -40,6 +41,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
 
     private int REQ_CODE_SELECT_IMAGE =100;
     private int addimgIDVALUE = 0;
+    private String imgPath,imgName;
     private JooungoDetailNotice info;
     private SharedPreferences pref;
     private ArrayAdapter adapter;
@@ -186,39 +188,30 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                 try {
                     //Uri에서 이미지 이름을 얻어온다.
                     String name_Str = getImageNameToUri(data.getData());
-
+                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
                     //이미지 데이터를 비트맵으로 받아온다.
                     Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-
-                    if(image_bitmap.getWidth() > 1600 || image_bitmap.getHeight() > 1024){
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
-                    }else if(image_bitmap.getWidth() > 1024 || image_bitmap.getHeight() > 700){
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
-                    }else{
-                        image_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
-                    }
+                    GalleryBitmap galleryBitmap = new GalleryBitmap(image_bitmap,imgPath);
 
                     switch(addimgIDVALUE){
                         case R.id.btn_text_jooungo_updateimg1:
-                            info.setImg1(byteArray.toByteArray());
-                            updateimg1.setImageBitmap(image_bitmap);
+                            info.setImg1(galleryBitmap.getByteArray());
+                            updateimg1.setImageBitmap(galleryBitmap.getBitmap());
                             clear1.setVisibility(View.VISIBLE);
                             Frame2.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_updateimg2:
-                            info.setImg2(byteArray.toByteArray());
-                            updateimg2.setImageBitmap(image_bitmap);
+                            info.setImg2(galleryBitmap.getByteArray());
+                            updateimg2.setImageBitmap(galleryBitmap.getBitmap());
                             clear2.setVisibility(View.VISIBLE);
                             Frame3.setVisibility(View.VISIBLE);
                             break;
                         case R.id.btn_text_jooungo_updateimg3:
-                            info.setImg3(byteArray.toByteArray());
-                            updateimg3.setImageBitmap(image_bitmap);
+                            info.setImg3(galleryBitmap.getByteArray());
+                            updateimg3.setImageBitmap(galleryBitmap.getBitmap());
                             clear3.setVisibility(View.VISIBLE);
                             break;
                     }
-                    Toast.makeText(getBaseContext(),name_Str, Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -263,9 +256,8 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(data, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String imgPath = cursor.getString(column_index);
-        String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
+        imgPath = cursor.getString(column_index);
+        imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
 
         return imgName;
     }
@@ -275,18 +267,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         BitmapDrawable bitmapDrawable = (BitmapDrawable)updateimg.getDrawable();
         return bitmapDrawable.getBitmap();
     }
-    public byte[] getBytearray(Bitmap bitmap){
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        if(bitmap.getWidth() > 1600 || bitmap.getHeight() > 1024){
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArray);
-        }else if(bitmap.getWidth() > 1024 || bitmap.getHeight() > 700){
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
-        }else{
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArray);
-        }
 
-        return byteArray.toByteArray();
-    }
     public void addboard() { //게시판 등록 버튼 메소드
         String group = null;
 
@@ -405,8 +386,9 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                                 .into(new SimpleTarget<Bitmap>() {
                                     @Override
                                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                        info.setImg1(getBytearray(resource));
-                                        updateimg1.setImageBitmap(resource);
+                                        GalleryBitmap galleryBitmap = new GalleryBitmap(resource);
+                                        info.setImg1(galleryBitmap.getByteArray());
+                                        updateimg1.setImageBitmap(galleryBitmap.getBitmap());
                                         updateimg1.setBackgroundDrawable(null);
                                         clear1.setVisibility(View.VISIBLE);
                                         Frame2.setVisibility(View.VISIBLE);
@@ -427,8 +409,9 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                                 .into(new SimpleTarget<Bitmap>() {
                                     @Override
                                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                        info.setImg2(getBytearray(resource));
-                                        updateimg2.setImageBitmap(resource);
+                                        GalleryBitmap galleryBitmap = new GalleryBitmap(resource);
+                                        info.setImg2(galleryBitmap.getByteArray());
+                                        updateimg2.setImageBitmap(galleryBitmap.getBitmap());
                                         updateimg2.setBackgroundDrawable(null);
                                         clear2.setVisibility(View.VISIBLE);
                                         Frame3.setVisibility(View.VISIBLE);
@@ -449,8 +432,9 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                                 .into(new SimpleTarget<Bitmap>() {
                                     @Override
                                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                        info.setImg3(getBytearray(resource));
-                                        updateimg3.setImageBitmap(resource);
+                                        GalleryBitmap galleryBitmap = new GalleryBitmap(resource);
+                                        info.setImg3(galleryBitmap.getByteArray());
+                                        updateimg3.setImageBitmap(galleryBitmap.getBitmap());
                                         updateimg3.setBackgroundDrawable(null);
                                         clear3.setVisibility(View.VISIBLE);
                                         imgcount++;

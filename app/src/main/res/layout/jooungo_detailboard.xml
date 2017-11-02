@@ -8,7 +8,6 @@
 
     <!-- 헤더 부분  -->
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navyblue"
@@ -76,14 +75,17 @@
 
     <!-- 실제 내용-->
     <ScrollView
+        android:id="@+id/Jooungo_detail_scroll"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+
 
             <!-- 가격,분류-->
             <LinearLayout
@@ -160,6 +162,9 @@
                     android:textColor="#000000"
                     android:textSize="20dp" />
                     <LinearLayout
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:paddingBottom="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_white_bd_black"
@@ -222,6 +227,36 @@
                                 android:visibility="gone" />
                    </LinearLayout>
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글 21"/>
+
+                <Button
+                    android:layout_margin="5dp"
+                    android:background="@drawable/bg_navy_radius"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="댓글 작성"/>
+            </RelativeLayout>
+
+
+            <ListView
+                android:background="@drawable/bg_white_bd_black"
+                android:id="@+id/jooungo_detail_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 
