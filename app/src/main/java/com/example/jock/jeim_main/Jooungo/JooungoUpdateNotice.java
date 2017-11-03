@@ -3,7 +3,7 @@ package com.example.jock.jeim_main.Jooungo;
 
 import android.content.Context;
 
-public class JooungoDetailNotice {
+public class JooungoUpdateNotice {
 
     public Context getContext() {
         return context;

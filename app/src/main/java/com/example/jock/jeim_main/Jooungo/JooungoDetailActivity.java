@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -58,6 +59,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
      private JSONObject imglistJson = new JSONObject();
      private JooungoDeleteTask deleteTask;
      private TextView txt_title,txt_username,txt_date,txt_price,txt_content,txt_group,txt_loding;
+     private TextView txt_review,txt_newreview;
      private ImageView imageView1,imageView2,imageView3;
      private Button btn_delete,btn_update,btn_backlist,btn_completed;
      private imgThread imgThread;
@@ -80,7 +82,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         txt_content = (TextView) findViewById(R.id.txt_jooungo_detail_content);
         txt_group = (TextView) findViewById(R.id.txt_jooungo_detail_group);
         txt_loding = (TextView) findViewById(R.id.txt_jooungo_detail_lodingtxt);
-
+        txt_newreview = (TextView) findViewById(R.id.jooungo_detail_txt_newreview);
         btn_delete = (Button) findViewById(R.id.btn_jooungo_delete);
         btn_update = (Button) findViewById(R.id.btn_jooungo_update);
         btn_backlist = (Button) findViewById(R.id.btn_jooungo_backlist);
@@ -93,19 +95,6 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
         listView = (ListView) findViewById(R.id.jooungo_detail_listview);
         scrollView = (ScrollView) findViewById(R.id.Jooungo_detail_scroll);
-
-        final ArrayList<String> items = new ArrayList<String>() ;
-        items.add("LIST1");
-        items.add("LIST2");
-        items.add("LIST3");
-        items.add("LIST4");
-        items.add("LIST5");
-        items.add("LIST6");
-        //items.add("LIST7");
-        //items.add("LIST8");
-        //items.add("LIST9");
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, items) ;
-        listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listView);
 
         try{
@@ -122,6 +111,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         btn_update.setOnClickListener(this);
         btn_backlist.setOnClickListener(this);
         btn_completed.setOnClickListener(this);
+        txt_newreview.setOnClickListener(this);
     } // onCreate finish
 
 
@@ -169,6 +159,9 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                 completedCheck();
                 break;
 
+            case R.id.jooungo_detail_txt_newreview :
+                reviewtext();
+                break;
         }
 
     }
@@ -176,6 +169,26 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private void reviewtext(){
+        final EditText edittext = new EditText(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("댓글 입력");
+        builder.setView(edittext);
+        builder.setPositiveButton("확인",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                            edittext.getText().toString();
+                    }
+                });
+        builder.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.show();
     }
 
     private void deletecheck(){

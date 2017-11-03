@@ -36,7 +36,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
     private int REQ_CODE_SELECT_IMAGE =100;
     private int addimgIDVALUE = 0;
     private String imgPath,imgName;
-    private JooungoDetailNotice info;
+    private JooungoUpdateNotice info;
     private SharedPreferences pref;
     private ArrayAdapter adapter;
     private ProgressDialog mProgress;
@@ -64,7 +64,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
         adapter = ArrayAdapter.createFromResource(this, R.array.Jooungo_newboard,android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        info = new JooungoDetailNotice();
+        info = new JooungoUpdateNotice();
         calcle = (Button)findViewById(R.id.btn_jooungo_newboard_calcle);
         check = (Button)findViewById(R.id.btn_jooungo_newboard_check);
 

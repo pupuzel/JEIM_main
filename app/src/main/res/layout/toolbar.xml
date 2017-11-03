@@ -6,23 +6,24 @@
     android:layout_alignParentTop="true"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:background="#00000000"
+    android:background="@color/navyblue"
     android:gravity="top">
     <RelativeLayout
-        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00000000">
+        android:background="@color/navyblue">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="재능마당"
-            android:textSize="25dp"
+            android:textSize="23dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:gravity="center" />
         <TextView
             android:id="@+id/btnlist"
             android:layout_width="wrap_content"

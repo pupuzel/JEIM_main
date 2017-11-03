@@ -7,9 +7,14 @@ android {
         applicationId "com.example.jock.jeim_main"
         minSdkVersion 15
         targetSdkVersion 25
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dexOptions{
+        javaMaxHeapSize = "4g"
+
     }
     buildTypes {
         release {
@@ -24,6 +29,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support:multidex:1.0.0' /* 오버라이드 메소드 6.5K 오류 해결*/
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support:design:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -34,5 +40,6 @@ dependencies {
     compile 'com.google.zxing:core:3.2.1'      /* 스캐너 컴파일 */
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar' /* 카메라 스캐너 콜백 컴파일*/
     compile 'com.github.bumptech.glide:glide:3.6.0'  /* 이미지 용량 최적화 툴  */
+    compile 'cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'/*viewpager 컴파일*/
     testCompile 'junit:junit:4.12'
 }

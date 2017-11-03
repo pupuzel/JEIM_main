@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -34,15 +33,13 @@ import com.example.jock.jeim_main.Another.GalleryBitmap;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
-import java.io.ByteArrayOutputStream;
-
 
 public class JooungoUpdateActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int REQ_CODE_SELECT_IMAGE =100;
     private int addimgIDVALUE = 0;
     private String imgPath,imgName;
-    private JooungoDetailNotice info;
+    private JooungoUpdateNotice info;
     private SharedPreferences pref;
     private ArrayAdapter adapter;
     private ProgressDialog mProgress;
@@ -68,7 +65,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         adapter = ArrayAdapter.createFromResource(this, R.array.Jooungo_newboard,android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        info = new JooungoDetailNotice();
+        info = new JooungoUpdateNotice();
         calcle = (Button)findViewById(R.id.btn_jooungo_updateboard_calcle);
         check = (Button)findViewById(R.id.btn_jooungo_updateboard_check);
 

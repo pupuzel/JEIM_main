@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,10 +53,11 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     private Animation animation;
 
     // 각종 텍스트뷰 버튼 스피너 등등 필요한 위젯 선언
-    private TextView btn_jooungo_newboard,jooungo_backhome,btn_jooungo_search;
+    private TextView btn_jooungo_newboard,jooungo_backhome,btn_jooungo_search,btn_search_dropdown;
     private EditText edit_jooungo_search;
     private Button btnsell,btnbuy,btnspinner;
     private ProgressDialog mProgress;
+    private LinearLayout jooungo_search_bar;
 
     int clickColor,clickedColor;  // 클릭했을때 컬러변경을위해 컬러값을 받기위한 변수선언
     private int btnCheckValue = 1; // 중고 게시판 그룹 팝니다 =1 삽니다 =2
@@ -66,11 +68,13 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.jooungo_main);
 
         // 각각 위젯들 find 연결시켜주기
+        jooungo_search_bar = (LinearLayout) findViewById(R.id.jooungo_search_bar);
         btn_jooungo_newboard = (TextView)findViewById(R.id.btn_jooungo_newboard);
         jooungo_backhome = (TextView) findViewById(R.id.jooungo_homeback);
         btn_jooungo_search = (TextView) findViewById(R.id.btn_jooungo_search);
         edit_jooungo_search = (EditText) findViewById(R.id.edit_jooungo_search);
         btnspinner = (Button) findViewById(R.id.Jooungo_btn_spinner);
+        btn_search_dropdown = (TextView)findViewById(R.id.btn_search_dropdown);
         btnsell = (Button) findViewById(R.id.btn_sell);
         btnbuy = (Button) findViewById(R.id.btn_buy);
 
@@ -91,6 +95,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         btnspinner.setOnClickListener(this);
         btn_jooungo_search.setOnClickListener(this);
         jooungo_backhome.setOnClickListener(this);
+        btn_search_dropdown.setOnClickListener(this);
 
         // 리스트뷰안에 있는 아이템들 즉 게시판을 클릭했을때 이벤트
         jooungo_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -209,6 +214,18 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
 
             case R.id.Jooungo_btn_spinner : // 스피너 버튼 클릭시
                 showChoiceDialog();
+                break;
+
+            case R.id.btn_search_dropdown: //검색아이콘 클릭시
+                Animation animation1 = new AlphaAnimation(0, 1);
+                animation1.setDuration(1000);
+                //레이아웃 보이기기
+                if(jooungo_search_bar.getVisibility() == View.GONE) {
+                    jooungo_search_bar.setVisibility(View.VISIBLE);
+                    jooungo_search_bar.setAnimation(animation1);
+                }else if(jooungo_search_bar.getVisibility()==View.VISIBLE){
+                    jooungo_search_bar.setVisibility(View.GONE);
+                    jooungo_search_bar.setAnimation(animation1);}
                 break;
 
             case R.id.jooungo_homeback : // 뒤로가기 버튼 클릭시 메인화면 이동

@@ -14,20 +14,20 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 
-public class JooungoTask extends AsyncTask<JooungoDetailNotice,Void,String> {
-    private JooungoDetailNotice info = new JooungoDetailNotice();
+public class JooungoTask extends AsyncTask<JooungoUpdateNotice,Void,String> {
+    private JooungoUpdateNotice info = new JooungoUpdateNotice();
     private String lineEnd = "\r\n";
     private String twoHyphens = "--";
     private String boundary = "*****";
 
     @Override
-    protected String doInBackground(JooungoDetailNotice...parmas) {
+    protected String doInBackground(JooungoUpdateNotice...parmas) {
 
         StringBuilder html = new StringBuilder();
         String mResult,result = null;
         String userid,price,title,content,group;
 
-        JooungoDetailNotice info = parmas[0];
+        JooungoUpdateNotice info = parmas[0];
         userid = info.getUserid();
         price = info.getPrice();
         title = info.getTitle();

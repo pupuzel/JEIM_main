@@ -34,6 +34,11 @@ import com.example.jock.jeim_main.Library.LibraryActivity;
 import com.example.jock.jeim_main.Major.DepartmentActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.CntTask;
+import com.example.jock.jeim_main.ViewPager.AutoScrollAdapter;
+
+import java.util.ArrayList;
+
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends AppCompatActivity implements
                           OnClickListener,
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements
     private MenuItem drawer_tools,drawer_mycontents;
     private Button btn_depart, btn_jooungo, btn_food, btn_bus ,btn_game ,btn_library;
     private TextView btnlist,drawer_login,drawer_join,drawer_logout,drawer_username;
+    private AutoScrollViewPager autoViewPager;
     private ImageView drawericon;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -56,7 +62,20 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
+
+                /*이미지 슬라이드 이미지 추가*/
+        ArrayList<String> data = new ArrayList<>(); //이미지 url를 저장하는 arraylist
+        data.add("http://pupuzel.cafe24.com/img/activity.jpg");
+        data.add("http://pupuzel.cafe24.com/img/comjung.jpg");
+        data.add("http://pupuzel.cafe24.com/img/soft.jpg");
+        data.add("http://pupuzel.cafe24.com/img/teacher.jpg");
+        /*이미지 슬라이드*/
+        autoViewPager = (AutoScrollViewPager)findViewById(R.id.autoViewPager);
+        AutoScrollAdapter scrollAdapter = new AutoScrollAdapter(this, data);
+        autoViewPager.setAdapter(scrollAdapter); //Auto Viewpager에 Adapter 장착
+        autoViewPager.setInterval(3000); // 페이지 넘어갈 시간 간격 설정
+        autoViewPager.startAutoScroll(); //Auto Scroll 시작
 
         /* 메인메뉴 버튼 find  */
         btn_depart = (Button) findViewById(R.id.main_btn_depart);

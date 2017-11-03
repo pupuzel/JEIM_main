@@ -15,6 +15,7 @@
     <color name="gray">#4000</color>
     <color name="grayAlpha">#ffeeeeee</color>
     <color name="whitegray">#aaeeeeee</color>
+    <color name="whitegray1">#EAEAEA</color>
     <color name="whiteblue">#80F5FF</color>
     <drawable name="main_list_item_select">#ffffff</drawable>
     <drawable name="main_list_item">#000000</drawable>
