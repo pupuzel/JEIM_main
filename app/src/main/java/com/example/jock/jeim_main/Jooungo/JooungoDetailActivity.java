@@ -28,6 +28,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.jock.jeim_main.Another.GalleryBitmap;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
@@ -42,32 +47,36 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.zip.Inflater;
-
-import static com.example.jock.jeim_main.Food.FoodMainActivity.context;
 
 public class JooungoDetailActivity extends AppCompatActivity implements View.OnClickListener {
+
     private SharedPreferences pref;
-     private ProgressBar progressBar;
-     private ProgressDialog mProgress;
-     private Bitmap bitmapimg1,bitmapimg2,bitmapimg3;
-     private Intent intent;
-     private String boardCode;
-     private JooungoImgTask imgTask;
-     private NumberFormat nf;
-     private JSONObject imglistJson = new JSONObject();
-     private JooungoDeleteTask deleteTask;
-     private TextView txt_title,txt_username,txt_date,txt_price,txt_content,txt_group,txt_loding;
-     private TextView txt_review,txt_newreview;
-     private ImageView imageView1,imageView2,imageView3;
-     private Button btn_delete,btn_update,btn_backlist,btn_completed;
-     private imgThread imgThread;
-    private int price,groupvalue;
-    private String usernum,prefUsernum;
-    private String img1,img2,img3;
+    private ProgressBar progressBar;
+    private ProgressDialog mProgress;
+    private Bitmap bitmapimg1,bitmapimg2,bitmapimg3;
+    private Intent intent;
+    private JooungoImgTask imgTask;
+    private NumberFormat nf;
+    private JSONObject imglistJson = new JSONObject();
+    private JooungoDeleteTask deleteTask;
+    private TextView txt_title,txt_username,txt_date,txt_price,txt_content,txt_group,txt_loding,txt_review,txt_newreview;
+    private ImageView imageView1,imageView2,imageView3;
+    private Button btn_delete,btn_update,btn_backlist,btn_completed;
+
+    private List<JooungoDetailreviewNotice> noticeList = new ArrayList<JooungoDetailreviewNotice>();
+    private JooungoDetailreviewAdapter adapter;
     private ListView listView;
-    private ScrollView scrollView;
+
+    private int price,groupvalue;
+    private String usernum,prefUsernum,boardCode,img1,img2,img3;
+
+    private imgThread imgThread;
+    private setJooungoDetail setJooungoDetail;
+    private JooungoDetailTask jooungoDetailTask;
+
+    @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.jooungo_detailboard);
@@ -83,6 +92,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         txt_group = (TextView) findViewById(R.id.txt_jooungo_detail_group);
         txt_loding = (TextView) findViewById(R.id.txt_jooungo_detail_lodingtxt);
         txt_newreview = (TextView) findViewById(R.id.jooungo_detail_txt_newreview);
+        txt_review = (TextView) findViewById(R.id.jooungo_detail_txt_review);
         btn_delete = (Button) findViewById(R.id.btn_jooungo_delete);
         btn_update = (Button) findViewById(R.id.btn_jooungo_update);
         btn_backlist = (Button) findViewById(R.id.btn_jooungo_backlist);
@@ -90,12 +100,8 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         imageView1 = (ImageView) findViewById(R.id.txt_jooungo_detail_img1);
         imageView2 = (ImageView) findViewById(R.id.txt_jooungo_detail_img2);
         imageView3 = (ImageView) findViewById(R.id.txt_jooungo_detail_img3);
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar_jooungo_detail);
-
         listView = (ListView) findViewById(R.id.jooungo_detail_listview);
-        scrollView = (ScrollView) findViewById(R.id.Jooungo_detail_scroll);
-        setListViewHeightBasedOnChildren(listView);
 
         try{
             pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);
@@ -103,7 +109,13 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
             intent = getIntent();
             boardCode = intent.getStringExtra("게시판코드");
-            new selectdetail().execute(boardCode);
+            mProgress = new ProgressDialog(JooungoDetailActivity.this);
+
+            jooungoDetailTask = new JooungoDetailTask(mProgress);
+            setJooungoDetail = new setJooungoDetail();
+            String result = jooungoDetailTask.execute(boardCode).get();
+            setJooungoDetail.execute(result);
+
 
         }catch (Exception e){   e.printStackTrace();  }
 
@@ -115,13 +127,13 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
     } // onCreate finish
 
 
+    // 리스트뷰 아이템 갯수에 맞게 높이 조절해주는 메소드
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
             return;
         }
-
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
 
@@ -132,7 +144,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight/2 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
@@ -141,25 +153,25 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.btn_jooungo_delete :
+            case R.id.btn_jooungo_delete :  // 삭제버튼 클릭
                 deletecheck();
                 break;
 
-            case R.id.btn_jooungo_update :
+            case R.id.btn_jooungo_update :  // 수정버튼 클릭
                 updatecheck();
                 break;
 
-            case R.id.btn_jooungo_backlist :
+            case R.id.btn_jooungo_backlist : // 뒤로가기 버튼 클릭
                 Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.btn_jooungo_detail_completed :
+            case R.id.btn_jooungo_detail_completed :  // 완료 버튼 클릭
                 completedCheck();
                 break;
 
-            case R.id.jooungo_detail_txt_newreview :
+            case R.id.jooungo_detail_txt_newreview :  // 댓글 작성 버튼 클릭
                 reviewtext();
                 break;
         }
@@ -168,7 +180,41 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onBackPressed() {
+        try{
+            jooungoDetailTask.wait();
+            setJooungoDetail.wait();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
         super.onBackPressed();
+    }
+
+    /*  리스트뷰에 데이터 뿌려주기 */
+    public void setReview(String jsontext) {
+        noticeList.clear();
+        int count = 0;
+        String name,content,date;
+        try {
+            JSONArray jsonArray = new JSONArray(jsontext);
+            JSONObject jsonObject;
+            while (count < jsonArray.length()){
+
+                jsonObject = jsonArray.getJSONObject(count);
+                name = jsonObject.getString("회원이름");
+                content = jsonObject.getString("내용");
+                date = jsonObject.getString("날짜").substring(0,16);
+                noticeList.add(new JooungoDetailreviewNotice(name,content,date));
+                count++;
+            }
+            adapter = new JooungoDetailreviewAdapter(this,noticeList);
+            listView.setAdapter(adapter);
+            setListViewHeightBasedOnChildren(listView);
+            txt_review.setText("댓글 "+String.valueOf(count));
+            adapter.notifyDataSetChanged();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void reviewtext(){
@@ -179,7 +225,22 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         builder.setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                            edittext.getText().toString();
+
+                        if(prefUsernum != null){
+                            String content = edittext.getText().toString();
+                            if(content == null || content.equals("")){   //내용이 비어있다면
+                                Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+                            }else {  // 내용이 있다면
+                                try {
+                                    String result = new JooungoDetailreviewTask().execute(prefUsernum,content,boardCode).get();
+                                    setReview(result);
+                                } catch (Exception e) {}
+
+                            }
+                        }else{
+                            Toast.makeText(getApplicationContext(), "로그인을해주세요", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
         builder.setNegativeButton("취소",
@@ -201,7 +262,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
                     imglistJson.put("게시판코드",boardCode);
                     deleteTask = new JooungoDeleteTask();
-                   String result = deleteTask.execute(imglistJson).get();
+                    String result = deleteTask.execute(imglistJson).get();
                     if(result.equals("success")){
                         Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -268,129 +329,88 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-    // 게시판 코드에 맞는 데이터를 가져오는 쓰레드
-    class selectdetail extends AsyncTask<String,Void,String> {
-        String result,sendMsg;
-
+    class setJooungoDetail extends AsyncTask<String,Void,String>{
+        String reviewjson;
+        JSONArray jsonArray;
+        JSONObject json;
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgress = new ProgressDialog(JooungoDetailActivity.this);
-            mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            mProgress.setCancelable(false);
-            mProgress.setMessage("잠시만 기다려주세요 로딩중입니다.");
-            mProgress.show();
+        protected String doInBackground(String... params) {
+            return params[0];
         }
 
         @Override
-        protected String doInBackground(String... strings) {
-            try{
-                URL url = new URL(Url.Main+Url.JooungoDetail);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(); //해당 url에 접속할수 있도록
-                httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                httpURLConnection.setRequestMethod("POST");//데이터를 POST 방식으로 전송합니다.
-                OutputStreamWriter osw = new OutputStreamWriter(httpURLConnection.getOutputStream());
-                sendMsg = "used_bdnum="+strings[0];
-
-                osw.write(sendMsg);//OutputStreamWriter에 담아 전송
-                osw.flush();
-
-                //jsp와 통신이 정상적으로 되었을 때 할 코드들입니다.
-                if(httpURLConnection.getResponseCode() == httpURLConnection.HTTP_OK) {
-                    InputStreamReader tmp = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
-                    BufferedReader reader = new BufferedReader(tmp);
-                    StringBuffer buffer = new StringBuffer();
-
-                    String str;
-                    //jsp에 리턴값
-                    while ((str = reader.readLine()) != null) {
-                        buffer.append(str);
-                    }
-                    result = buffer.toString();
-
-                } else {
-                    Log.i("통신 결과", httpURLConnection.getResponseCode()+"에러");
-                    // 통신이 실패했을 때 실패한 이유를 알기 위한 로그
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-
-            return result;
-        } // doInBackground finish
-
-        @Override
-        protected void onPostExecute(String result) {
-
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
             try {
-                JSONArray jsonArray = new JSONArray(result);
-                JSONObject json = jsonArray.getJSONObject(0);
+                jsonArray = new JSONArray(s);
+                json = jsonArray.getJSONObject(0);
 
+                img1 = json.getString("이미지1");
+                img2= json.getString("이미지2");
+                img3 = json.getString("이미지3");
                 usernum = json.getString("작성자학번");
                 txt_title.setText(json.getString("제목"));
                 txt_content.setText(json.getString("내용"));
                 txt_username.setText(json.getString("작성자"));
-                txt_date.setText(json.getString("날짜").substring(0,16));
+                txt_date.setText(json.getString("날짜").substring(0, 16));
                 price = Integer.parseInt(json.getString("가격"));
                 String pricefmt = nf.format(price);
-                txt_price.setText(pricefmt+"원");
 
+                txt_price.setText(pricefmt + "원");
 
-                if(json.getString("그룹").equals("1")){
+                if (json.getString("그룹").equals("1")) {
                     groupvalue = 1;
                     txt_group.setText("[팝니다]");
-                }else{
+                } else {
                     groupvalue = 2;
                     txt_group.setText("[삽니다]");
                 }
 
-                if(json.getString("상태").equals("1")){
+                if (json.getString("상태").equals("1")) {
 
-                    if(groupvalue == 1){
+                    if (groupvalue == 1) {
                         btn_completed.setText("판매완료 등록");
-                    }else{
+                    } else {
                         btn_completed.setText("구매완료 등록");
                     }
-                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.bg_white_bd_black));
-                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.black));
-                    if(prefUsernum.equals(usernum)){
+                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.click_cencle));
+                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+
+                    if (prefUsernum != null) {
                         btn_delete.setVisibility(View.VISIBLE);
                         btn_update.setVisibility(View.VISIBLE);
                         btn_completed.setVisibility(View.VISIBLE);
                     }
 
-                }else{
-                    if(groupvalue == 1){
+                } else {
+                    if (groupvalue == 1) {
                         btn_completed.setText("판매완료");
-                    }else{
+                    } else {
                         btn_completed.setText("구매완료");
                     }
                     btn_completed.setVisibility(View.VISIBLE);
-                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.bg_whitegray));
-                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.white));
+                    btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.click_cencle));
+                    btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.gray));
                     btn_completed.setEnabled(false);
                 }
 
-                img1 = json.getString("이미지1");
-                img2= json.getString("이미지2");
-                img3 = json.getString("이미지3");
+                reviewjson = new JooungoDetailreviewTask().execute(prefUsernum, null, boardCode).get();
+                setReview(reviewjson);
 
                 imgThread = new imgThread(img1,img2,img3); //이미지 가져오는 쓰레드는 별도의 쓰레드가 작업
                 imgThread.start();
-
-
-        } catch (Exception e) {  e.printStackTrace();   }
-            mProgress.dismiss();
-        } // onPostExecute() finish
-
-
-    }   //class selectlist finish
+                mProgress.dismiss();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     // 이미지를 가져오는 쓰레드
     class imgThread extends Thread{
         String Simg1,Simg2,Simg3 = null;
-
+        int imgTotalcount = 0;
+        int imgcount = 0;
         imgThread(String img1,String img2,String img3){
             this.Simg1 = img1;
             this.Simg2 = img2;
@@ -400,57 +420,95 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
         @Override
         public void run() {
             try {
+                if(Simg1 != "null"){
+                    imgTotalcount = 1;
+                }if(Simg2 != "null"){
+                    imgTotalcount = 2;
+                }if(Simg3 != "null"){
+                    imgTotalcount = 3;
+                }
                 if (Simg1 != "null") {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                        txt_loding.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.VISIBLE);
+                            txt_loding.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
+
+                            Glide.with(getApplicationContext())
+                                    .load(Url.Main + Url.ImgTake +Simg1)
+                                    .asBitmap()
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(new SimpleTarget<Bitmap>() {
+                                        @Override
+                                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                            imageView1.setImageBitmap(resource);
+                                            imageView1.setVisibility(View.VISIBLE);
+                                            imgcount++;
+                                            if(imgTotalcount == imgcount){
+                                                txt_loding.setVisibility(View.GONE);
+                                                progressBar.setVisibility(View.GONE);
+                                            }
+                                        }
+                                    });
                         }
                     });
-
-                    imgTask = new JooungoImgTask();
-                    bitmapimg1 = imgTask.execute(img1).get();
                     imglistJson.put("이미지1",Simg1);
                     if(Simg2 != "null"){
-                        imgTask = new JooungoImgTask();
-                        bitmapimg2 = imgTask.execute(Simg2).get();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Glide.with(getApplicationContext())
+                                        .load(Url.Main + Url.ImgTake +Simg2)
+                                        .asBitmap()
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                        .skipMemoryCache(true)
+                                        .into(new SimpleTarget<Bitmap>() {
+                                            @Override
+                                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                                imageView2.setImageBitmap(resource);
+                                                imageView2.setVisibility(View.VISIBLE);
+                                                imgcount++;
+                                                if(imgTotalcount == imgcount){
+                                                    txt_loding.setVisibility(View.GONE);
+                                                    progressBar.setVisibility(View.GONE);
+                                                }
+                                            }
+                                        });
+                            }
+                        });
                         imglistJson.put("이미지2",Simg2);
                         if (Simg3 != "null"){
-                            imgTask = new JooungoImgTask();
-                            bitmapimg3 = imgTask.execute(Simg3).get();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Glide.with(getApplicationContext())
+                                            .load(Url.Main + Url.ImgTake +Simg1)
+                                            .asBitmap()
+                                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                            .skipMemoryCache(true)
+                                            .into(new SimpleTarget<Bitmap>() {
+                                                @Override
+                                                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                                    imageView3.setImageBitmap(resource);
+                                                    imageView3.setVisibility(View.VISIBLE);
+                                                    imgcount++;
+                                                    if(imgTotalcount == imgcount){
+                                                        txt_loding.setVisibility(View.GONE);
+                                                        progressBar.setVisibility(View.GONE);
+                                                    }
+                                                }
+                                            });
+                                }
+                            });
+
                             imglistJson.put("이미지3",Simg3);
                         }
                     }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (img1 != "null") {
-                        imageView1.setImageBitmap(bitmapimg1);
-                        imageView1.setVisibility(View.VISIBLE);
-                        if(img2 != "null"){
-                            imageView2.setImageBitmap(bitmapimg2);
-                            imageView2.setVisibility(View.VISIBLE);
-                            if (img3 != "null"){
-                                imageView3.setImageBitmap(bitmapimg3);
-                                imageView3.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    }
-                    txt_loding.setVisibility(View.GONE);
-                    progressBar.setVisibility(View.GONE);
-                }
-            });
-
 
         }
     }
