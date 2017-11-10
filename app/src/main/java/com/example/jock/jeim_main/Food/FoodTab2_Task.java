@@ -68,7 +68,7 @@ public class FoodTab2_Task extends AsyncTask<String,Void,String> {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
 

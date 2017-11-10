@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:maxLength="50"
             android:hint="50자 이내로 입력하여 주세요."
+            android:textColorHint="@color/mainbackground"
+            android:textColor="@color/black"
             android:gravity="top"
             android:background="@drawable/bg_white_bd_gray_radius"/>
 
@@ -55,7 +57,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:dividerHeight="10dp"
-                android:divider="#ffffff">
+                android:divider="#ffffff"
+                android:persistentDrawingCache="animation|scrolling"
+                android:layoutAnimation="@anim/anim_layout_controller">
             </ListView>
         </android.support.v4.widget.SwipeRefreshLayout>
 

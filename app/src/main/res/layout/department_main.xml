@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:text="중고나라"
+            android:text="컴정마당"
             android:textColor="#ffffff"
             android:textSize="25dp"
             android:textStyle="bold"
@@ -37,15 +37,13 @@
     </RelativeLayout>
 
 
-    //메뉴
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-        //1번째 탭탭
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,7 +51,7 @@
 
 
             <Button
-                android:id="@+id/btn_news"
+                android:id="@+id/department_btn_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/navyblue"
@@ -83,37 +81,18 @@
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@color/black"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:gravity="left|center"
-                    android:paddingLeft="50dp"
-                    android:text="학과일정"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
 
-        //2번째 탭
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_community"
+                android:id="@+id/department_btn_community"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/navyblue"
@@ -123,6 +102,7 @@
                 android:text="   커뮤니티"
                 android:textColor="#ffffff"
                 android:textSize="15dp" />
+
 
             <LinearLayout
                 android:id="@+id/search_view2"
@@ -146,14 +126,14 @@
         </LinearLayout>
 
 
-        //3번째 탭
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_keyadmin"
+                android:id="@+id/department_btn_keyadmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/navyblue"
@@ -172,6 +152,7 @@
                 android:visibility="gone">
 
                 <Button
+                    android:id="@+id/department_btn_key302"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -181,18 +162,8 @@
                     android:text="302호"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@color/black"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp" />
-
                 <Button
+                    android:id="@+id/department_btn_key303"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -202,18 +173,8 @@
                     android:text="303호"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@color/black"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp" />
-
                 <Button
+                    android:id="@+id/department_btn_key304"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -223,18 +184,8 @@
                     android:text="304호"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@color/black"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp" />
-
                 <Button
+                    android:id="@+id/department_btn_key305"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -245,17 +196,21 @@
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="top"
-                    android:layout_weight="1"
-                    android:background="@color/black"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp" />
+
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
+
+    <!-- 바텀 부분 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
+        <include layout="@layout/bottom_bar" />
+    </LinearLayout>
+
+
 </LinearLayout>

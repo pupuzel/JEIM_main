@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_margin="10dp"
-            android:drawableLeft="@drawable/ic_arrow_back_black"
-            android:drawableStart="@drawable/ic_arrow_back_black" />
+            android:drawableLeft="@drawable/ic_arrow_back_white"
+            android:drawableStart="@drawable/ic_arrow_back_white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +38,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:dividerHeight="10dp"
-        android:divider="#ffffff">
+        android:divider="#ffffff"
+        android:background="@color/white">
 
     </ListView>
 
@@ -49,8 +50,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <include
-            layout="@layout/bottom_bar"
-            />
+            layout="@layout/bottom_bar" />
 
     </LinearLayout>
 

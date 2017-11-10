@@ -10,6 +10,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -71,7 +73,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         try {
             loginAT login = new loginAT();   // 실제 JSP에 통신하기 위해 만든 클래스를 생성
             results = login.execute(id, pw).get();  // 아이디,암호 값을 클래스에 매개값(id,pw)으로 전송 이후 get()하여 리턴값을 스트링 변수(results)에 저장
-
             JSONArray jsonArray = new JSONArray(results); // 받은 제이손 배열형식에 리턴값을 제이손Array 생성자 메소드 매개값으로 던져줌
             JSONObject json = jsonArray.getJSONObject(0); // 제이손배열 값을 제이손오브젝 형식으로 변환
             String juserid = json.getString("회원아이디"); // 제이손 값을 파싱하여 스트링 배열에 저장
@@ -100,7 +101,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }catch (Exception e){
             // 로그인이 실패하여 Exception 예외처리가 발생하면 사용자에게 토스트메세지를 띄어준다.
+            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
             Toast.makeText(getApplication(),"아이디 혹은 비밀번호가 맞지않습니다",Toast.LENGTH_SHORT).show();
+            btnlogin.startAnimation(shake);
         }
 
     }
@@ -114,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected String doInBackground(String... strings) { // excute() 매개값을 스트링 배열로 받아오는 메소드
 
             try{
-                URL url = new URL(Url.Main+Url.Login); // 로그인 처리를 위한 JSP경로가 들어있는 URL 생성
+                URL url = new URL(Url.Login2); // 로그인 처리를 위한 JSP경로가 들어있는 URL 생성
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection(); //해당 url에 접속할수 있도록 openConnection()
                 httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); // 리퀘스트 컨탠트 타입을 지정
                 httpURLConnection.setRequestMethod("POST");//데이터를 POST 방식으로 전송합니다.

@@ -114,7 +114,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:dividerHeight="10dp"
-            android:divider="#ffffff">
+            android:divider="#ffffff"
+            android:fontFamily="serif"
+            android:persistentDrawingCache="animation|scrolling"
+            android:layoutAnimation="@anim/anim_layout_controller">
         </ListView>
         <ProgressBar
             android:id="@+id/Library_progressbar"

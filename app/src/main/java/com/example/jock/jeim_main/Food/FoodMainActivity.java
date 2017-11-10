@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Size;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,14 +27,15 @@ import com.example.jock.jeim_main.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class FoodMainActivity extends AppCompatActivity implements View.OnClickListener,
-                                                               AdapterView.OnItemClickListener,
-                                                               AdapterView.OnItemSelectedListener,CompoundButton.OnCheckedChangeListener{
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemSelectedListener,CompoundButton.OnCheckedChangeListener{
 
     private TextView order,cancel,check,txt_back;
     private BottomSheetBehavior bottomSheetBehavior;
@@ -133,8 +135,11 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         ((TextView)parent.getChildAt(0)).setTextColor(Color.WHITE);
         ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);
-         type = spinner.getSelectedItem().toString();
+        ((TextView)parent.getChildAt(0)).setTextSize(15);
+        type = spinner.getSelectedItem().toString();
         if(type.equals("전체")){  type = "All";  }
+        setData();
+        if (type.equals("종류 선택▼")){ type = "All";}
         setData();
     }
     @Override
@@ -158,7 +163,7 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()){
             case R.id.community_food_order_box_delivery :
-                if(isChecked){   delivery = "Y"; Toast.makeText(getApplicationContext(),delivery,Toast.LENGTH_SHORT).show();  }else{  delivery = "All"; }
+                if(isChecked){   delivery = "Y";  }else{  delivery = "All"; }
                 break;
             case R.id.community_food_order_box_distance :
                 if(isChecked){ ordervalue = "displace"; checkBox_review.setChecked(false);}else{
@@ -211,7 +216,7 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
 
 
     // 맛집 리스트 UI 처리 쓰레드
-   private class getList extends AsyncTask<String,Void,String> {
+    private class getList extends AsyncTask<String,Void,String> {
 
         @Override
         protected String doInBackground(String... json) {

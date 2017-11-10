@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -193,16 +194,16 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
             case R.id.btn_sell : // 팝니다 클릭시
                 task = new selectlist();
                 task.execute("1",null,null);  // 팝니다 코드인 1을 매개값으로 던져줌
-                btnbuy.setBackgroundColor(clickColor);  //UI 처리
-                btnsell.setBackgroundColor(clickedColor); //UI 처리
+                btnbuy.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_junggo_buy_none));  //UI 처리
+                btnsell.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_junggo_sell_clicked)); //UI 처리
                 btnCheckValue = 1; // 팝니다 버튼 클릭 체크값 설정
                 break;
 
             case R.id.btn_buy : // 삽니다 클릭시
                 task = new selectlist();
                 task.execute("2",null,null);  // 삽니다 코드인 2을 매개값으로 던져줌
-                btnbuy.setBackgroundColor(clickedColor);  //UI 처리
-                btnsell.setBackgroundColor(clickColor);  //UI 처리
+                btnbuy.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_junggo_buy_clicked));  //UI 처리
+                btnsell.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_junggo_sell_none)); //UI 처리
                 btnCheckValue = 2; // 삽니다 버튼 클릭 체크값 설정
                 break;
 

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Food.FoodDetailActivity">
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,7 +16,7 @@
             android:scaleType="fitXY"
             android:id="@+id/community_food_detail_img"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="150dp"/>
 
 
         <RelativeLayout
@@ -37,7 +38,7 @@
                 android:text=""
                 android:textSize="25dp"
                 android:textStyle="bold"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"/>
 
@@ -60,6 +61,9 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/bg_white_bd_black_radius"
             android:text="   전화걸기"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold"
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -70,6 +74,9 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/bg_white_bd_black_radius"
             android:text="   즐겨찾기"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -85,35 +92,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
-            android:background="@drawable/bg_gray_border"
             android:id="@+id/community_food_detail_btn_tab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="정보" />
-        <Button
             android:background="@drawable/bg_gray_border"
+            android:text="정보"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/community_food_detail_btn_tab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="메뉴" />
-        <Button
             android:background="@drawable/bg_gray_border"
+            android:text="메뉴"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/community_food_detail_btn_tab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="리뷰" />
+            android:background="@drawable/bg_gray_border"
+            android:text="리뷰"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
     </LinearLayout>
     <!-- 탭호스트 실제 레이아웃 -->
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"/>
-
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout" />
 
 
 </LinearLayout>

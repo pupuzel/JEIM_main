@@ -11,6 +11,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,7 +25,7 @@ import android.widget.Toast;
 import com.example.jock.jeim_main.R;
 
 public class    JoinActivity extends AppCompatActivity implements View.OnClickListener,
-                                                               DatePickerDialog.OnDateSetListener {
+        DatePickerDialog.OnDateSetListener {
 
     private ArrayAdapter adapter;
     private Spinner spinner;
@@ -90,7 +92,7 @@ public class    JoinActivity extends AppCompatActivity implements View.OnClickLi
 
     private boolean ischeckStudent(String barcode){   // 학생 인증 메소드
         boolean result = false;
-
+        Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         if(editID.getText().toString().equals(barcode)){ // 바코드 스캔과 일치하면
             Toast.makeText(getApplicationContext(), "학생인증이 완료되었습니다", Toast.LENGTH_SHORT).show();
             editID.setClickable(false);
@@ -103,37 +105,49 @@ public class    JoinActivity extends AppCompatActivity implements View.OnClickLi
             ischeckStudent = true;
         }else {  // 일치하지 않으면
             Toast.makeText(getApplicationContext(), "입력된 아이디(학번)가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
-
+            btn_student_check.startAnimation(shake);
         }
         return  result;
     }
 
     private void ischeckJoin(){
-
+        Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
         if(ischeckStudent == false){
             Toast.makeText(getApplicationContext(), "학생인증을 완료해주세요", Toast.LENGTH_SHORT).show();
+            editID.startAnimation(shake);
         }else if (editpass.getText().toString().equals("") || editpass.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+            editpass.startAnimation(shake);
         }else if (editpasscheck.getText().toString().equals("") || editpasscheck.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+            editpasscheck.startAnimation(shake);
         }else if ( (editpass.getText().toString().equals(editpasscheck.getText().toString())) == false  ){
             Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+            editpasscheck.startAnimation(shake);
         }else if (getgender() == null){
             Toast.makeText(getApplicationContext(), "성별을 선택해주세요", Toast.LENGTH_SHORT).show();
+            gendergroup.startAnimation(shake);
         }else if(editNAME.getText().toString().equals("") || editNAME.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "성함을 입력해주세요", Toast.LENGTH_SHORT).show();
+            editNAME.startAnimation(shake);
         }else if(editPHONE.getText().toString().equals("") || editPHONE.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "휴대폰 번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+            editPHONE.startAnimation(shake);
         }else if(editEMAIL1.getText().toString().equals("") || editEMAIL1.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+            editEMAIL1.startAnimation(shake);
         }else if(editEMAIL2.getText().toString().equals("") || editEMAIL2.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "이메일을 입력해주세요", Toast.LENGTH_SHORT).show();
+            editEMAIL2.startAnimation(shake);
         }else if(editYear.getText().toString().equals("") || editYear.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "년도를 입력해주세요", Toast.LENGTH_SHORT).show();
+            editYear.startAnimation(shake);
         }else if(editMonth.getText().toString().equals("") || editMonth.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "월을 입력해주세요", Toast.LENGTH_SHORT).show();
+            editMonth.startAnimation(shake);
         }else if(editDay.getText().toString().equals("") || editDay.getText().toString() == null){
             Toast.makeText(getApplicationContext(), "일을 입력해주세요", Toast.LENGTH_SHORT).show();
+            editDay.startAnimation(shake);
         }else{
             String state = String.valueOf(spinner.getSelectedItemPosition());
             String user_id = editID.getText().toString();
@@ -148,21 +162,21 @@ public class    JoinActivity extends AppCompatActivity implements View.OnClickLi
             String user_month = editMonth.getText().toString();
             String user_day = editDay.getText().toString();
             String user_birth = user_year+user_month+user_day;
-          try {
-              String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth,state).get();
+            try {
+                String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth,state).get();
 
-              if(result.equals("true")){
-                  Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_LONG).show();
-                  startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                  finish();
-              }else{
-                  Toast.makeText(getApplicationContext(),"이미 가입된 회원입니다.",Toast.LENGTH_LONG).show();
-              }
-          }catch (Exception e){}
-          }
+                if(result.equals("true")){
+                    Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(),"이미 가입된 회원입니다.",Toast.LENGTH_LONG).show();
+                }
+            }catch (Exception e){}
         }
+    }
 
-        // 인텐트 콜백 메소드
+    // 인텐트 콜백 메소드
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

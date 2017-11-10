@@ -38,7 +38,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="정보보호를 위해 주기적인 암호변경을 하시는것을 권장합니다"
+        android:text="정보보호를 위해 주기적인 \n암호변경을 하시는것을 권장합니다"
         android:textColor="@color/black"
         android:textSize="15dp"/>
 
@@ -50,7 +50,10 @@
         android:maxLength="20"
         android:hint="현재 비밀번호를 입력해주세요"
         android:gravity="center_vertical"
-        android:background="@drawable/bg_white_bd_gray_radius"/>
+        android:background="@drawable/bg_white_bd_gray_radius"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
     <EditText
         android:inputType="textPassword"
         android:id="@+id/passfind_edit_chagepass"
@@ -59,7 +62,10 @@
         android:maxLength="20"
         android:hint="변경할 비밀번호를 입력하세요"
         android:gravity="center_vertical"
-        android:background="@drawable/bg_white_bd_gray_radius"/>
+        android:background="@drawable/bg_white_bd_gray_radius"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
     <EditText
         android:inputType="textPassword"
         android:id="@+id/passfind_edit_chagepass_check"
@@ -68,7 +74,10 @@
         android:maxLength="20"
         android:hint="변경할 비밀번호를 재입력하세요"
         android:gravity="center_vertical"
-        android:background="@drawable/bg_white_bd_gray_radius"/>
+        android:background="@drawable/bg_white_bd_gray_radius"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
 
     <Button
         android:layout_margin="5dp"
@@ -79,5 +88,6 @@
         android:text="변경 하기"
         android:textColor="#ffffff"
         android:textSize="15dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 </LinearLayout>

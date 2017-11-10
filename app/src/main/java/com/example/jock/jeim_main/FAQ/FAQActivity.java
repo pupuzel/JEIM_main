@@ -1,10 +1,13 @@
 package com.example.jock.jeim_main.FAQ;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -50,15 +53,23 @@ public class FAQActivity extends AppCompatActivity {
         faq_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 LinearLayout contents= (LinearLayout) view.findViewById(R.id.faq_layout_contents);
-                 TextView  faq_title = (TextView) view.findViewById(R.id.faq_title);
+                LinearLayout contents= (LinearLayout) view.findViewById(R.id.faq_layout_contents);
+                TextView  faq_title = (TextView) view.findViewById(R.id.faq_title);
+                TextView arrow_down = (TextView)view.findViewById(R.id.arrow_down) ;
+                TextView arrow_up = (TextView)view.findViewById(R.id.arrow_up);
+                Animation animation2 = new AlphaAnimation(0, 1);
+                animation2.setDuration(1000);
                 if(faqOnOff == false){
                     contents.setVisibility(View.VISIBLE);
-                    faq_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_drop_down,0,0,0);
+                    arrow_down.setVisibility(View.GONE);
+                    arrow_up.setVisibility(View.VISIBLE);
+                    contents.setAnimation(animation2);
                     faqOnOff = true;
                 }else{
                     contents.setVisibility(View.GONE);
-                    faq_title.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_arrow_play,0,0,0);
+                    arrow_down.setVisibility(View.VISIBLE);
+                    arrow_up.setVisibility(View.GONE);
+                    contents.setAnimation(animation2);
                     faqOnOff = false;
                 }
 

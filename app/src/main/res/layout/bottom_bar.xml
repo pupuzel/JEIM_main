@@ -5,10 +5,7 @@
     android:layout_height="50dp"
     android:orientation="horizontal"
     android:background="@color/whitegray"
-    android:padding="1dp"
-    android:id="@+id/bottomebar_layout"
-    android:layout_gravity="bottom"
-    android:gravity="bottom">
+    android:id="@+id/bottomebar_layout">
 
 
     <Button

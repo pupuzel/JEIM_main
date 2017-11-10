@@ -17,8 +17,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_arrow_back_black"
-            android:drawableStart="@drawable/ic_arrow_back_black"
+            android:drawableLeft="@drawable/ic_arrow_back_white"
+            android:drawableStart="@drawable/ic_arrow_back_white"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"/>
@@ -54,16 +54,17 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:text="제물포 노선"
-                    android:textColor="#000000"
-                    android:textSize="20dp"
                     android:background="@color/background_gongji"
-                    android:paddingRight="10dp"/>
+                    android:gravity="right|center"
+                    android:paddingRight="10dp"
+                    android:text="재능대 본관"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                     android:drawableBottom="@drawable/arrowscouple"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:paddingBottom="10dp"/>
+                    android:paddingBottom="15dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -80,7 +81,7 @@
                     android:layout_weight="1"
                     android:gravity="left|center"
                     android:text="제물포 노선"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="20dp"
                     android:background="@color/background_gongji"
                     android:paddingLeft="10dp" />

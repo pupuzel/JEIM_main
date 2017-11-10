@@ -30,7 +30,7 @@
                 android:text="name"
                 android:textSize="15dp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:id="@+id/food_review_txt_name"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -38,13 +38,15 @@
                 android:text="|"
                 android:textSize="10dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:textColor="@color/mainbackground"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2013-10-10"
                 android:textSize="10dp"
-                android:id="@+id/food_review_txt_date"/>
+                android:id="@+id/food_review_txt_date"
+                android:textColor="@color/mainbackground"/>
         </LinearLayout>
 
         <TextView
@@ -53,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오졌다리"
+            android:textColor="@color/mainbackground"
             android:textSize="15dp"
             android:id="@+id/food_review_txt_content"/>
 

@@ -32,7 +32,7 @@ import java.util.List;
 
 
 public class LibraryActivity extends AppCompatActivity implements AbsListView.OnScrollListener,
-                                                                  View.OnClickListener,TextView.OnEditorActionListener{
+        View.OnClickListener,TextView.OnEditorActionListener{
 
     private Spinner spinner;
     private ArrayAdapter Spinneradapter;
@@ -79,11 +79,11 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
 
         switch (v.getId()){
             case R.id.Library_search_btn :  // 검색 버튼 클릭시
-                    search();
+                search();
                 break;
             case R.id.Library_txt_back :
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
                 break;
         }
 

@@ -102,6 +102,9 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
             case 2:
                 FoodTab2Activity foodTab2 = new FoodTab2Activity();
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("code",code);
+                foodTab2.setArguments(bundle2);
                 transaction.replace(R.id.fragment_container, foodTab2);
                 transaction.commit();
                 break;

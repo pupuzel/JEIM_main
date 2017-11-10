@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -15,9 +16,11 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +34,7 @@ import android.widget.Toast;
 import com.example.jock.jeim_main.Another.GalleryBitmap;
 import com.example.jock.jeim_main.R;
 
-public class JooungoNewboardActivity extends AppCompatActivity implements View.OnClickListener{
+public class JooungoNewboardActivity extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener{
 
     private int REQ_CODE_SELECT_IMAGE =100;
     private int addimgIDVALUE = 0;
@@ -62,6 +65,7 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
 
         spinner = (Spinner)findViewById(R.id.Jooungo_newboard_spiner);
         adapter = ArrayAdapter.createFromResource(this, R.array.Jooungo_newboard,android.R.layout.simple_spinner_dropdown_item);
+
         spinner.setAdapter(adapter);
 
         info = new JooungoUpdateNotice();
@@ -91,12 +95,14 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
         clear3.setOnClickListener(this);
         calcle.setOnClickListener(this);
         check.setOnClickListener(this);
+        spinner.setOnItemSelectedListener(this);
 
        animation = new AlphaAnimation(0, 1);
        animation.setDuration(1000);
 
     }
 
+    @Override
     public void onClick(View v){
 
         switch (v.getId()){
@@ -208,6 +214,20 @@ public class JooungoNewboardActivity extends AppCompatActivity implements View.O
             }
         }
     }
+
+    // 스피너 아이템 메소드
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ((TextView)parent.getChildAt(0)).setTextSize(12);
+        ((TextView)parent.getChildAt(0)).setGravity(Gravity.CENTER);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     //앨범으로 이동해서 사진 가져오기
     public Intent getImg(int getId){
         Intent intent = new Intent(Intent.ACTION_PICK);

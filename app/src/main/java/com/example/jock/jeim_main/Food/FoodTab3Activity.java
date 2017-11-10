@@ -161,7 +161,6 @@ public class FoodTab3Activity extends Fragment implements View.OnClickListener,
     }
 
     public String LoginCheck(){
-        Pref.Login = getContext().getSharedPreferences("Login", Activity.MODE_PRIVATE);
         prefUsername = Pref.Login.getString("회원아이디",null);
         return prefUsername;
     }

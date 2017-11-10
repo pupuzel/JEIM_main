@@ -19,6 +19,11 @@
             android:icon="@drawable/ic_drawer_content"
             android:visible="true"
             android:title="정보 수정" />
+        <item
+            android:id="@+id/drawer_myboard"
+            android:icon="@drawable/ic_newboard"
+            android:visible="true"
+            android:title="내가 쓴글" />
     </group>
 
     <item android:title="Communicate">

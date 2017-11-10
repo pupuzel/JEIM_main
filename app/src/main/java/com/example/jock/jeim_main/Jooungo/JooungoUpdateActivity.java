@@ -253,6 +253,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(data, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
         imgPath = cursor.getString(column_index);
         imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
 

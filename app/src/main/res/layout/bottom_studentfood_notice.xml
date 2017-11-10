@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" 
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -45,19 +45,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
 
             <TextView
                 android:id="@+id/studentfood_notice_txt_gama_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:text="가마"
-                android:textSize="20dp" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/studentfood_notice_txt_gama_menu"
@@ -66,7 +70,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text=""
-                android:textSize="15dp"/>
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
@@ -98,12 +103,16 @@
                 android:id="@+id/studentfood_notice_txt_inturn_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:text="인터"
-                android:textSize="20dp" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/studentfood_notice_txt_inturn_menu"
@@ -112,22 +121,11 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text=""
-                android:textSize="15dp"/>
-
+                android:textColor="@color/black"
+                android:textSize="15dp" />
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="top"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="#828282" />
-
     </LinearLayout>
+
 
 
     <LinearLayout
@@ -135,22 +133,37 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="top"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="#828282" />
+
         <LinearLayout
-            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
 
             <TextView
                 android:id="@+id/studentfood_notice_txt_cham_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:text="참참"
-                android:textSize="20dp" />
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/studentfood_notice_txt_cham_menu"
@@ -159,20 +172,10 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text=""
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="top"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="#828282" />
 
     </LinearLayout>
 

@@ -41,8 +41,8 @@ import java.util.ArrayList;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends AppCompatActivity implements
-                          OnClickListener,
-                          NavigationView.OnNavigationItemSelectedListener{
+        OnClickListener,
+        NavigationView.OnNavigationItemSelectedListener{
     private Menu drawer_menu;
     private MenuItem drawer_tools,drawer_mycontents;
     private Button btn_depart, btn_jooungo, btn_food, btn_bus ,btn_game ,btn_library;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
                 /*이미지 슬라이드 이미지 추가*/
         ArrayList<String> data = new ArrayList<>(); //이미지 url를 저장하는 arraylist
@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements
         drawer_join  = (TextView) headerview.findViewById(R.id.drawer_Join);
         drawer_logout = (TextView) headerview.findViewById(R.id.drawer_logout);
         drawer_username = (TextView) headerview.findViewById(R.id.drawer_username);
-        drawericon = (ImageView) headerview.findViewById(R.id.drawer_icon);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawer_menu = navigationView.getMenu();
         drawer_tools = drawer_menu.getItem(2);
@@ -232,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements
         if((prefValue == null) == true){
             drawer_login.setVisibility(View.VISIBLE);
             drawer_join.setVisibility(View.VISIBLE);
-            drawericon.setVisibility(View.GONE);
             drawer_username.setText("");
             drawer_logout.setVisibility(View.GONE);
             drawer_tools.setVisible(true);
@@ -240,8 +238,8 @@ public class MainActivity extends AppCompatActivity implements
         }else{
             drawer_login.setVisibility(View.GONE);
             drawer_join.setVisibility(View.GONE);
-            drawericon.setVisibility(View.VISIBLE);
             drawer_username.setText(prefValue+" 님");
+            drawer_username.setVisibility(View.VISIBLE);
             drawer_logout.setVisibility(View.VISIBLE);
             drawer_tools.setVisible(false);
             drawer_mycontents.setVisible(true);
@@ -314,12 +312,6 @@ public class MainActivity extends AppCompatActivity implements
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                break;
-            case R.id.bottom_home :
-                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent2);
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                finish();
                 break;
             case R.id.bottom_food :
                 Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);

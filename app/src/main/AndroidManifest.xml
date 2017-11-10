@@ -3,6 +3,7 @@
     package="com.example.jock.jeim_main">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -34,6 +35,9 @@
         <activity android:name=".Bottom.GongjiActivity"/>
         <activity android:name=".Jooungo.JooungoUpdateActivity"/>
         <activity android:name=".Major.DepartmentActivity"/>
+        <activity android:name=".Major.Department_key_none"/>
+        <activity android:name=".Major.Department_key_have"/>
+        <activity android:name=".Major.Department_key_apply"/>
         <activity android:name=".Food.FoodMainActivity"/>
         <activity android:name=".Food.FoodDetailActivity"/>
         <activity android:name=".Food.FoodMapActivity"/>

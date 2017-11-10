@@ -66,7 +66,6 @@ public class FoodTab3_Task extends AsyncTask<String,Void,String> {
                 result = null;
                 result = stringBuilder.toString();
                 bufferedReader.close();
-                Log.i("리졸졸",result);
             }
         }catch (Exception e){
             e.printStackTrace();

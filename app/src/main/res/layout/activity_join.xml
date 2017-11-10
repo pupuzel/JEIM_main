@@ -7,10 +7,12 @@
     <!-- 회원가입 로고 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="@color/navyblue"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
 
 
@@ -33,7 +35,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="3"
-            >
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
 
 
             <!-- 가입 정보 1 레이아웃 -->
@@ -43,7 +46,7 @@
                 android:orientation="vertical">
                 <!-- 아이디 레이아웃 -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
@@ -52,34 +55,34 @@
 
                     <EditText
                         android:id="@+id/Join_edit_id"
-                        android:layout_width="200dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/whitegray"
                         android:drawableLeft="@drawable/ic_logni_person"
                         android:drawableStart="@drawable/ic_logni_person"
                         android:hint="학번(아이디)"
                         android:maxLength="10"
-                        android:numeric="integer"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
+                        android:textColorHint="@color/gray"
+                        android:layout_weight="1" />
 
                     <Button
                         android:id="@+id/Join_btn_student_check"
-                        android:layout_width="70dp"
-                        android:layout_height="45dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/bg_whitegray"
                         android:text="학생인증"
-                        android:textColor="#353535" />
+                        android:textColor="#353535"
+                        android:layout_weight="2" />
 
                 </LinearLayout>
 
                 <!--  비밀번호   -->
                 <EditText
                     android:id="@+id/Join_edit_password"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
@@ -90,13 +93,12 @@
                     android:inputType="textPassword"
                     android:maxLength="20"
                     android:padding="10dp"
-                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray" />
 
                 <EditText
                     android:id="@+id/Join_edit_password_check"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
@@ -107,13 +109,12 @@
                     android:inputType="textPassword"
                     android:maxLength="20"
                     android:padding="10dp"
-                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray" />
 
                 <RadioGroup
                     android:id="@+id/Join_Radio_gendergroup"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
@@ -124,14 +125,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="50dp"
-                        android:text="여성" />
+                        android:text="여성"
+                        android:layout_weight="1"/>
 
                     <RadioButton
                         android:id="@+id/Join_Radio_gender_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:text="남성" />
+                        android:text="남성"
+                        android:layout_weight="1"/>
 
                 </RadioGroup>
 
@@ -149,33 +151,30 @@
                 <!-- 이름 입력 -->
                 <EditText
                     android:id="@+id/Join_edit_name"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@color/whitegray"
                     android:hint="성함"
                     android:maxLength="10"
                     android:padding="10dp"
-                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray" />
                 <!-- 핸드폰 번호 입력 -->
                 <EditText
                     android:id="@+id/Join_edit_phone"
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:background="@color/whitegray"
                     android:hint="휴대폰 번호"
                     android:maxLength="11"
-                    android:numeric="integer"
                     android:padding="10dp"
-                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray" />
                 <!-- 이메일 입력 -->
                 <LinearLayout
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -188,7 +187,6 @@
                         android:background="@color/whitegray"
                         android:hint="이메일"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
 
@@ -207,13 +205,12 @@
                         android:background="@color/whitegray"
                         android:hint="직접입력"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray" />
                 </LinearLayout>
                 <!-- 생년월일 -->
                 <LinearLayout
-                    android:layout_width="280dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -222,15 +219,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
                         android:background="@color/whitegray"
                         android:hint="년도"
                         android:maxLength="4"
-                        android:numeric="integer"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
+                        android:textColorHint="@color/gray"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -243,15 +238,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
                         android:background="@color/whitegray"
                         android:hint="월"
                         android:maxLength="2"
-                        android:numeric="integer"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
+                        android:textColorHint="@color/gray"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -264,15 +257,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
                         android:background="@color/whitegray"
                         android:hint="일"
                         android:maxLength="2"
-                        android:numeric="integer"
                         android:padding="10dp"
-                        android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray" />
+                        android:textColorHint="@color/gray"
+                        android:layout_weight="1"/>
 
 
                 </LinearLayout>
@@ -285,13 +276,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_whitealpha">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
                     android:layout_marginTop="10dp"
                     android:text="재학상태 선택"
                     android:textColor="#000000"
@@ -302,8 +291,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
                     android:layout_marginTop="10dp"></Spinner>
             </LinearLayout>
 
@@ -312,19 +299,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_centerInParent="true"
-                android:background="#828282"/>
-
+                android:background="#828282" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp">
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/Join_btn_join"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
@@ -342,7 +326,7 @@
 
                 <Button
                     android:id="@+id/Join_btn_cancel"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"

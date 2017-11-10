@@ -24,9 +24,9 @@
             <!--메인 레이아웃 -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_height="match_parent">
 
                 <include
                     android:id="@+id/includetoolbar"
@@ -38,12 +38,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
 
                     <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
                         android:id="@+id/autoViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="5dp"
@@ -54,7 +55,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -74,15 +76,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:drawableTop="@drawable/laptop"
-                            android:gravity="bottom|center_horizontal"
-                            android:paddingBottom="5dp"
-                            android:paddingTop="20dp"
-                            android:text="컴정마당"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            android:textColor="@color/black" />
+                            android:background="@drawable/laptop" />
 
 
                         <Button
@@ -94,15 +88,8 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:drawableTop="@drawable/shop"
-                            android:gravity="bottom|center_horizontal"
-                            android:paddingBottom="5dp"
-                            android:paddingTop="20dp"
-                            android:text="중고장터"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal" />
+                            android:background="@drawable/shop"
+                            android:gravity="bottom|center_horizontal" />
 
                     </LinearLayout>
 
@@ -123,15 +110,8 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:gravity="bottom|center_horizontal"
-                            android:text="오늘 뭐먹지?"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            android:paddingTop="20dp"
-                            android:paddingBottom="5dp"
-                            android:drawableTop="@drawable/food"/>
+                            android:background="@drawable/food"
+                            android:gravity="bottom|center_horizontal" />
 
                         <Button
                             android:id="@+id/main_btn_library"
@@ -142,117 +122,10 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:gravity="bottom|center_horizontal"
-                            android:text="도서마당"
-                            android:paddingTop="20dp"
-                            android:paddingBottom="5dp"
-                            android:drawableTop="@drawable/library"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal" />
+                            android:background="@drawable/library"
+                            android:gravity="bottom|center_horizontal" />
 
                     </LinearLayout>
-
-                    <!-- &lt;!&ndash; 학사메뉴 레이아웃 &ndash;&gt;
-                    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/collegemenu"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
-
-                    <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#BFA6A6A6"
-                    android:text="학교소개" />
-
-                    <Button
-                    android:background="#BFA6A6A6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="일정"/>
-                    <Button
-                    android:background="#BFA6A6A6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="행사"/>
-                    <Button
-                    android:background="#BFA6A6A6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="행정"/>
-
-                    </LinearLayout>
-
-                    &lt;!&ndash; 커뮤니티 레이아웃 &ndash;&gt;
-                    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/communitymenu"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
-                    <Button
-                    android:background="#99353535"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="과팅"/>
-                    <Button
-                    android:background="#99353535"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/btn_community_jooungo"
-                    android:text="중고장터"/>
-                    <Button
-                    android:background="#99353535"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/btn_community_restrant"
-                    android:text="맛집"/>
-                    </LinearLayout>
-                    &lt;!&ndash; 캠퍼스 레이아웃 &ndash;&gt;
-                    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/campusmanu"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
-                    <Button
-                    android:id="@+id/btn_campus_bus"
-                    android:background="#BF8c8c8c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="통학버스"/>
-                    <Button
-                    android:background="#BF8c8c8c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="학식식단"/>
-                    <Button
-                    android:background="#BF8c8c8c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="도서관"/>
-                    <Button
-                    android:background="#BF8c8c8c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="지도"/>
-
-                    </LinearLayout>-->
 
                     <!--하단 메인메뉴 레이아웃-->
                     <LinearLayout
@@ -272,15 +145,8 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:drawableTop="@drawable/schoolbus"
-                            android:gravity="bottom|center_horizontal"
-                            android:paddingBottom="5dp"
-                            android:paddingTop="20dp"
-                            android:text="셔틀 버스"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal" />
+                            android:background="@drawable/schoolbus"
+                            android:gravity="bottom|center_horizontal" />
 
                         <Button
                             android:id="@+id/main_btn_game"
@@ -291,15 +157,8 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="5dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
-                            android:gravity="bottom|center_horizontal"
-                            android:text="소설 릴레이"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            android:drawableTop="@drawable/conversation"
-                            android:paddingTop="20dp"
-                            android:paddingBottom="5dp"/>
+                            android:background="@drawable/conversation"
+                            android:gravity="bottom|center_horizontal" />
                     </LinearLayout>
                     <include layout="@layout/bottom_bar"/>
                 </LinearLayout>
@@ -315,5 +174,4 @@
         app:menu="@menu/drawer"
         app:headerLayout="@layout/activity_drawer_header"
         android:fitsSystemWindows="true" />
-
 </android.support.v4.widget.DrawerLayout>

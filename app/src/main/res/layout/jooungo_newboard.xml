@@ -49,29 +49,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="희망 단가"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/edit_jooungo_newboard_price"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:background="@drawable/bg_white_bd_black"
                 android:hint="희망 단가를 입력하여 주세요."
                 android:maxLength="8"
-                android:numeric="integer"
                 android:padding="10dp"
-                android:singleLine="true"
                 android:textSize="15dp" />
 
             <Spinner
                 android:id="@+id/Jooungo_newboard_spiner"
-                android:layout_width="90dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@drawable/click_cencle" />
+                android:background="@drawable/bg_white_bd_gray"
+                android:layout_weight="6" />
         </LinearLayout>
 
         <LinearLayout
