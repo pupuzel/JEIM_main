@@ -61,6 +61,7 @@
                 android:background="@drawable/bg_white_bd_black"
                 android:hint="희망 단가를 입력하여 주세요."
                 android:maxLength="8"
+                android:numeric="integer"
                 android:padding="10dp"
                 android:textSize="15dp" />
 

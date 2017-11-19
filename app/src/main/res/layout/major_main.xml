@@ -67,10 +67,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <Button
-                    android:id="@+id/button24"
+                    android:id="@+id/department_btn_gongji"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -109,9 +109,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <Button
+                    android:id="@+id/department_btn_board"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -149,54 +150,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
-
+                android:visibility="visible">
                 <Button
-                    android:id="@+id/department_btn_key302"
+                    android:id="@+id/department_btn_key"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@color/white"
                     android:gravity="left|center"
                     android:paddingLeft="50dp"
-                    android:text="302호"
+                    android:text="열쇠 관리"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
-                <Button
-                    android:id="@+id/department_btn_key303"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:gravity="left|center"
-                    android:paddingLeft="50dp"
-                    android:text="303호"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-                <Button
-                    android:id="@+id/department_btn_key304"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:gravity="left|center"
-                    android:paddingLeft="50dp"
-                    android:text="304호"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-                <Button
-                    android:id="@+id/department_btn_key305"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:gravity="left|center"
-                    android:paddingLeft="50dp"
-                    android:text="305호"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-
-
             </LinearLayout>
 
         </LinearLayout>

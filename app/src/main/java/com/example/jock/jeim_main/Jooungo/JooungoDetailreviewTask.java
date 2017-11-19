@@ -19,6 +19,7 @@ public class JooungoDetailreviewTask extends AsyncTask<String,Void,String> {
                     String username = params[0];
                     String content = params[1];
                     String code = params[2];
+                    String ischecktoken = params[3];
 
                     try {
                     URL url = new URL(Url.Main+Url.JooungoDetailreview);
@@ -29,7 +30,7 @@ public class JooungoDetailreviewTask extends AsyncTask<String,Void,String> {
                     con.connect();
                     OutputStream outputStream = con.getOutputStream();
 
-                    sendMSG = "username="+username+"&content="+content+"&code="+code;
+                    sendMSG = "username="+username+"&content="+content+"&code="+code+"&ischeaktoken="+ischecktoken;
 
                     outputStream.write(sendMSG.getBytes("UTF-8"));
                     outputStream.flush();

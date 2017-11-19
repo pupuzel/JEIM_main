@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class Department_key_Task extends AsyncTask<String,Void,String> {
+public class Major_key_Task extends AsyncTask<String,Void,String> {
 
     private String key_have,key_apply,key_num,sendMSG,result;
 

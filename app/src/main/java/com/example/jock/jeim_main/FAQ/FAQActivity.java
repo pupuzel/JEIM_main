@@ -55,20 +55,20 @@ public class FAQActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LinearLayout contents= (LinearLayout) view.findViewById(R.id.faq_layout_contents);
                 TextView  faq_title = (TextView) view.findViewById(R.id.faq_title);
-                TextView arrow_down = (TextView)view.findViewById(R.id.arrow_down) ;
-                TextView arrow_up = (TextView)view.findViewById(R.id.arrow_up);
+                TextView arrow_right = (TextView)view.findViewById(R.id.arrow_right) ;
+                TextView arrow_down = (TextView)view.findViewById(R.id.arrow_down);
                 Animation animation2 = new AlphaAnimation(0, 1);
                 animation2.setDuration(1000);
                 if(faqOnOff == false){
                     contents.setVisibility(View.VISIBLE);
-                    arrow_down.setVisibility(View.GONE);
-                    arrow_up.setVisibility(View.VISIBLE);
+                    arrow_right.setVisibility(View.GONE);
+                    arrow_down.setVisibility(View.VISIBLE);
                     contents.setAnimation(animation2);
                     faqOnOff = true;
                 }else{
                     contents.setVisibility(View.GONE);
-                    arrow_down.setVisibility(View.VISIBLE);
-                    arrow_up.setVisibility(View.GONE);
+                    arrow_right.setVisibility(View.VISIBLE);
+                    arrow_down.setVisibility(View.GONE);
                     contents.setAnimation(animation2);
                     faqOnOff = false;
                 }

@@ -1,6 +1,7 @@
 package com.example.jock.jeim_main.Main;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.R;
 
 public class    JoinActivity extends AppCompatActivity implements View.OnClickListener,
@@ -40,6 +42,7 @@ public class    JoinActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+        Pref.Token = getSharedPreferences("Token", Activity.MODE_PRIVATE);
 
         btn_student_check = (Button) findViewById(R.id.Join_btn_student_check);
         btn_Join = (Button) findViewById(R.id.Join_btn_join);
@@ -162,8 +165,10 @@ public class    JoinActivity extends AppCompatActivity implements View.OnClickLi
             String user_month = editMonth.getText().toString();
             String user_day = editDay.getText().toString();
             String user_birth = user_year+user_month+user_day;
+
+            String user_token = Pref.Token.getString("토큰",null);
             try {
-                String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth,state).get();
+                String result =  new JoinTask().execute(user_id,user_pw,user_gender,user_name,user_phone,user_email1,user_email2,user_birth,state,user_token).get();
 
                 if(result.equals("true")){
                     Toast.makeText(getApplicationContext(),"회원가입 완료",Toast.LENGTH_LONG).show();

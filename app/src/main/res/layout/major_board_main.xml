@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- 네비게이션 부분 레이아웃 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navyblue">
+
+        <TextView
+            android:id="@+id/department_board_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/textView9"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:drawableLeft="@drawable/ic_arrow_back_white"
+            android:drawableStart="@drawable/ic_arrow_back_white"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="자유게시판"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/department_board_newboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/newboard1"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="18dp"
+            android:layout_marginEnd="18dp" />
+    </RelativeLayout>
+
+    <!-- 게시판 리스트뷰 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/department_board_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/department_board_progressbar"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/bg_whitealpha">
+
+            <ListView
+                android:id="@+id/department_board_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#ffffff"
+                android:dividerHeight="10dp"
+                android:layoutAnimation="@anim/anim_layout_controller"
+                android:persistentDrawingCache="animation|scrolling"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/department_board_progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

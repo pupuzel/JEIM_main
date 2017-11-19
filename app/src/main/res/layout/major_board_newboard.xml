@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCFCFC">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navyblue"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/department_newboard_cancle_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/click_cencle"
+            android:text="취소" />
+
+        <Button
+            android:id="@+id/department_newboard_cheak_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/click_check"
+            android:text="등록"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/department_newboard_content_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_bd_black"
+            android:gravity="left"
+            android:hint="내용을 입력하여 주세요."
+            android:maxLength="500"
+            android:minHeight="250dp"
+            android:padding="10dp"
+            android:textSize="13dp" />
+
+        <!-- 사진 추가 텍스트 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사진 추가"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(최대 5장까지 추가할수 있습니다)"
+                android:textColor="@color/gray"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <!-- 사진 추가 버튼 3개  레이아웃 -->
+        <HorizontalScrollView
+            android:id="@+id/department_newboard_scroll_imglayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            android:layout_weight="3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/department_newboard_addimg_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_add"
+                        android:minHeight="70dp"
+                        android:minWidth="70dp" />
+                    <LinearLayout
+                        android:id="@+id/department_newboard_imglayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="horizontal" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.CntDate;
-import com.example.jock.jeim_main.Another.DateDay;
 import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
@@ -31,7 +30,7 @@ import com.example.jock.jeim_main.Fiction.FictionActivity;
 import com.example.jock.jeim_main.Food.FoodMainActivity;
 import com.example.jock.jeim_main.Jooungo.JooungoActivity;
 import com.example.jock.jeim_main.Library.LibraryActivity;
-import com.example.jock.jeim_main.Major.DepartmentActivity;
+import com.example.jock.jeim_main.Major.MajorActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.CntTask;
 import com.example.jock.jeim_main.ViewPager.AutoScrollAdapter;
@@ -66,10 +65,10 @@ public class MainActivity extends AppCompatActivity implements
 
                 /*이미지 슬라이드 이미지 추가*/
         ArrayList<String> data = new ArrayList<>(); //이미지 url를 저장하는 arraylist
-        data.add("http://pupuzel.cafe24.com/img/activity.jpg");
-        data.add("http://pupuzel.cafe24.com/img/comjung.jpg");
-        data.add("http://pupuzel.cafe24.com/img/soft.jpg");
-        data.add("http://pupuzel.cafe24.com/img/teacher.jpg");
+        data.add("http://pupuzel.cafe24.com/img/main/activity.jpg");
+        data.add("http://pupuzel.cafe24.com/img/main/comjung.jpg");
+        data.add("http://pupuzel.cafe24.com/img/main/soft.jpg");
+        data.add("http://pupuzel.cafe24.com/img/main/teacher.jpg");
         /*이미지 슬라이드*/
         autoViewPager = (AutoScrollViewPager)findViewById(R.id.autoViewPager);
         AutoScrollAdapter scrollAdapter = new AutoScrollAdapter(this, data);
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements
 
         switch (v.getId()){
             case R.id.main_btn_depart :
-                startActivity(new Intent(getApplicationContext(), DepartmentActivity.class));
+                startActivity(new Intent(getApplicationContext(), MajorActivity.class));
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.main_btn_jooungo :

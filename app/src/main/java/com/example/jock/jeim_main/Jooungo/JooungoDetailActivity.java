@@ -33,6 +33,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.jock.jeim_main.Another.GalleryBitmap;
+import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
@@ -70,8 +71,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
     private ListView listView;
 
     private int price,groupvalue;
-    private String usernum,prefUsernum,boardCode,img1,img2,img3;
-
+    private String usernum,prefUsernum,boardCode,img1,img2,img3,ischecktoken;
     private imgThread imgThread;
     private setJooungoDetail setJooungoDetail;
     private JooungoDetailTask jooungoDetailTask;
@@ -105,7 +105,9 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
 
         try{
             pref = getSharedPreferences("Login", Activity.MODE_PRIVATE);
-            prefUsernum = pref.getString("회원아이디",null);
+            Pref.Token = getSharedPreferences("Token", Activity.MODE_PRIVATE);
+            prefUsernum = pref.getString("회원아이디","");
+            ischecktoken = Pref.Token.getString("알람",null);
 
             intent = getIntent();
             boardCode = intent.getStringExtra("게시판코드");
@@ -226,13 +228,13 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if(prefUsernum != null){
+                        if(prefUsernum != ""){
                             String content = edittext.getText().toString();
                             if(content == null || content.equals("")){   //내용이 비어있다면
                                 Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                             }else {  // 내용이 있다면
-                                try {
-                                    String result = new JooungoDetailreviewTask().execute(prefUsernum,content,boardCode).get();
+                                try {                                                     //작성자ID,내용,게시판코드,알람설정
+                                    String result = new JooungoDetailreviewTask().execute(prefUsernum,content,boardCode,ischecktoken).get();
                                     setReview(result);
                                 } catch (Exception e) {}
 
@@ -263,6 +265,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                     imglistJson.put("게시판코드",boardCode);
                     deleteTask = new JooungoDeleteTask();
                     String result = deleteTask.execute(imglistJson).get();
+                    Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                     if(result.equals("success")){
                         Intent intent = new Intent(getApplicationContext(),JooungoActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -355,7 +358,6 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                 txt_date.setText(json.getString("날짜").substring(0, 16));
                 price = Integer.parseInt(json.getString("가격"));
                 String pricefmt = nf.format(price);
-
                 txt_price.setText(pricefmt + "원");
 
                 if (json.getString("그룹").equals("1")) {
@@ -376,7 +378,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                     btn_completed.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.click_cencle));
                     btn_completed.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
 
-                    if (prefUsernum != null) {
+                    if (prefUsernum.equals(usernum)) {
                         btn_delete.setVisibility(View.VISIBLE);
                         btn_update.setVisibility(View.VISIBLE);
                         btn_completed.setVisibility(View.VISIBLE);
@@ -394,7 +396,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                     btn_completed.setEnabled(false);
                 }
 
-                reviewjson = new JooungoDetailreviewTask().execute(prefUsernum, null, boardCode).get();
+                reviewjson = new JooungoDetailreviewTask().execute(prefUsernum, "null", boardCode,ischecktoken).get();
                 setReview(reviewjson);
 
                 imgThread = new imgThread(img1,img2,img3); //이미지 가져오는 쓰레드는 별도의 쓰레드가 작업
@@ -435,7 +437,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                             progressBar.setVisibility(View.VISIBLE);
 
                             Glide.with(getApplicationContext())
-                                    .load(Url.Main + Url.ImgTake +Simg1)
+                                    .load(Url.ImgTake+Simg1)
                                     .asBitmap()
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .skipMemoryCache(true)
@@ -459,7 +461,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                             @Override
                             public void run() {
                                 Glide.with(getApplicationContext())
-                                        .load(Url.Main + Url.ImgTake +Simg2)
+                                        .load(Url.ImgTake +Simg2)
                                         .asBitmap()
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .skipMemoryCache(true)
@@ -483,7 +485,7 @@ public class JooungoDetailActivity extends AppCompatActivity implements View.OnC
                                 @Override
                                 public void run() {
                                     Glide.with(getApplicationContext())
-                                            .load(Url.Main + Url.ImgTake +Simg1)
+                                            .load(Url.ImgTake +Simg1)
                                             .asBitmap()
                                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                                             .skipMemoryCache(true)

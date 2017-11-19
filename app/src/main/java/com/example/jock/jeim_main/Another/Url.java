@@ -24,12 +24,15 @@ public class Url {
     public static final String FoodTake ="restaurantimg/";
     public static final String StudentFood ="StudentFood.jsp";
     public static final String DepartmentKey ="departmentKey.jsp";
+    public static final String Departmentnewboard ="Majornewboard.jsp";
+    public static final String Departmentlist ="Majorboardlist.jsp";
     public static final String Library ="Library.jsp";
     public static final String Passwordfind ="StudentCheck.jsp";
     public static final String Passwordemail ="http://pupuzel.cafe24.com/sendmail";
     public static final String Passwordcheck ="PasswordCheck.jsp";
-    public static final String Passwordchange ="updatepass.jsp";
-    public static final String ImgTake ="img/";
+    public static final String Passwordchange ="http://pupuzel.cafe24.com/student/modifyprocess";
+    public static final String ImgTake ="http://pupuzel.cafe24.com/resources/img/";
     public static final String realimg ="http://pupuzel.cafe24.com/jeiu/img/";
     public static final String timetable ="http://pupuzel.cafe24.com/jeiu/timetable/timetable.jpg";
+    public static final String gongji ="http://pupuzel.cafe24.com/department/notice/android_view?seq=6";
         }

@@ -1,10 +1,13 @@
 package com.example.jock.jeim_main.Food;
 
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +31,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     private final int FRAGMENT3 = 3;
 
     private Button bt_tab1, bt_tab2,bt_tab3;
-    private TextView txt_back;
+    private TextView txt_back,txt_call;
     private ImageView Mainimg;
     private Intent intent;
 
@@ -38,12 +41,13 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_detailboard);
+        ActivityCompat.requestPermissions(this ,new String[] {Manifest.permission.CALL_PHONE},MODE_PRIVATE);
         // 위젯에 대한 참조
         bt_tab1 = (Button)findViewById(R.id.community_food_detail_btn_tab1);
         bt_tab2 = (Button)findViewById(R.id.community_food_detail_btn_tab2);
         bt_tab3 = (Button)findViewById(R.id.community_food_detail_btn_tab3);
         txt_back = (TextView) findViewById(R.id.community_food_detail_txt_back);
-
+        txt_call =(TextView) findViewById(R.id.call_call);
         Mainimg = (ImageView) findViewById(R.id.community_food_detail_img);
 
         // 탭 버튼에 대한 리스너 연결
@@ -51,6 +55,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         bt_tab2.setOnClickListener(this);
         bt_tab3.setOnClickListener(this);
         txt_back.setOnClickListener(this);
+        txt_call.setOnClickListener(this);
 
         intent = getIntent();
         code = intent.getStringExtra("코드");
@@ -78,6 +83,12 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
             case R.id.community_food_detail_txt_back:
                 startActivity(new Intent(getApplicationContext(),FoodMainActivity.class));
                 finish();
+                break;
+
+            case R.id.call_call:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phone));
+                startActivity(intent);
                 break;
         }
     }
@@ -158,7 +169,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
             super.onPostExecute(imgname);
 
             Glide.with(getApplicationContext())
-                 .load(Url.Main+Url.FoodTake+imgname)
+                 .load(Url.ImgTake+imgname)
                  //.diskCacheStrategy(DiskCacheStrategy.NONE)
                  //.skipMemoryCache(true)
                  .thumbnail(0.1f)

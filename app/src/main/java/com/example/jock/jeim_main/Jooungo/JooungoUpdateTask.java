@@ -55,7 +55,7 @@ public class JooungoUpdateTask extends AsyncTask<JooungoUpdateNotice,Void,String
             for (int i = 0; i < info.size();i++ ){
 
                 if(info.getimg(i) != null) {
-                    String filepath = String.valueOf(System.currentTimeMillis()) + ".jpg";
+                    String filepath = "jooungo"+String.valueOf(System.currentTimeMillis()) + ".jpg";
                     ByteArrayInputStream mByteInputStream = new ByteArrayInputStream(info.getimg(i));
 
                     int bytesAvailable = mByteInputStream.available();

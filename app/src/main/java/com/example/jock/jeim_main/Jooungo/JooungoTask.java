@@ -53,7 +53,7 @@ public class JooungoTask extends AsyncTask<JooungoUpdateNotice,Void,String> {
             // 파일올리기
             for (int i = 0; i < info.size();i++ ){
 
-                String filepath = String.valueOf(System.currentTimeMillis()) + ".jpg"; // 서버에 저장하기 위해 현재 시간을 ms초로 바꾼값+jpg 라고 명시적 이름을 지어줌
+                String filepath = "jooungo"+String.valueOf(System.currentTimeMillis()) + ".jpg"; // 서버에 저장하기 위해 현재 시간을 ms초로 바꾼값+jpg 라고 명시적 이름을 지어줌
                 ByteArrayInputStream mByteInputStream = new ByteArrayInputStream(info.getimg(i)); // 이미지 바이트값을 바이트스트림으로 변환
 
                 int bytesAvailable = mByteInputStream.available(); // 이미지 바이트 크기 가져오기

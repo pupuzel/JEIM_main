@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
+import com.example.jock.jeim_main.Bottom.TimetableActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -202,19 +204,27 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
     /* 바텀바 컨트롤 메소드 */
     public void Bottom(View v){
         switch (v.getId()){
-            case R.id.bottom_gongji :  // 공지 액티비티로 이동
+            case R.id.bottom_gongji :
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
-            case R.id.bottom_home :   // 홈 액티비티로 이동
+            case R.id.bottom_home :
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.bottom_food :
-
+                Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent4);
                 break;
             case R.id.bottom_schedule :
+                Intent intent3 = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(intent3);
 
                 break;
             case R.id.bottom_total :

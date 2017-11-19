@@ -13,11 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.Pref;
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
+import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
 
 
-public class Department_key_none extends AppCompatActivity {
+public class Major_key_none extends AppCompatActivity {
     Button btn_have;
     TextView txt_num;
     AlertDialog.Builder builder;
@@ -26,7 +30,7 @@ public class Department_key_none extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.department_key_none);
+        setContentView(R.layout.major_key_none);
 
         intent = getIntent();
         key_num = intent.getStringExtra("호실");
@@ -40,14 +44,14 @@ public class Department_key_none extends AppCompatActivity {
         btn_have.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                builder = new AlertDialog.Builder(Department_key_none.this);
+                builder = new AlertDialog.Builder(Major_key_none.this);
                 builder.setTitle("키를 소유하시겠습니까?");
-                builder.setMessage("분실시 본인책임에 따릅니다");
+                builder.setMessage("분실시 본인책임이 따릅니다");
                 builder.setPositiveButton("확인",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            result = new Department_key_Task().execute(prefUserid,"null",key_num).get();
+                            result = new Major_key_Task().execute(prefUserid,"null",key_num).get();
                             if(result.equals("success")){
                                 Toast.makeText(getApplicationContext(),"키를 잘관리해주세요",Toast.LENGTH_LONG).show();
                                 finish();
@@ -66,5 +70,33 @@ public class Department_key_none extends AppCompatActivity {
                 builder.show();
             }
         });
+    }
+    /* 바텀바 컨트롤 메소드 */
+    public void Bottom(View v){
+        switch (v.getId()){
+            case R.id.bottom_gongji :
+                Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_home :
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                finish();
+                break;
+            case R.id.bottom_food :
+                Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);
+                startActivity(intent4);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_schedule :
+                Intent intent3 = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(intent3);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_total :
+                break;
+        }
     }
 }

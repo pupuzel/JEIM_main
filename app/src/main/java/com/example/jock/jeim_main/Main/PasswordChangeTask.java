@@ -25,7 +25,7 @@ public class PasswordChangeTask extends AsyncTask<String,Void,String> {
         String pass = params[1];
 
         try {
-            URL url = new URL(Url.Main+Url.Passwordchange);
+            URL url = new URL(Url.Passwordchange);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setUseCaches(false);
             con.setDoOutput(true);

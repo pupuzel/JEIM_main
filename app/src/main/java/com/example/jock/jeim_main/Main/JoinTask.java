@@ -28,6 +28,7 @@ public class JoinTask extends AsyncTask<String,Void,String> {
         String user_email2 = params[6];
         String user_birth = params[7];
         String user_state = params[8];
+        String user_token = params[9];
 
         try {
             URL url = new URL(Url.Join);
@@ -39,7 +40,7 @@ public class JoinTask extends AsyncTask<String,Void,String> {
             OutputStream outputStream = con.getOutputStream();
 
             sendMSG = "user_id="+user_id+"&user_pw="+user_pw+"&user_gender="+user_gender+"&user_name="+user_name+"&user_phone="+
-                       user_phone+"&user_email1="+user_email1+"&user_email2="+user_email2+"&user_birth="+user_birth+"&state="+user_state;
+                       user_phone+"&user_email1="+user_email1+"&user_email2="+user_email2+"&user_birth="+user_birth+"&state="+user_state+"&user_token="+user_token;
             Log.i("회원가입 샌드메세지",sendMSG);
             outputStream.write(sendMSG.getBytes("UTF-8"));
             outputStream.flush();

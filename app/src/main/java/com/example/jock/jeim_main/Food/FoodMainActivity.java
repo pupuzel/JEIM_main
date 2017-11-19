@@ -21,6 +21,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
+import com.example.jock.jeim_main.Bottom.TimetableActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -117,14 +120,16 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.community_food_txt_back :
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
 
             case R.id.community_btn_food_map :   // 지도 버튼
                 Intent intent = new Intent(this,FoodMapActivity.class);
                 intent.putExtra("마커",getMapLocation());
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
                 break;
         }
 
@@ -156,6 +161,7 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(getApplicationContext(),FoodDetailActivity.class);
         intent.putExtra("코드",str);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
     }
 
     /* 체크 박스 버튼 리스너 */
@@ -251,4 +257,32 @@ public class FoodMainActivity extends AppCompatActivity implements View.OnClickL
             }
         }   //onPostExecute finish
     }   //class finish
+    /* 바텀바 컨트롤 메소드 */
+    public void Bottom(View v){
+        switch (v.getId()){
+            case R.id.bottom_gongji :
+                Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_home :
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                finish();
+                break;
+            case R.id.bottom_food :
+                Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);
+                startActivity(intent4);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_schedule :
+                Intent intent3 = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(intent3);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                break;
+            case R.id.bottom_total :
+                break;
+        }
+    }
 }

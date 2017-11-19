@@ -11,7 +11,6 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
@@ -23,21 +22,19 @@ import com.example.jock.jeim_main.R;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.concurrent.ExecutionException;
-
-public class DepartmentActivity extends AppCompatActivity  implements View.OnClickListener{
+public class MajorActivity extends AppCompatActivity  implements View.OnClickListener{
 
     LinearLayout search_view1,search_view2,search_view3;
-    Button btn_news,btn_community,btn_keyadmin;
-    Button btn_key302,btn_key303,btn_key304,btn_key305;
+    Button btn_news,btn_community,btn_keyadmin,btn_board,btn_gongji;
+    Button btn_key;
     TextView txt_back;
     Animation animation;
 
-    String result,prefUsernum;
+    String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.department_main);
+        setContentView(R.layout.major_main);
 
         animation = new AlphaAnimation(0, 1);
         animation.setDuration(1000);
@@ -48,20 +45,19 @@ public class DepartmentActivity extends AppCompatActivity  implements View.OnCli
         txt_back = (TextView) findViewById(R.id.department_btn_back);
         btn_news = (Button) findViewById(R.id.department_btn_news);
         btn_community=(Button)findViewById(R.id.department_btn_community);
+        btn_gongji =(Button) findViewById(R.id.department_btn_gongji);
+        btn_board = (Button) findViewById(R.id.department_btn_board);
         btn_keyadmin=(Button)findViewById(R.id.department_btn_keyadmin);
-        btn_key302 = (Button)findViewById(R.id.department_btn_key302);
-        btn_key303 = (Button)findViewById(R.id.department_btn_key303);
-        btn_key304 = (Button)findViewById(R.id.department_btn_key304);
-        btn_key305 = (Button)findViewById(R.id.department_btn_key305);
+        btn_key = (Button) findViewById(R.id.department_btn_key);
 
         txt_back.setOnClickListener(this);
         btn_news.setOnClickListener(this);
         btn_community.setOnClickListener(this);
+        btn_gongji.setOnClickListener(this);
+        btn_board.setOnClickListener(this);
         btn_keyadmin.setOnClickListener(this);
-        btn_key302.setOnClickListener(this);
-        btn_key303.setOnClickListener(this);
-        btn_key304.setOnClickListener(this);
-        btn_key305.setOnClickListener(this);
+        btn_key.setOnClickListener(this);
+
     }
 
     @Override
@@ -102,81 +98,38 @@ public class DepartmentActivity extends AppCompatActivity  implements View.OnCli
                 }
                 break;
 
-            case R.id.department_btn_key302 :
-                cheak("302");
-                break;
-            case R.id.department_btn_key303 :
-                cheak("303");
-                break;
-            case R.id.department_btn_key304 :
-                cheak("304");
-                break;
-            case R.id.department_btn_key305 :
-                cheak("305");
-                break;
-        }
-    }
-
-    public void cheak(String num){
-        try {
-            Pref.Login = getSharedPreferences("Login", Activity.MODE_PRIVATE);
-            prefUsernum = Pref.Login.getString("회원아이디",null);
-            result = new Department_key_Task().execute("cheak","cheak",num).get();
-
-            JSONArray jsonArray = new JSONArray(result);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-            String key_have_id = jsonObject.getString("소유자학번");
-            String key_have_name = jsonObject.getString("소유자이름");
-            String key_have_phone = jsonObject.getString("소유자번호");
-            String key_apply_id = jsonObject.getString("신청자학번");
-            String key_apply_name = jsonObject.getString("신청자이름");
-
-            if(key_have_id.equals("null")){   // 소유자가 없다면
-                Intent intent = new Intent(getApplicationContext(),Department_key_none.class);
-                intent.putExtra("호실",num);
+            case R.id.department_btn_key :
+                Intent intent = new Intent(getApplicationContext(),Major_key_main.class);
                 startActivity(intent);
-            }else{ // 소유자가 있다면
+                break;
 
-                if(key_have_id.equals(prefUsernum)){ // 소유자가 나라면
-                    Intent intent = new Intent(getApplicationContext(),Department_key_have.class);
-                    intent.putExtra("호실",num);
-                    if(key_apply_name != "null"){
-                        intent.putExtra("신청자이름",key_apply_name);
-                    }
-                    startActivity(intent);
+            case R.id.department_btn_board :
+                startActivity(new Intent(getApplicationContext(),Major_board_activity.class));
+                break;
 
-                }else{  // 소유자가 내가 아니라면
-                    Intent intent = new Intent(getApplicationContext(),Department_key_apply.class);
-                    intent.putExtra("호실",num);
-                    intent.putExtra("소유자이름",key_have_name);
-                    intent.putExtra("소유자번호",key_have_phone);
-                    intent.putExtra("신청자학번",key_apply_id);
-                    startActivity(intent);
-                }
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            case R.id.department_btn_gongji :
+                startActivity(new Intent(getApplicationContext(),Major_gongji_activity.class));
         }
     }
-
     /* 바텀바 컨트롤 메소드 */
     public void Bottom(View v){
         switch (v.getId()){
             case R.id.bottom_gongji :
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.bottom_home :
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.bottom_food :
                 Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);
+                intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent4);
                 break;
             case R.id.bottom_schedule :

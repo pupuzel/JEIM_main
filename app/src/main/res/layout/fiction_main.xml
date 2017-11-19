@@ -36,93 +36,96 @@
 
     </RelativeLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="5">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_whitealpha">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_whitealpha"
+            android:padding="10dp">
+
             <EditText
                 android:id="@+id/fiction_edit_content"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="100dp"
-                android:maxLength="50"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_white_bd_gray_radius"
+                android:gravity="center|left"
                 android:hint="50자 이내로 입력하여 주세요."
-                android:gravity="top"
-                android:background="@drawable/bg_white_bd_gray_radius"/>
+                android:maxLength="50"
+                android:paddingBottom="90dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_whitealpha"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <Button
                 android:id="@+id/fiction_btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="right|center"
                 android:layout_marginRight="80dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/click_cencle"
+                android:gravity="center"
                 android:text="취소"
                 android:textSize="15dp" />
 
             <Button
                 android:id="@+id/fiction_btn_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="left|center"
                 android:layout_marginLeft="80dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/click_check"
+                android:gravity="center"
                 android:text="등록"
                 android:textColor="#ffffff"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </LinearLayout>
-
         <View
-            android:layout_width="wrap_content"
-            android:layout_height="0.5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_centerInParent="true"
             android:layout_gravity="top"
-            android:background="@color/gray" />
+            android:layout_weight="1"
+            android:background="@color/navyblue" />
     </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4">
+        android:layout_weight="1">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/fiction_swipe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@+id/fiction_progressbar"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/bg_whitealpha">
+            android:background="@drawable/bg_whitegray">
 
             <ListView
                 android:id="@+id/fiction_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="#ffffff"
-                android:dividerHeight="10dp"
                 android:layoutAnimation="@anim/anim_layout_controller"
                 android:persistentDrawingCache="animation|scrolling"></ListView>
         </android.support.v4.widget.SwipeRefreshLayout>

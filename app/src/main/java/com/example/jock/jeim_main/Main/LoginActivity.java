@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Pref.Token = getSharedPreferences("Token", Activity.MODE_PRIVATE);
         btnjoin = (TextView)findViewById(R.id.btnjoin);   //회원가입 액티비티로 이동하는 버튼
         btnlogin = (Button)findViewById(R.id.btnlogin);  // 로그인 버튼
 
@@ -70,9 +71,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String results;
         String id = idtext.getText().toString();  // 아이디 텍스트창 값을 스트링 변수에 저장
         String pw = pwtext.getText().toString();  // 암호 텍스트창 값을 스트링 변수에 저장
+        String user_token = Pref.Token.getString("토큰",null);
         try {
             loginAT login = new loginAT();   // 실제 JSP에 통신하기 위해 만든 클래스를 생성
-            results = login.execute(id, pw).get();  // 아이디,암호 값을 클래스에 매개값(id,pw)으로 전송 이후 get()하여 리턴값을 스트링 변수(results)에 저장
+            results = login.execute(id, pw,user_token).get();  // 아이디,암호 값을 클래스에 매개값(id,pw)으로 전송 이후 get()하여 리턴값을 스트링 변수(results)에 저장
             JSONArray jsonArray = new JSONArray(results); // 받은 제이손 배열형식에 리턴값을 제이손Array 생성자 메소드 매개값으로 던져줌
             JSONObject json = jsonArray.getJSONObject(0); // 제이손배열 값을 제이손오브젝 형식으로 변환
             String juserid = json.getString("회원아이디"); // 제이손 값을 파싱하여 스트링 배열에 저장
@@ -124,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // 데이터를 보내기 위해 OutputStreamWriter 생성과 동시에 URL 연결
                 OutputStreamWriter osw = new OutputStreamWriter(httpURLConnection.getOutputStream());
                 // 데이터를 POST 형식으로 스트링 변수에 저장
-                sendMsg = "userid="+strings[0]+"&userpw="+strings[1];
+                sendMsg = "userid="+strings[0]+"&userpw="+strings[1]+"&user_token="+strings[2];
 
                 osw.write(sendMsg);//OutputStreamWriter에 담아 전송
                 osw.flush(); // OutputStreamWriter 초기화

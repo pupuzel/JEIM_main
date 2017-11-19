@@ -2,6 +2,7 @@ package com.example.jock.jeim_main.Food;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,17 +60,20 @@ public class FoodMainAdapter extends BaseAdapter {
         img = (ImageView) v.findViewById(R.id.community_food_listview_imgview);
 
         title.setText(noticeList.get(position).getTitle());
+        title.setTextColor(Color.BLACK);
         adress.setText(noticeList.get(position).getAdress());
+        adress.setTextColor(Color.GRAY);
         group.setText(noticeList.get(position).getGroup());
+        group.setTextColor(Color.GRAY);
         String imgname = noticeList.get(position).getImg();
 
-            Glide.with(context)
-                    .load(Url.Main+Url.FoodTake+imgname)
-                    .error(R.drawable.ic_clear)
-                    //.diskCacheStrategy(DiskCacheStrategy.NONE)
-                    //.skipMemoryCache(true)
-                    .thumbnail(0.1f)
-                    .into(img);
+        Glide.with(context)
+                .load(Url.ImgTake+imgname)
+                .error(R.drawable.ic_clear)
+                //.diskCacheStrategy(DiskCacheStrategy.NONE)
+                //.skipMemoryCache(true)
+                .thumbnail(0.1f)
+                .into(img);
 
         count++;
         return v;

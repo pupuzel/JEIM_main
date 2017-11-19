@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -25,10 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
+import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
+import com.example.jock.jeim_main.Bottom.TimetableActivity;
 import com.example.jock.jeim_main.Main.LoginActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -121,6 +125,7 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                 Intent popup = new Intent(getApplicationContext(), JooungoDetailActivity.class);  // 게시판 자세히 보기 액티비티로 이동
                 popup.putExtra("게시판코드",str); //게시판코드를 가지고 자세히 보기 액티비티로 이동
                 startActivity(popup);  // 이동
+                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
             }
         });
 
@@ -152,19 +157,19 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         final int[] selectedIndex = {0};
         dialog.setTitle("검색 분류를 선택하세요")
-              .setSingleChoiceItems(arraylist, 0, new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
+                .setSingleChoiceItems(arraylist, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         selectedIndex[0] = which;
-                  }
-              })
-              .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialog, int which) {
-                      String selectedValue =  arraylist[selectedIndex[0]];
-                      btnspinner.setText(selectedValue);
-                  }
-              })
+                    }
+                })
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String selectedValue =  arraylist[selectedIndex[0]];
+                        btnspinner.setText(selectedValue);
+                    }
+                })
                 .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -185,9 +190,11 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(getApplicationContext(),"로그인을 해야만 게시글을 작성할수 있습니다.",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
+                    overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 }else{  //로그인이 되어있다면 글작성 액티비티로 이동
                     Intent newboard = new Intent(getApplicationContext(), JooungoNewboardActivity.class);
                     startActivity(newboard);
+                    overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
                 }
                 break;
 
@@ -242,24 +249,28 @@ public class JooungoActivity  extends AppCompatActivity implements View.OnClickL
     /* 바텀바 컨트롤 메소드 */
     public void Bottom(View v){
         switch (v.getId()){
-            case R.id.bottom_gongji :  // 공지 액티비티로 이동
+            case R.id.bottom_gongji :
                 Intent intent = new Intent(getApplicationContext(),GongjiActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
-            case R.id.bottom_home :   // 홈 액티비티로 이동
+            case R.id.bottom_home :
                 Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 finish();
                 break;
             case R.id.bottom_food :
-
+                Intent intent4 = new Intent(getApplicationContext(),StudentfoodActivity.class);
+                startActivity(intent4);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.bottom_schedule :
-
+                Intent intent3 = new Intent(getApplicationContext(), TimetableActivity.class);
+                startActivity(intent3);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.bottom_total :
-
                 break;
         }
     }

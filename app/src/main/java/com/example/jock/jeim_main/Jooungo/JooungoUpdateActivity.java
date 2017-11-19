@@ -289,8 +289,8 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
         } else if(contents.getText().toString().length() == 0) {
             Toast.makeText(getApplicationContext(),"내용을 입력해주세요",Toast.LENGTH_SHORT).show();
         } else  if (group != "0"){
-            mProgress = ProgressDialog.show(this, "서버에 저장하는 중입니다.", "잠시만 기다려 주세요.");
-            mProgress.setCancelable(false);
+            //mProgress = ProgressDialog.show(this, "서버에 저장하는 중입니다.", "잠시만 기다려 주세요.");
+            //mProgress.setCancelable(false);
             new Task(group).start();
         }
 
@@ -322,7 +322,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mProgress.dismiss();
+                       // mProgress.dismiss();
                         Toast.makeText(getApplicationContext(),"게시글 수정이 완료되었습니다.",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -335,7 +335,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mProgress.dismiss();
+                       // mProgress.dismiss();
                         Toast.makeText(getApplicationContext(),"서버저장에 실패함",Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -377,7 +377,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                     }
                     if( (img1.equals("null")) == false){
                         Glide.with(getApplicationContext())
-                                .load(Url.Main + Url.ImgTake +img1)
+                                .load(Url.ImgTake +img1)
                                 .asBitmap()
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
@@ -400,7 +400,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                     }
                     if((img2.equals("null")) == false){
                         Glide.with(getApplicationContext())
-                                .load(Url.Main + Url.ImgTake +img2)
+                                .load(Url.ImgTake +img2)
                                 .asBitmap()
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
@@ -423,7 +423,7 @@ public class JooungoUpdateActivity extends AppCompatActivity implements View.OnC
                     }
                     if((img3.equals("null")) == false){
                         Glide.with(getApplicationContext())
-                                .load(Url.Main + Url.ImgTake +img3)
+                                .load(Url.ImgTake +img3)
                                 .asBitmap()
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)

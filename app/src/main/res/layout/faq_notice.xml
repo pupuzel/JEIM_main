@@ -15,42 +15,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/white">
-            <TextView
-                android:id="@+id/arrow_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/arrowdown"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:visibility="visible"/>
-            <TextView
-                android:id="@+id/arrow_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/arrowup"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:visibility="gone"/>
-
-
-
-            <TextView
-                android:id="@+id/faq_title"
+            android:orientation="horizontal">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:orientation="horizontal"
                 android:background="@color/white"
-                android:padding="10dp"
-                android:text="타이틀 제목을 입력"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center|left"
-                android:layout_marginLeft="10dp"/>
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/faq_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:text="타이틀 제목을 입력"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:gravity="center|left"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/arrow_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/arrowright"
+                    android:layout_gravity="center|left"
+                    android:gravity="left"
+                    android:layout_marginRight="20dp"
+                    android:visibility="visible" />
+                <TextView
+                    android:id="@+id/arrow_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/arrowdown"
+                    android:layout_gravity="center|left"
+                    android:gravity="left"
+                    android:layout_marginRight="20dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
         </LinearLayout>
         <View
             android:layout_width="wrap_content"

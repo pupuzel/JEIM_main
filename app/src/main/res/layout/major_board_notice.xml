@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="top"
+            android:layout_marginRight="3dp"
+            android:background="@color/mainbackground" />
+        <TextView
+            android:id="@+id/major_board_usernm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="작성자 명"
+            android:layout_gravity="center"
+            android:gravity="left|center"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            />
+        <TextView
+            android:id="@+id/major_board_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="게시한 날짜"
+            android:layout_gravity="center"
+            android:textColor="@color/mainbackground"
+            android:background="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="20dp"
+            android:textSize="10dp" />
+
+        <LinearLayout
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp">
+            <TextView
+                android:id="@+id/major_board_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="70dp"
+                android:gravity="left|center"
+                android:padding="10dp"
+                android:textSize="15dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/major_board_imglayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="top"
+            android:layout_marginRight="3dp"
+            android:background="@color/mainbackground"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/goodblack"
+                android:visibility="visible"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/goodcolor"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/freeborard_chat" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

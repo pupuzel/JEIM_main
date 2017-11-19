@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/whitegray"
     android:id="@+id/bottomebar_layout">
@@ -10,17 +11,15 @@
 
     <Button
         android:id="@+id/bottom_food"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:drawableTop="@drawable/ic_footer_food"
         android:onClick="Bottom"
         android:text="학식식단"
         android:textSize="10dp"
         android:textColor="#696969"
-        android:layout_margin="0dp"
-        android:paddingTop="5dp"/>
+        android:layout_weight="1"/>
 
     <Button
         android:onClick="Bottom"
@@ -30,11 +29,9 @@
         android:text="공지사항"
         android:textSize="10dp"
         android:textColor="#696969"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_margin="0dp"
-        android:paddingTop="5dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <Button
         android:onClick="Bottom"
@@ -44,11 +41,9 @@
         android:text="홈"
         android:textSize="10dp"
         android:textColor="#696969"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
     <Button
         android:onClick="Bottom"
@@ -58,11 +53,9 @@
         android:text="시간표"
         android:textSize="10dp"
         android:textColor="#696969"
-        android:layout_width="wrap_content"
-        android:layout_margin="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingTop="5dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
     <Button
         android:onClick="Bottom"
@@ -72,10 +65,8 @@
         android:text="전체서비스"
         android:textSize="10dp"
         android:textColor="#696969"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
 </LinearLayout>
