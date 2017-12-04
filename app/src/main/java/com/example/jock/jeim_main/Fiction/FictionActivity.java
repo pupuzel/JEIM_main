@@ -16,11 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
 import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Bottom.TotalserviceActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -37,6 +39,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
 
     private SwipeRefreshLayout swipe;
     private EditText edit_content;
+    private TextView txt_backhome;
     private Button btn_check,btn_cencle;
     private ListView listView;
     private ProgressBar progressBar;
@@ -61,6 +64,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.fiction_main);
         listView = (ListView) findViewById(R.id.fiction_listview);
         edit_content = (EditText) findViewById(R.id.fiction_edit_content);
+        txt_backhome = (TextView) findViewById(R.id.fiction_homeback);
         swipe = (SwipeRefreshLayout) findViewById(R.id.fiction_swipe);
         btn_check = (Button) findViewById(R.id.fiction_btn_check);
         btn_cencle = (Button) findViewById(R.id.fiction_btn_cancel);
@@ -68,6 +72,7 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
 
         btn_check.setOnClickListener(this);
         btn_cencle.setOnClickListener(this);
+        txt_backhome.setOnClickListener(this);
         swipe.setOnRefreshListener(this);
         shake = AnimationUtils.loadAnimation(this,R.anim.shake);
         onRefresh();
@@ -102,6 +107,10 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.fiction_btn_cancel :
                 edit_content.setText("");
+
+            case R.id.fiction_homeback :
+                onBackPressed();
+                break;
         }
     }
 
@@ -140,6 +149,10 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
             totalpage = totalItemCount;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     private void addItem(String json){
         // 리스트에 다음 데이터를 입력할 동안에 이 메소드가 또 호출되지 않도록 mLockListView 를 true로 설정한다.
@@ -228,7 +241,8 @@ public class FictionActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
             case R.id.bottom_total :
-
+                Intent intent5 = new Intent(getApplicationContext(), TotalserviceActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

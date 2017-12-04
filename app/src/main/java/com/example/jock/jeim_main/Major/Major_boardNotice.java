@@ -7,21 +7,38 @@ import java.util.List;
 
 public class Major_boardNotice {
 
+    private String code;
+    private String reviewcount;
     private String userid;
+    private String usernm;
     private String content;
     private String date;
     private List<String> imglist = new ArrayList<String>();
 
-    public Major_boardNotice(String userid, String usernm, String content, String date, List<String> imglist) {
+    public Major_boardNotice(String code, String userid, String usernm, String content, String date, List<String> imglist, String reviewcount) {
+        this.code = code;
         this.userid = userid;
         this.usernm = usernm;
         this.content = content;
         this.date = date;
         this.imglist = imglist;
+        this.reviewcount = reviewcount;
 
     }
+    public String getReviewcount() {
+        return reviewcount;
+    }
 
-    private String usernm;
+    public void setReviewcount(String reviewcount) {
+        this.reviewcount = reviewcount;
+    }
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getUserid() {
         return userid;

@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
 import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Bottom.TotalserviceActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -41,7 +43,8 @@ public class Major_key_main extends AppCompatActivity implements View.OnClickLis
         department_btn_key304.setOnClickListener(this);
         department_btn_key305.setOnClickListener(this);
 
-        txt_back = (TextView) findViewById(R.id.department_btn_back);
+        txt_back = (TextView) findViewById(R.id.department_homeback);
+        txt_back.setOnClickListener(this);
     }
 
     @Override
@@ -64,50 +67,66 @@ public class Major_key_main extends AppCompatActivity implements View.OnClickLis
             case R.id.department_btn_key305 :
                 cheak("305");
                 break;
+
+            case R.id.department_btn_back :
+                onBackPressed();
+                break;
+
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public void cheak(String num){
         try {
             Pref.Login = getSharedPreferences("Login", Activity.MODE_PRIVATE);
             prefUsernum = Pref.Login.getString("회원아이디",null);
-            result = new Major_key_Task().execute("cheak","cheak",num).get();
 
-            JSONArray jsonArray = new JSONArray(result);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-            String key_state = jsonObject.getString("키상태");
-            String key_have_id = jsonObject.getString("소유자학번");
-            String key_have_name = jsonObject.getString("소유자이름");
-            String key_have_phone = jsonObject.getString("소유자번호");
-            String key_apply_id = jsonObject.getString("신청자학번");
-            String key_apply_name = jsonObject.getString("신청자이름");
+            if(prefUsernum != null){
 
-            if(key_state.equals("1")){   // 과사에있다면
-                Intent intent = new Intent(getApplicationContext(),Major_key_none.class);
-                intent.putExtra("호실",num);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
-            }else if(key_state.equals("0")){ // 소유자가 있다면
+                result = new Major_key_Task().execute("cheak","cheak",num).get();
 
-                if(key_have_id.equals(prefUsernum)){ // 소유자가 나라면
-                    Intent intent = new Intent(getApplicationContext(),Major_key_have.class);
+                JSONArray jsonArray = new JSONArray(result);
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                String key_state = jsonObject.getString("키상태");
+                String key_have_id = jsonObject.getString("소유자학번");
+                String key_have_name = jsonObject.getString("소유자이름");
+                String key_have_phone = jsonObject.getString("소유자번호");
+                String key_apply_id = jsonObject.getString("신청자학번");
+                String key_apply_name = jsonObject.getString("신청자이름");
+
+                if(key_state.equals("1")){   // 과사에있다면
+                    Intent intent = new Intent(getApplicationContext(),Major_key_none.class);
                     intent.putExtra("호실",num);
-                    if(key_apply_name != "null"){
-                        intent.putExtra("신청자이름",key_apply_name);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                }else if(key_state.equals("0")){ // 소유자가 있다면
+
+                    if(key_have_id.equals(prefUsernum)){ // 소유자가 나라면
+                        Intent intent = new Intent(getApplicationContext(),Major_key_have.class);
+                        intent.putExtra("호실",num);
+                        if(key_apply_name != "null"){
+                            intent.putExtra("신청자이름",key_apply_name);
+                            intent.putExtra("신청자학번",key_apply_id);
+                        }
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
+                    }else{  // 소유자가 내가 아니라면
+                        Intent intent = new Intent(getApplicationContext(),Major_key_apply.class);
+                        intent.putExtra("호실",num);
+                        intent.putExtra("소유자이름",key_have_name);
+                        intent.putExtra("소유자번호",key_have_phone);
                         intent.putExtra("신청자학번",key_apply_id);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
                     }
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
-                }else{  // 소유자가 내가 아니라면
-                    Intent intent = new Intent(getApplicationContext(),Major_key_apply.class);
-                    intent.putExtra("호실",num);
-                    intent.putExtra("소유자이름",key_have_name);
-                    intent.putExtra("소유자번호",key_have_phone);
-                    intent.putExtra("신청자학번",key_apply_id);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
                 }
+            }else {
+                Toast.makeText(getApplicationContext(),"학생만 이용가능한 서비스입니다 \n로그인을 해주세요",Toast.LENGTH_LONG).show();
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,6 +157,8 @@ public class Major_key_main extends AppCompatActivity implements View.OnClickLis
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 break;
             case R.id.bottom_total :
+                Intent intent5 = new Intent(getApplicationContext(), TotalserviceActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

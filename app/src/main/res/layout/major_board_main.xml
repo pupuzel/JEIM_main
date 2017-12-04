@@ -15,29 +15,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/textView9"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
-            android:drawableLeft="@drawable/ic_arrow_back_white"
-            android:drawableStart="@drawable/ic_arrow_back_white"
+            android:drawableTop="@drawable/ic_arrow_back_white"
             android:gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
             android:layout_margin="10dp"
             android:text="자유게시판"
             android:textColor="#ffffff"
             android:textSize="25dp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/department_board_myboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/user"
+            android:text=""
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/department_board_newboard"
+            android:layout_marginRight="15dp"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/department_board_newboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/newboard1"
+            android:drawableTop="@drawable/newboard1"
+            android:text=""
+            android:textColor="@color/white"
             android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -53,17 +66,17 @@
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/department_board_swipe"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_above="@+id/department_board_progressbar"
             android:layout_alignParentTop="true"
             android:background="@drawable/bg_whitealpha">
 
             <ListView
                 android:id="@+id/department_board_listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#ffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:divider="@color/mainbackground"
                 android:dividerHeight="10dp"
                 android:layoutAnimation="@anim/anim_layout_controller"
                 android:persistentDrawingCache="animation|scrolling"/>

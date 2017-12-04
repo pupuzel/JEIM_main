@@ -9,15 +9,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF0000">
+        android:background="@color/navyblue">
         <TextView
-            android:id="@+id/gongji_homeback"
+            android:id="@+id/bottom_gongji_back"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:drawableStart="@drawable/ic_arrow_back_black"
-            android:drawableLeft="@drawable/ic_arrow_back_black"/>
+            android:drawableStart="@drawable/ic_arrow_back_white"
+            android:drawableLeft="@drawable/ic_arrow_back_white"/>
         <TextView
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
@@ -31,15 +31,28 @@
 
 
 
-    <!-- 게시판 리스트뷰 -->
-    <ListView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:dividerHeight="10dp"
-        android:divider="#ffffff">
+        android:layout_weight="1">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/bottom_gongji_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/fiction_progressbar"
+            android:background="@drawable/bg_whitegray">
+                <ListView
+                    android:id="@+id/bottom_gongji_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_white_bd_gray"
+                    android:persistentDrawingCache="animation|scrolling"
+                    android:layoutAnimation="@anim/anim_layout_controller"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
 
-    </ListView>
 
 
     <!-- 바텀 부분 -->
@@ -47,10 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <include
-            layout="@layout/bottom_bar"
-            />
-
+        <include layout="@layout/bottom_bar"/>
     </LinearLayout>
 
 </LinearLayout>

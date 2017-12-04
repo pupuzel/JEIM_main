@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/major_board_review_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이름"
@@ -40,6 +41,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"/>
             <TextView
+                android:id="@+id/major_board_review_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2013-10-10"
@@ -48,6 +50,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/major_board_review_content"
             android:layout_marginRight="5dp"
             android:padding="2dp"
             android:layout_width="wrap_content"

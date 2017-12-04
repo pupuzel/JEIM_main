@@ -2,20 +2,28 @@ package com.example.jock.jeim_main.Food;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.R;
 import com.example.jock.jeim_main.Another.Url;
 
@@ -31,12 +39,17 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     private final int FRAGMENT3 = 3;
 
     private Button bt_tab1, bt_tab2,bt_tab3;
-    private TextView txt_back,txt_call;
+    private TextView txt_back,txt_call,txt_star;
     private ImageView Mainimg;
     private Intent intent;
 
     private FoodTab1_Task task;
     private ProgressDialog mProgress;
+
+    private Animation animation;
+
+    private Drawable yellowstarstart;
+    private Drawable starstart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +61,17 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         bt_tab3 = (Button)findViewById(R.id.community_food_detail_btn_tab3);
         txt_back = (TextView) findViewById(R.id.community_food_detail_txt_back);
         txt_call =(TextView) findViewById(R.id.call_call);
+        txt_star = (TextView) findViewById(R.id.community_food_detail_txt_star);
         Mainimg = (ImageView) findViewById(R.id.community_food_detail_img);
 
         // 탭 버튼에 대한 리스너 연결
         bt_tab1.setOnClickListener(this);
         bt_tab2.setOnClickListener(this);
         bt_tab3.setOnClickListener(this);
+
         txt_back.setOnClickListener(this);
         txt_call.setOnClickListener(this);
+        txt_star.setOnClickListener(this);
 
         intent = getIntent();
         code = intent.getStringExtra("코드");
@@ -86,9 +102,32 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.call_call:
+                animation = new AlphaAnimation(0.5f, 1.2f);
+                animation.setDuration(2500);
+                txt_call.startAnimation(animation);
+
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+phone));
                 startActivity(intent);
+                break;
+
+            case R.id.community_food_detail_txt_star :
+
+
+                if(ischeackStar() == true){  // 즐찾이 이미되있다면
+                    SharedPreferences.Editor editor = Pref.Foodstar.edit();
+                    editor.putBoolean(code,false);
+                    editor.commit();
+                    txt_star.setCompoundDrawablesWithIntrinsicBounds(starstart,null,null,null);
+
+                }else{  // 즐찾 안되있다면
+
+                    SharedPreferences.Editor editor = Pref.Foodstar.edit();
+                    editor.putBoolean(code,true);
+                    editor.commit();
+                    txt_star.setCompoundDrawablesWithIntrinsicBounds(yellowstarstart,null,null,null);
+                    Toast.makeText(getApplicationContext(),"즐겨찾기 추가",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -109,6 +148,13 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                 foodTab1.setArguments(bundle);
                 transaction.replace(R.id.fragment_container, foodTab1);
                 transaction.commit();
+                bt_tab1.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_naby_border));
+                bt_tab2.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+                bt_tab3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+
+                bt_tab1.setTextColor(ContextCompat.getColor(this,R.color.white));
+                bt_tab2.setTextColor(ContextCompat.getColor(this,R.color.black));
+                bt_tab3.setTextColor(ContextCompat.getColor(this,R.color.black));
                 break;
 
             case 2:
@@ -118,6 +164,13 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                 foodTab2.setArguments(bundle2);
                 transaction.replace(R.id.fragment_container, foodTab2);
                 transaction.commit();
+                bt_tab1.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+                bt_tab2.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_naby_border));
+                bt_tab3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+
+                bt_tab1.setTextColor(ContextCompat.getColor(this,R.color.black));
+                bt_tab2.setTextColor(ContextCompat.getColor(this,R.color.white));
+                bt_tab3.setTextColor(ContextCompat.getColor(this,R.color.black));
                 break;
 
             case 3:
@@ -127,8 +180,29 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                 foodTab3.setArguments(bundle3);
                 transaction.replace(R.id.fragment_container, foodTab3);
                 transaction.commit();
+                bt_tab1.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+                bt_tab2.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_gray_border));
+                bt_tab3.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.bg_naby_border));
+
+                bt_tab1.setTextColor(ContextCompat.getColor(this,R.color.black));
+                bt_tab2.setTextColor(ContextCompat.getColor(this,R.color.black));
+                bt_tab3.setTextColor(ContextCompat.getColor(this,R.color.white));
                 break;
         }
+    }
+
+    public boolean ischeackStar(){
+
+        Pref.Foodstar = getSharedPreferences("star", Activity.MODE_PRIVATE);
+        boolean ischeak = Pref.Foodstar.getBoolean(code,false);
+
+        if(ischeak == true){  // 즐찾이 이미되있다면
+            txt_star.setCompoundDrawablesWithIntrinsicBounds(yellowstarstart,null,null,null);
+        }else{  // 즐찾 안되있다면
+            txt_star.setCompoundDrawablesWithIntrinsicBounds(starstart,null,null,null);
+        }
+
+        return ischeak;
     }
 
     class Task extends AsyncTask<String,Void,String>{
@@ -167,6 +241,10 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         @Override
         protected void onPostExecute(String imgname) {
             super.onPostExecute(imgname);
+
+            yellowstarstart = ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_yellowstar);
+            starstart = ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_whitestar);
+            ischeackStar();
 
             Glide.with(getApplicationContext())
                  .load(Url.ImgTake+imgname)

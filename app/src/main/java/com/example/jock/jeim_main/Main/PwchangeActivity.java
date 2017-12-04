@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jock.jeim_main.Another.Url;
@@ -27,6 +28,7 @@ public class PwchangeActivity extends AppCompatActivity implements View.OnClickL
 
     String userid,current_pass,chage_pass;
     EditText edit_current,edit_pass1,edit_pass2;
+    TextView txt_back;
     Button btn_check;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +37,10 @@ public class PwchangeActivity extends AppCompatActivity implements View.OnClickL
         edit_current = (EditText) findViewById(R.id.passfind_edit_mypass);
         edit_pass1 = (EditText) findViewById(R.id.passfind_edit_chagepass);
         edit_pass2 = (EditText) findViewById(R.id.passfind_edit_chagepass_check);
+        txt_back = (TextView) findViewById(R.id.password_txt_back);
         btn_check = (Button) findViewById(R.id.passfind_btn_check);
+
+        txt_back.setOnClickListener(this);
         btn_check.setOnClickListener(this);
         Intent intent = getIntent();
         userid = intent.getStringExtra("회원아이디");
@@ -69,6 +74,15 @@ public class PwchangeActivity extends AppCompatActivity implements View.OnClickL
                 finish();
             }
         }
+
+        if(v.getId() == R.id.password_txt_back){
+            onBackPressed();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     public void getPass(String jsonresult){

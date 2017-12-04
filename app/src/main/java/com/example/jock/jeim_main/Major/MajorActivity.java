@@ -16,6 +16,7 @@ import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
 import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Bottom.TotalserviceActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -28,7 +29,7 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
     Button btn_news,btn_community,btn_keyadmin,btn_board,btn_gongji;
     Button btn_key;
     TextView txt_back;
-    Animation animation;
+    Animation animation1,animation2,animation3;
 
     String result;
     @Override
@@ -36,8 +37,14 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.major_main);
 
-        animation = new AlphaAnimation(0, 1);
-        animation.setDuration(1000);
+        animation1 = new AlphaAnimation(0, 1);
+        animation1.setDuration(1000);
+
+        animation2 = new AlphaAnimation(0, 1);
+        animation2.setDuration(1000);
+
+        animation3 = new AlphaAnimation(0, 1);
+        animation3.setDuration(1000);
 
         search_view1=(LinearLayout)findViewById(R.id.search_view1);
         search_view2=(LinearLayout)findViewById(R.id.search_view2);
@@ -71,7 +78,7 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
 
             case R.id.department_btn_news:
                 //레이아웃 보이기기
-                search_view1.setAnimation(animation);
+                search_view1.setAnimation(animation1);
                 if(search_view1.getVisibility() == View.GONE) {
                     search_view1.setVisibility(View.VISIBLE);
                 }else if(search_view1.getVisibility()==View.VISIBLE){
@@ -80,7 +87,7 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
                 break;
 
             case R.id.department_btn_community:
-                search_view2.setAnimation(animation);
+                search_view2.setAnimation(animation2);
                 //레이아웃 보이기기
                 if(search_view2.getVisibility() == View.GONE){
                     search_view2.setVisibility(View.VISIBLE);
@@ -90,7 +97,7 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
                 break;
 
             case R.id.department_btn_keyadmin:
-                search_view3.setAnimation(animation);
+                search_view3.setAnimation(animation3);
                 if(search_view3.getVisibility() == View.GONE){
                     search_view3.setVisibility(View.VISIBLE);
                 }else if(search_view3.getVisibility()==View.VISIBLE){
@@ -138,7 +145,8 @@ public class MajorActivity extends AppCompatActivity  implements View.OnClickLis
 
                 break;
             case R.id.bottom_total :
-
+                Intent intent5 = new Intent(getApplicationContext(), TotalserviceActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

@@ -60,14 +60,15 @@
                 android:paddingLeft="10dp"
                 android:text="   학과 소식"
                 android:textColor="#ffffff"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:layoutAnimation="@anim/anim_layout_controller"/>
 
             <LinearLayout
                 android:id="@+id/search_view1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/department_btn_gongji"
@@ -79,7 +80,8 @@
                     android:paddingLeft="50dp"
                     android:text="공지사항"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layoutAnimation="@anim/anim_layout_controller"/>
 
 
             </LinearLayout>
@@ -101,7 +103,8 @@
                 android:paddingLeft="10dp"
                 android:text="   커뮤니티"
                 android:textColor="#ffffff"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:layoutAnimation="@anim/anim_layout_controller"/>
 
 
             <LinearLayout
@@ -109,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/department_btn_board"
@@ -121,7 +124,8 @@
                     android:paddingLeft="50dp"
                     android:text="자유 게시판"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layoutAnimation="@anim/anim_layout_controller"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -143,14 +147,15 @@
                 android:paddingLeft="10dp"
                 android:text="   열쇠 수불 대장"
                 android:textColor="#ffffff"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:layoutAnimation="@anim/anim_layout_controller"/>
 
             <LinearLayout
                 android:id="@+id/search_view3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
                 <Button
                     android:id="@+id/department_btn_key"
                     android:layout_width="match_parent"
@@ -161,7 +166,8 @@
                     android:paddingLeft="50dp"
                     android:text="열쇠 관리"
                     android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:layoutAnimation="@anim/anim_layout_controller"/>
             </LinearLayout>
 
         </LinearLayout>

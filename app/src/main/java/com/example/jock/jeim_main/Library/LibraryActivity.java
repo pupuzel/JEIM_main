@@ -1,10 +1,12 @@
 package com.example.jock.jeim_main.Library;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,10 +20,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
 import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Bottom.TotalserviceActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.R;
 
@@ -36,7 +40,7 @@ import java.util.List;
 public class LibraryActivity extends AppCompatActivity implements AbsListView.OnScrollListener,
         View.OnClickListener,TextView.OnEditorActionListener{
 
-    private Spinner spinner;
+    private Button spinner;
     private ArrayAdapter Spinneradapter;
     private EditText edit_library_search;
     private TextView txt_back;
@@ -58,9 +62,7 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
         setContentView(R.layout.library_main);
 
         // 검색 분류 부분 스피너 가져오기
-        spinner = (Spinner)findViewById(R.id.Library_search_spinner);
-        Spinneradapter = ArrayAdapter.createFromResource(this, R.array.Library,android.R.layout.simple_spinner_item);
-        spinner.setAdapter(Spinneradapter);
+        spinner = (Button) findViewById(R.id.Library_search_spinner);
 
         // 각각 위젯들 find 연결시켜주기
         listView = (ListView) findViewById(R.id.Library_listview) ;
@@ -73,6 +75,7 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
         edit_library_search.setImeOptions(EditorInfo.IME_ACTION_DONE);
         edit_library_search.setOnEditorActionListener(this);
         txt_back.setOnClickListener(this);
+        spinner.setOnClickListener(this);
 
     }
 
@@ -86,6 +89,9 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
             case R.id.Library_txt_back :
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 finish();
+                break;
+            case R.id.Library_search_spinner :
+                showChoiceDialog();
                 break;
         }
 
@@ -181,16 +187,49 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
 
     private void search(){
         editvalue = edit_library_search.getText().toString();
-        groupvalue = spinner.getSelectedItem().toString();
+        groupvalue = spinner.getText().toString();
         InputMethodManager immhide = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);  // 키패드 입력창 설정
         immhide.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);  // 키패드 입력창 보여주기 or 숨겨주기
 
         try {
-            result = new LibraryTask().execute(editvalue,groupvalue,String.valueOf(OFFSET),null).get();
-            setText(result);
+            if(editvalue.equals("") || editvalue.length() == 0){
+                Toast.makeText(getApplicationContext(),"검색 내용을 입력해주세요",Toast.LENGTH_SHORT).show();
+            }else if(groupvalue.equals("선택")){
+                Toast.makeText(getApplicationContext(),"검색 분류를 선택해주세요",Toast.LENGTH_SHORT).show();
+            }else{
+                result = new LibraryTask().execute(editvalue,groupvalue,String.valueOf(OFFSET),null).get();
+                setText(result);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void showChoiceDialog(){
+        final String[] arraylist = getResources().getStringArray(R.array.Library);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        final int[] selectedIndex = {0};
+        dialog.setTitle("검색 분류를 선택하세요")
+                .setSingleChoiceItems(arraylist, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedIndex[0] = which;
+                    }
+                })
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String selectedValue =  arraylist[selectedIndex[0]];
+                        spinner.setText(selectedValue);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setCancelable(false).create().show();
     }
 
     /* 바텀바 컨트롤 메소드 */
@@ -220,7 +259,8 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
 
                 break;
             case R.id.bottom_total :
-
+                Intent intent5 = new Intent(getApplicationContext(), TotalserviceActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

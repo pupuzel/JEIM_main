@@ -65,13 +65,13 @@
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_calling"
             android:drawableLeft="@drawable/ic_calling"/>
         <TextView
+            android:id="@+id/community_food_detail_txt_star"
             android:layout_marginLeft="10dp"
             android:background="@drawable/bg_white_bd_black_radius"
             android:text="   즐겨찾기"

@@ -57,15 +57,16 @@
                         android:id="@+id/Join_edit_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@color/whitegray"
                         android:drawableLeft="@drawable/ic_logni_person"
                         android:drawableStart="@drawable/ic_logni_person"
                         android:hint="학번(아이디)"
                         android:maxLength="10"
                         android:padding="10dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
-                        android:layout_weight="1" />
+                        android:textColorHint="@color/gray" />
 
                     <Button
                         android:id="@+id/Join_btn_student_check"
@@ -81,6 +82,7 @@
 
                 <!--  비밀번호   -->
                 <EditText
+                    android:singleLine="true"
                     android:id="@+id/Join_edit_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
                     android:textColorHint="@color/gray" />
 
                 <EditText
+                    android:singleLine="true"
                     android:id="@+id/Join_edit_password_check"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -150,6 +153,7 @@
 
                 <!-- 이름 입력 -->
                 <EditText
+                    android:singleLine="true"
                     android:id="@+id/Join_edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -162,6 +166,7 @@
                     android:textColorHint="@color/gray" />
                 <!-- 핸드폰 번호 입력 -->
                 <EditText
+                    android:singleLine="true"
                     android:id="@+id/Join_edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -179,6 +184,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:singleLine="true"
                         android:id="@+id/Join_edit_email1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -197,6 +203,7 @@
                         android:textSize="20dp" />
 
                     <EditText
+                        android:singleLine="true"
                         android:id="@+id/Join_edit_email2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -215,6 +222,7 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:singleLine="true"
                         android:id="@+id/Join_edit_year"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -234,6 +242,7 @@
                         android:textSize="20dp" />
 
                     <EditText
+                        android:singleLine="true"
                         android:id="@+id/Join_edit_month"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -253,6 +262,7 @@
                         android:textSize="20dp" />
 
                     <EditText
+                        android:singleLine="true"
                         android:id="@+id/Join_edit_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

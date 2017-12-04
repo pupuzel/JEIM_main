@@ -13,6 +13,7 @@ import com.example.jock.jeim_main.R;
 public class Major_gongji_activity extends AppCompatActivity {
 
     WebView webView;
+    String gongji = "https://dep.jeiu.ac.kr/CI/community/list.asp?BoardID=00088";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,6 @@ public class Major_gongji_activity extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
         webView.setInitialScale(1);
-        webView.loadUrl(Url.gongji);
+        webView.loadUrl(gongji);
     }
 }

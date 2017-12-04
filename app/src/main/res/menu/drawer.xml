@@ -19,21 +19,19 @@
             android:icon="@drawable/ic_drawer_content"
             android:visible="true"
             android:title="정보 수정" />
-        <item
+<!--        <item
             android:id="@+id/drawer_myboard"
             android:icon="@drawable/ic_newboard"
             android:visible="true"
-            android:title="내가 쓴글" />
+            android:title="내가 쓴글" />-->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="컴퓨터정보과">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send" />
+                android:title="버전 1.0" />
+
         </menu>
     </item>
 

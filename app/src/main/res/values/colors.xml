@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF4848</color>
-    <color name="navyblue">#263646</color>
+    <color name="navyblue2">#263646</color>
+    <color name="navyblue">#0a1d2d</color>
+    <color name="lodingbg">#0a1d2d</color>
     <color name="colorAccent">#FF4081</color>
     <color name="actionbar">#f15f5f</color>
     <color name="jeiuback">#FF4848</color>
@@ -12,6 +14,7 @@
     <color name="white">#ffffff</color>
     <color name="navy_2">#445599</color>
     <color name="black">#000000</color>
+    <color name="black2">#6C6C6C</color>
     <color name="gray">#4000</color>
     <color name="grayAlpha">#ffeeeeee</color>
     <color name="whitegray">#aaeeeeee</color>

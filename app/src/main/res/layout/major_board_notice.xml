@@ -9,8 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -18,51 +19,53 @@
             android:layout_gravity="top"
             android:layout_marginRight="3dp"
             android:background="@color/mainbackground" />
+
         <TextView
             android:id="@+id/major_board_usernm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="작성자 명"
             android:layout_gravity="center"
+            android:background="@color/white"
             android:gravity="left|center"
             android:padding="5dp"
+            android:text="작성자 명"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="17dp"
-            />
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/major_board_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="게시한 날짜"
-            android:layout_gravity="center"
-            android:textColor="@color/mainbackground"
-            android:background="@color/white"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@color/white"
             android:paddingLeft="20dp"
+            android:text="게시한 날짜"
+            android:textColor="@color/mainbackground"
             android:textSize="10dp" />
 
         <LinearLayout
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:paddingBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:background="@color/white"
             android:orientation="vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp">
+            android:paddingBottom="5dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
+
             <TextView
                 android:id="@+id/major_board_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="70dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="left|center"
+                android:minHeight="70dp"
                 android:padding="10dp"
-                android:textSize="15dp"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="15dp" />
 
             <LinearLayout
                 android:id="@+id/major_board_imglayout"
@@ -70,48 +73,38 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="top"
-            android:layout_marginRight="3dp"
-            android:background="@color/mainbackground"
-            android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:padding="5dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/major_board__txt_review"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:background="@drawable/goodblack"
-                android:visibility="visible"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:background="@drawable/goodcolor"
-                android:visibility="gone"/>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/major_board__txt_newreview"
+                android:text="댓글 0개"
+                android:textColor="@color/navy"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/major_board__txt_newreview"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/freeborard_chat" />
-
-        </LinearLayout>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp"
+                android:text="댓글 보기"
+                android:textColor="@color/navy"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

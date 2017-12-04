@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Jooungo.JooungoDetailActivity;
 import com.example.jock.jeim_main.Main.MainActivity;
 import com.example.jock.jeim_main.Major.Major_key_main;
@@ -20,7 +21,7 @@ import org.json.JSONObject;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private JSONObject jsonObject;
-    private String group,code,name;
+    private String group,code,name,title,content;
     private Intent intent;
     private NotificationCompat.Builder  notificationBuilder = new NotificationCompat.Builder(this);
 
@@ -42,12 +43,26 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 notificationBuilder.setContentTitle("중고장터 댓글알림")
                                    .setContentText(name+"님이 댓글을 다셨습니다.");
             }else if(group.equals("key")){
-                Log.i("즐즐즐","앙앙앙");
+
                 code = jsonObject.getString("code");
                 name = jsonObject.getString("name");
                 intent = new Intent(this, Major_key_main.class);
                 notificationBuilder.setContentTitle("열쇠 수불대장 알림")
                         .setContentText(name+"님이 "+code+"호 인수신청 하였습니다.");
+            }else if(group.equals("notice_dep")){
+
+                title = jsonObject.getString("notice_title");
+                content = jsonObject.getString("notice_content");
+                intent = new Intent(this, GongjiActivity.class);
+                notificationBuilder.setContentTitle(title)
+                        .setContentText(content);
+            }else if(group.equals("total")){
+
+                title = jsonObject.getString("title");
+                content = jsonObject.getString("content");
+                intent = new Intent(this, MainActivity.class);
+                notificationBuilder.setContentTitle(title)
+                        .setContentText(content);
             }
         }catch (Exception e){ e.printStackTrace(); }
 

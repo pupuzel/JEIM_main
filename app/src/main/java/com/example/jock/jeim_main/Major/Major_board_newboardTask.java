@@ -134,6 +134,5 @@ public class Major_board_newboardTask extends AsyncTask<Major_board_newboardNoti
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-
     }
 }

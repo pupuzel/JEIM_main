@@ -24,6 +24,7 @@ import com.example.jock.jeim_main.Another.Pref;
 import com.example.jock.jeim_main.Bottom.GongjiActivity;
 import com.example.jock.jeim_main.Bottom.StudentfoodActivity;
 import com.example.jock.jeim_main.Bottom.TimetableActivity;
+import com.example.jock.jeim_main.Bottom.TotalserviceActivity;
 import com.example.jock.jeim_main.Bus.BusActivity;
 import com.example.jock.jeim_main.FAQ.FAQActivity;
 import com.example.jock.jeim_main.Fiction.FictionActivity;
@@ -286,10 +287,7 @@ public class MainActivity extends AppCompatActivity implements
                 //String msg = getResetTime(diifValue);
                 //Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
             }
-
-
         }
-
     }
 
 /*    public String getResetTime(long cnttime){
@@ -322,7 +320,8 @@ public class MainActivity extends AppCompatActivity implements
 
                 break;
             case R.id.bottom_total :
-
+                Intent intent5 = new Intent(getApplicationContext(), TotalserviceActivity.class);
+                startActivity(intent5);
                 break;
         }
     }

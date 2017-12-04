@@ -44,7 +44,6 @@
     </string-array>
 
     <string-array name="Library">
-        <item>분류 선택▼</item>
         <item>책이름</item>
         <item>저자</item>
         <item>출판사</item>

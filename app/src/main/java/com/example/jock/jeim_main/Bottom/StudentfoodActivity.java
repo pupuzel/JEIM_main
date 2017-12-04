@@ -24,8 +24,8 @@ public class StudentfoodActivity extends AppCompatActivity implements View.OnCli
     private List<StudentFoodNotice> NoticeList  = new ArrayList<StudentFoodNotice>();
     private StudentFoodAdapter adapter;
     private Context context;
-    private final String firstdate = "2017-09-21";
-    private final String lastdate = "2017-09-28";
+    private final String firstdate = "2017-11-20";
+    private final String lastdate = "2017-11-24";
     private TextView txt_back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

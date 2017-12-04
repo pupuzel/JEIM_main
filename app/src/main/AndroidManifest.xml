@@ -34,13 +34,17 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Main.MainActivity"  android:label="재능마당">
+        <activity android:name=".Main.MainLodingActivity"
+            android:label="재능마당"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Main.MainActivity" android:label="재능마당"/>
         <activity android:name=".Main.JoinActivity"  android:label="JEIUM 회원가입" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Main.CamaraActivity"/>
         <activity android:name=".Main.LoginActivity" />
@@ -50,6 +54,7 @@
         <activity android:name=".Jooungo.JooungoDetailActivity"/>
         <activity android:name=".FAQ.FAQActivity"/>
         <activity android:name=".Bottom.GongjiActivity"/>
+        <activity android:name=".Bottom.GongjiDetailActivity"/>
         <activity android:name=".Jooungo.JooungoUpdateActivity"/>
         <activity android:name=".Major.MajorActivity"/>
         <activity android:name=".Major.Major_key_none"/>
@@ -57,8 +62,9 @@
         <activity android:name=".Major.Major_key_apply"/>
         <activity android:name=".Major.Major_key_main"/>
         <activity android:name=".Major.Major_board_activity"/>
-        <activity android:name=".Major.Major_board_newboard" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Major.Major_board_newboard" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"/>
         <activity android:name=".Major.Major_gongji_activity"/>
+        <activity android:name=".Major.Major_board_review" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Food.FoodMainActivity"/>
         <activity android:name=".Food.FoodDetailActivity"/>
         <activity android:name=".Food.FoodMapActivity"/>
@@ -69,6 +75,7 @@
         <activity android:name=".Main.PwchangeActivity"/>
         <activity android:name=".Main.IntroActivity"/>
         <activity android:name=".Bottom.StudentfoodActivity"/>
+        <activity android:name=".Bottom.TotalserviceActivity"/>
 
 
     </application>
