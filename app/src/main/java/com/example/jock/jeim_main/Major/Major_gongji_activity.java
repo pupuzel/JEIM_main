@@ -1,7 +1,7 @@
 package com.example.jock.jeim_main.Major;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -15,7 +15,7 @@ public class Major_gongji_activity extends AppCompatActivity {
     WebView webView;
     String gongji = "https://dep.jeiu.ac.kr/CI/community/list.asp?BoardID=00088";
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.major_gongji_main);
 

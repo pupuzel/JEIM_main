@@ -3,7 +3,7 @@ package com.example.jock.jeim_main.Main;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +31,7 @@ public class PwchangeActivity extends AppCompatActivity implements View.OnClickL
     TextView txt_back;
     Button btn_check;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_change);
         edit_current = (EditText) findViewById(R.id.passfind_edit_mypass);

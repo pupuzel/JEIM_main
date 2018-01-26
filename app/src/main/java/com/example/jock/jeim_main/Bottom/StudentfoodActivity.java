@@ -2,7 +2,7 @@ package com.example.jock.jeim_main.Bottom;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -28,7 +28,7 @@ public class StudentfoodActivity extends AppCompatActivity implements View.OnCli
     private final String lastdate = "2017-11-24";
     private TextView txt_back;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottom_studentfood_main);
         listView = (ListView) findViewById(R.id.studentfood_listview);

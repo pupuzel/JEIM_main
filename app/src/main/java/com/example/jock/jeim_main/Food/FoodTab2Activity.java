@@ -2,7 +2,7 @@ package com.example.jock.jeim_main.Food;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +30,7 @@ public class FoodTab2Activity extends Fragment {
     private FoodTab2_Adapter adapter;
     private Context context;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bundle = getArguments();
         code = bundle.getString("code");

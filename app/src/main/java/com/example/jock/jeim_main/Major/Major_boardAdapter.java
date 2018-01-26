@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -36,6 +38,7 @@ public class Major_boardAdapter extends BaseAdapter {
     private List<Major_boardNotice> noticeList;
     private List<String> imglist = new ArrayList<String>();
     private int height,width;
+    private ViewHolder holder;
 
     public Major_boardAdapter(Context context, List<Major_boardNotice> noticelist, int height, int width) {
         this.context = context;
@@ -60,17 +63,23 @@ public class Major_boardAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v = View.inflate(context, R.layout.major_board_notice, null);
-        final ViewHolder holder = new ViewHolder();
+    public View getView(int position, View v, ViewGroup parent) {
 
-        /* find */
-        holder.txt_usernm = (TextView) v.findViewById(R.id.major_board_usernm);
-        holder.txt_date = (TextView) v.findViewById(R.id.major_board_date);
-        holder.txt_content = (TextView) v.findViewById(R.id.major_board_content);
-        holder.txt_review = (TextView) v.findViewById(R.id.major_board__txt_review);
-        holder.txt_newreview = (TextView) v.findViewById(R.id.major_board__txt_newreview);
-        holder.imglayout = (LinearLayout) v.findViewById(R.id.major_board_imglayout);
+        if(v == null){
+            v = LayoutInflater.from(context).inflate(R.layout.major_board_notice,null);
+            holder = new ViewHolder();
+
+            /* find */
+            holder.txt_usernm = (TextView) v.findViewById(R.id.major_board_usernm);
+            holder.txt_date = (TextView) v.findViewById(R.id.major_board_date);
+            holder.txt_content = (TextView) v.findViewById(R.id.major_board_content);
+            holder.txt_review = (TextView) v.findViewById(R.id.major_board__txt_review);
+            holder.txt_newreview = (TextView) v.findViewById(R.id.major_board__txt_newreview);
+            holder.imglayout = (LinearLayout) v.findViewById(R.id.major_board_imglayout);
+            v.setTag(holder);
+        }else{
+            holder = (ViewHolder)v.getTag();
+        }
 
         /* settext */
         holder.txt_usernm .setText(noticeList.get(position).getUsernm());
@@ -99,7 +108,7 @@ public class Major_boardAdapter extends BaseAdapter {
 
         //* IMG *//*
         imglist = noticeList.get(position).getImglist();
-        if(imglist.size() > 0 && holder.imglayout.getChildCount() == 0) {
+/*        if(imglist.size() > 0 && holder.imglayout.getChildCount() == 0) {
             Log.i("이미지",String.valueOf(holder.imglayout.getChildCount()));
             for(int i =0; i<imglist.size(); i++){
 
@@ -128,7 +137,7 @@ public class Major_boardAdapter extends BaseAdapter {
                         });
                 holder.imglayout.addView(imageView);
             }
-        }
+        }*/
 
         return v;
     }

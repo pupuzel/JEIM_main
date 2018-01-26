@@ -3,7 +3,7 @@ package com.example.jock.jeim_main.Main;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements
 
     /* 드로어 네비게이션 아이템 버튼 클릭 이벤트*/
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.drawer_faq:
                 Intent faq = new Intent(getApplicationContext(),FAQActivity.class);

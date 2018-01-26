@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -57,7 +56,7 @@ public class LibraryActivity extends AppCompatActivity implements AbsListView.On
     private boolean mLockListView = false;          // 데이터 불러올때 중복안되게 하기위한 변수
     private final int OFFSET = 10;                  // 한 페이지마다 로드할 데이터 갯수.
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.library_main);
 

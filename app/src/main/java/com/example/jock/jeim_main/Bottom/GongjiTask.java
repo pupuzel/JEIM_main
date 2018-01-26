@@ -29,7 +29,7 @@ public class GongjiTask extends AsyncTask<String,Void,String> {
 
             if(con.getResponseCode() == con.HTTP_OK){
 
-                InputStreamReader tmp = new InputStreamReader(con.getInputStream(), "UTF-8"); //넘어오는 결과값들을 그대로 받아올수있도록
+                InputStreamReader tmp = new InputStreamReader(con.getInputStream(), "UTF-8");
                 BufferedReader reader = new BufferedReader(tmp);
                 StringBuilder stringBuilder = new StringBuilder();
 
